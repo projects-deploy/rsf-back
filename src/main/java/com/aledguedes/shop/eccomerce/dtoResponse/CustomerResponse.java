@@ -1,0 +1,31 @@
+package com.aledguedes.shop.eccomerce.dtoResponse;
+
+import java.time.LocalDateTime;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class CustomerResponse {
+
+    private Long id;
+    private String uf;
+    private String cpf;
+    private String cep;
+    private String name;
+    private String email;
+    private String phone;
+    private String numero;
+    private String bairro;
+    private String localidade;
+    private String logradouro;
+    private String complemento;
+    private LocalDateTime birth_date;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+}
