@@ -37,8 +37,10 @@ public class ProductServiceImpl implements ProductService {
 			var categoria = categoryRepository.findById(productRequest.getCategory().getId())
 					.orElseThrow(CategoryNotFoundException::new);
 			var produto = productMapper.toProduct(productRequest);
+
 			produto.setCategory(categoria);
 			produto.setPrice_promo(changePromotion(produto));
+			produto.setAvailable(existStok(produto.getIn_stok()));
 			var createdProduct = productRepository.save(produto);
 			return productMapper.toProductResponse(createdProduct);
 		} catch (Exception ex) {
@@ -62,6 +64,7 @@ public class ProductServiceImpl implements ProductService {
 			produto.setBrand(marca);
 			produto.setCategory(categoria);
 			produto.setPrice_promo(changePromotion(produto));
+			produto.setAvailable(existStok(produto.getIn_stok()));
 			BeanUtils.copyProperties(productRequest, "id", "createdAt", "updatedAt");
 			var userAtualizado = productRepository.save(produto);
 			return productMapper.toProductResponse(userAtualizado);
@@ -120,5 +123,9 @@ public class ProductServiceImpl implements ProductService {
 			return produto.getPrice_product();
 		}
 	}
+
+	private int existStok(int inStok) {
+        return inStok > 1 ? 1 : 0;
+    }
 
 }

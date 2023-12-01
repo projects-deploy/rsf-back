@@ -67,6 +67,7 @@ CREATE TABLE `tbl_product` (
     `discount` DECIMAL(10, 2),
     `delivery` INT,
     `brand_id` INT,
+    `in_stok` INT,
     `category_id` INT,
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP,
@@ -87,6 +88,15 @@ CREATE TABLE `tbl_item_order` (
     FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`)
 );
 
+CREATE TABLE `tbl_favorites` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `added_in` TIMESTAMP,
+    `customer_id` BIGINT,
+    `product_id` BIGINT,
+    FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`),
+    FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`)
+);
+
 INSERT INTO TBL_CATEGORY VALUES
 (1, 'Moda Masculina', '2023-11-28', '2023-11-28'), 
 (2, 'Moda Feminina', '2023-11-28', '2023-11-28'),
@@ -99,10 +109,10 @@ INSERT INTO TBL_BRAND VALUES
 (3, 'Cheiro Bom', 'img/brand/logo/03.png', '2023-11-28', '2023-11-28'),
 (4, 'Mi-Kel', 'img/brand/logo/04.png', '2023-11-28', '2023-11-28');
 
+INSERT INTO TBL_PRODUCT VALUES
+(1, 'Camisa Gola Polo', 'Camisa em algodão de ótima qualidade', 'products/1/polo_01.png', '95.00', '85.50', 1, 10, 1, 1, 10, 1, '2023-11-28', '2023-11-28'),
+(2, 'Vestido longo', 'Vestido longo', 'products/2/vestido_01.png', '75.00', '75.00', 1, 0, 1, 2, 30, 2, '2023-11-28', '2023-11-28');
+
 INSERT INTO TBL_CUSTOMER VALUES
 (1, 'SP', '30890561869', '14056-150', 'Alexandre Guedes', 'aledguedes@gmail.com', '123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1983-04-07', '2023-11-28', '2023-11-28'),
 (2, 'SP', '402778098-19', '14056-150', 'Danielle Cristine Tenda Guedes', 'dani_helo@gmail.com', '123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1991-05-15', '2023-11-28', '2023-11-28');
-
-INSERT INTO TBL_PRODUCT VALUES
-(1, 'Camisa Gola Polo', 'Camisa em algodão de ótima qualidade', 'products/1/polo_01.png', '95.00', '85.50', 1, 10, 1, 1, 1, '2023-11-28', '2023-11-28'),
-(2, 'Vestido longo', 'Vestido longo', 'products/2/vestido_01.png', '75.00', '75.00', 1, 0, 1, 2, 2, '2023-11-28', '2023-11-28');

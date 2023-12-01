@@ -34,6 +34,11 @@ public class CustomerController {
 		return customerService.listAll();
 	}
 
+	@GetMapping(value = "/{customer_id}")
+	public CustomerResponse listById(@PathVariable Long customer_id) {
+		return customerService.listById(customer_id);
+	}
+
 	@GetMapping(value = "/find/cpf")
 	public CustomerResponse searchByCPF(@RequestParam(name = "q", required = false, defaultValue = "") String cpf) {
 		return customerService.searchByCPF(cpf);

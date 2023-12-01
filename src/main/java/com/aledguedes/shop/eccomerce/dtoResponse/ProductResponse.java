@@ -26,13 +26,15 @@ public class ProductResponse {
     private String link_photo;
     private double price_product;
     private double price_promo;
+    private int in_stok;
     private int available;
     private int delivery;
     private double discount;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    
     @JsonIgnoreProperties({"createdAt", "updatedAt"})
     private Brand brand;
     @JsonIgnoreProperties({"createdAt", "updatedAt"})
     private Category category;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }

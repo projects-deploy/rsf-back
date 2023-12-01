@@ -1,10 +1,13 @@
 package com.aledguedes.shop.eccomerce.mapperImpl;
 
+import org.springframework.stereotype.Component;
+
 import com.aledguedes.shop.eccomerce.dtoRequest.FavoriteProductsRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.FavoriteProductsResponse;
 import com.aledguedes.shop.eccomerce.mapper.FavoriteProductsMapper;
 import com.aledguedes.shop.eccomerce.model.FavoriteProducts;
 
+@Component
 public class FavoriteProductsMapperImpl implements FavoriteProductsMapper {
 
     @Override
@@ -28,7 +31,6 @@ public class FavoriteProductsMapperImpl implements FavoriteProductsMapper {
         return FavoriteProductsResponse.builder()
                 .id(favorites.getId())
                 .added_in(favorites.getAdded_in())
-                .updated_in(favorites.getUpdated_in())
                 .customer(favorites.getCustomer())
                 .product(favorites.getProduct())
                 .build();

@@ -1,5 +1,6 @@
 package com.aledguedes.shop.eccomerce.serviceImpl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -23,8 +24,8 @@ public class FavoriteProductsServiceImpl implements FavoriteProductsService {
 
     private final FavoriteProductsMapper favoriteProductsMapper;
 
-    private ProductRepository productRepository;
-    private CustomerRepository customerRepository;
+    private final ProductRepository productRepository;
+    private final CustomerRepository customerRepository;
     private final FavoriteProductsRepository favoriteRepository;
 
     @Override
@@ -47,6 +48,9 @@ public class FavoriteProductsServiceImpl implements FavoriteProductsService {
             var newFavorite = new FavoriteProducts();
             newFavorite.setCustomer(customer);
             newFavorite.setProduct(product);
+            newFavorite.setAdded_in(LocalDateTime.now());
+            
+            favoriteRepository.save(newFavorite);
 
             return favoriteProductsMapper.toFavoriteProductsResponse(newFavorite);
         } catch (Exception e) {

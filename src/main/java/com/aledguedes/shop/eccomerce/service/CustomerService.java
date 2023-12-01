@@ -8,6 +8,7 @@ import com.aledguedes.shop.eccomerce.dtoResponse.CustomerResponse;
 public interface CustomerService {
 
 	List<CustomerResponse> listAll();
+	CustomerResponse listById(Long customer_id);
     CustomerResponse searchByCPF(String cpf);
 	CustomerResponse searchByPhone(String phone);
 	List<CustomerResponse> searchByChar(String charKey);

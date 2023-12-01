@@ -58,6 +58,7 @@ public class CustomerMapperImpl implements CustomerMapper {
                 .birth_date(customer.getBirth_date())
 	            .createdAt(customer.getCreatedAt())
 	            .updatedAt(customer.getUpdatedAt())
+	            .favorites(customer.getFavorites())
                 .build();
     }
     

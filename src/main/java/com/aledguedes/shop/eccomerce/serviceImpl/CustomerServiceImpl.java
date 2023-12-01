@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.CustomerRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.CustomerResponse;
+import com.aledguedes.shop.eccomerce.exceptions.core.CustomerNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.core.UserNotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.CustomerMapper;
 import com.aledguedes.shop.eccomerce.repository.CustomerRepository;
@@ -28,6 +29,13 @@ public class CustomerServiceImpl implements CustomerService {
                 .map(customerMapper::toCustomerResponse)
                 .toList();
     }
+
+	@Override
+	public CustomerResponse listById(Long customer_id) {
+		return customerRepository.findById(customer_id)
+                .map(customerMapper::toCustomerResponse)
+                .orElseThrow(CustomerNotFoundException::new);
+	}
 
     @Override
     public CustomerResponse searchByCPF(String cpf) {

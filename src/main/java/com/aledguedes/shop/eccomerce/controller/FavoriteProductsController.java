@@ -29,8 +29,8 @@ public class FavoriteProductsController {
     }
 
     @GetMapping("/create")
-    public FavoriteProductsResponse createBrand(@RequestParam Long customer_id, @RequestParam Long product_id) {
-        return productsService.createBrand(customer_id, product_id);
+    public FavoriteProductsResponse createBrand(@RequestParam Long customer, @RequestParam Long product) {
+        return productsService.createBrand(customer, product);
     }
 
     @DeleteMapping("/delete/{favorite_id}")

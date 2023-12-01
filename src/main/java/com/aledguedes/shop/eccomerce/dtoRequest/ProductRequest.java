@@ -38,7 +38,8 @@ public class ProductRequest {
     @NotNull
     private double price_product;
 
-    private int available;
+    @NotNull
+    private int in_stok;
     private int discount;
     private int delivery;
     private Brand brand;

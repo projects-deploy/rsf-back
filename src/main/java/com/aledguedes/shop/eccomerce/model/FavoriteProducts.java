@@ -2,9 +2,6 @@ package com.aledguedes.shop.eccomerce.model;
 
 import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,13 +31,8 @@ public class FavoriteProducts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreatedDate
     @Column(name = "added_in")
     private LocalDateTime added_in;
-
-    @LastModifiedDate
-    @Column(name = "updated_in")
-    private LocalDateTime updated_in;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
