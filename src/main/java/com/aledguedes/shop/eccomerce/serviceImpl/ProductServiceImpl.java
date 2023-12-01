@@ -34,14 +34,22 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductResponse createProduct(ProductRequest productRequest) {
 		try {
-			var categoria = categoryRepository.findById(productRequest.getCategory().getId())
-					.orElseThrow(CategoryNotFoundException::new);
+
 			var produto = productMapper.toProduct(productRequest);
 
+			var categoria = categoryRepository.findById(productRequest.getCategory().getId())
+					.orElseThrow(CategoryNotFoundException::new);
+
+			var marca = brandRepository.findById(productRequest.getBrand().getId())
+					.orElseThrow(CategoryNotFoundException::new);
+
+			produto.setBrand(marca);
 			produto.setCategory(categoria);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));
+			
 			var createdProduct = productRepository.save(produto);
+			
 			return productMapper.toProductResponse(createdProduct);
 		} catch (Exception ex) {
 			System.out.println("----- ProdutoService.inserirNovoProduto ---");
@@ -61,11 +69,11 @@ public class ProductServiceImpl implements ProductService {
 					.orElseThrow(CategoryNotFoundException::new);
 
 			var produto = productRepository.findById(product_id).orElseThrow(ProductNotFoundException::new);
+			BeanUtils.copyProperties(productRequest, produto, "id", "createdAt", "updatedAt");
 			produto.setBrand(marca);
 			produto.setCategory(categoria);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));
-			BeanUtils.copyProperties(productRequest, "id", "createdAt", "updatedAt");
 			var userAtualizado = productRepository.save(produto);
 			return productMapper.toProductResponse(userAtualizado);
 		} catch (Exception ex) {
@@ -117,6 +125,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	private Double changePromotion(Product produto) {
+
+		System.out.println("DEBUG UPDATE produto.getPrice_product(): " + produto.getPrice_product());
+		System.out.println("DEBUG UPDATE produto.getDiscount(): " + produto.getDiscount());
+
 		if (produto.getDiscount() > 0) {
 			return produto.getPrice_product() - ((produto.getPrice_product() * produto.getDiscount()) / 100);
 		} else {
@@ -125,7 +137,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	private int existStok(int inStok) {
-        return inStok > 1 ? 1 : 0;
-    }
+		return inStok > 1 ? 1 : 0;
+	}
 
 }

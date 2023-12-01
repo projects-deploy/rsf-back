@@ -49,7 +49,7 @@ public class Product extends Auditable {
     private int available;
 
     @Column(name = "discount")
-    private double discount;
+    private int discount;
 
     @Column(name = "delivery")
     private int delivery;

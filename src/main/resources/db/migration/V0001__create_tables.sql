@@ -64,7 +64,7 @@ CREATE TABLE `tbl_product` (
     `price_product` DECIMAL(10, 2),
     `price_promo` DECIMAL(10, 2),
     `available` INT,
-    `discount` DECIMAL(10, 2),
+    `discount` INT,
     `delivery` INT,
     `brand_id` INT,
     `in_stok` INT,
@@ -109,10 +109,10 @@ INSERT INTO TBL_BRAND VALUES
 (3, 'Cheiro Bom', 'img/brand/logo/03.png', '2023-11-28', '2023-11-28'),
 (4, 'Mi-Kel', 'img/brand/logo/04.png', '2023-11-28', '2023-11-28');
 
-INSERT INTO TBL_PRODUCT VALUES
-(1, 'Camisa Gola Polo', 'Camisa em algodão de ótima qualidade', 'products/1/polo_01.png', '95.00', '85.50', 1, 10, 1, 1, 10, 1, '2023-11-28', '2023-11-28'),
-(2, 'Vestido longo', 'Vestido longo', 'products/2/vestido_01.png', '75.00', '75.00', 1, 0, 1, 2, 30, 2, '2023-11-28', '2023-11-28');
-
 INSERT INTO TBL_CUSTOMER VALUES
 (1, 'SP', '30890561869', '14056-150', 'Alexandre Guedes', 'aledguedes@gmail.com', '123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1983-04-07', '2023-11-28', '2023-11-28'),
 (2, 'SP', '402778098-19', '14056-150', 'Danielle Cristine Tenda Guedes', 'dani_helo@gmail.com', '123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1991-05-15', '2023-11-28', '2023-11-28');
+
+--INSERT INTO TBL_PRODUCT VALUES
+--(1, 'Camisa Gola Polo', 'Camisa em algodão de ótima qualidade', 'products/1/polo_01.png', '95.00', '85.50', 1, 10, 1, 1, 10, 1, '2023-11-28', '2023-11-28'),
+--(2, 'Vestido longo', 'Vestido longo', 'products/2/vestido_01.png', '75.99', '75.00', 1, 0, 1, 2, 30, 2, '2023-11-28', '2023-11-28');

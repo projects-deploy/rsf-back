@@ -38,6 +38,9 @@ public class ProductController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ProductResponse createProduct(@RequestBody @Valid ProductRequest productRequest) {
+
+		System.out.println("DEBUG MARCA: "+productRequest.getCategory().getId());
+		System.out.println("DEBUG MARCA: "+productRequest.getBrand().getId());
         return productService.createProduct(productRequest);
     }
 
