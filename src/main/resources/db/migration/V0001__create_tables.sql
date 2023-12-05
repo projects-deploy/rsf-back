@@ -97,17 +97,17 @@ CREATE TABLE `tbl_favorites` (
     FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`)
 );
 
-INSERT INTO TBL_CATEGORY VALUES
-(1, 'Moda Masculina', '2023-11-28', '2023-11-28'), 
-(2, 'Moda Feminina', '2023-11-28', '2023-11-28'),
-(3, 'Infantil', '2023-11-28', '2023-11-28'),
-(4, 'Infanto Juvenil', '2023-11-28', '2023-11-28');
+-- INSERT INTO TBL_CATEGORY VALUES
+-- (1, 'Moda Masculina', '2023-11-28', '2023-11-28'), 
+-- (2, 'Moda Feminina', '2023-11-28', '2023-11-28'),
+-- (3, 'Infantil', '2023-11-28', '2023-11-28'),
+-- (4, 'Infanto Juvenil', '2023-11-28', '2023-11-28');
 
-INSERT INTO TBL_BRAND VALUES
-(1, 'Poko-lolo', 'img/brand/logo/01.png', '2023-11-28', '2023-11-28'),
-(2, 'Bom Bocado', 'img/brand/logo/02.png', '2023-11-28', '2023-11-28'),
-(3, 'Cheiro Bom', 'img/brand/logo/03.png', '2023-11-28', '2023-11-28'),
-(4, 'Mi-Kel', 'img/brand/logo/04.png', '2023-11-28', '2023-11-28');
+-- INSERT INTO TBL_BRAND VALUES
+-- (1, 'Poko-lolo', 'img/brand/logo/01.png', '2023-11-28', '2023-11-28'),
+-- (2, 'Bom Bocado', 'img/brand/logo/02.png', '2023-11-28', '2023-11-28'),
+-- (3, 'Cheiro Bom', 'img/brand/logo/03.png', '2023-11-28', '2023-11-28'),
+-- (4, 'Mi-Kel', 'img/brand/logo/04.png', '2023-11-28', '2023-11-28');
 
 INSERT INTO TBL_CUSTOMER VALUES
 (1, 'SP', '30890561869', '14056-150', 'Alexandre Guedes', 'aledguedes@gmail.com', '123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1983-04-07', '2023-11-28', '2023-11-28'),
