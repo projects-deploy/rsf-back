@@ -8,7 +8,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.ProductRequest;
-import com.aledguedes.shop.eccomerce.dtoResponse.CategoryResponse;
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
 import com.aledguedes.shop.eccomerce.exceptions.core.CategoryNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.core.ProductNotFoundException;
@@ -45,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
 					.orElseThrow(CategoryNotFoundException::new);
 
 			produto.setBrand(marca);
-			produto.setSub_category(subCategoria);
+			produto.setSubCategory(subCategoria);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));
 
@@ -72,7 +71,7 @@ public class ProductServiceImpl implements ProductService {
 			var produto = productRepository.findById(product_id).orElseThrow(ProductNotFoundException::new);
 			BeanUtils.copyProperties(productRequest, produto, "id", "createdAt", "updatedAt");
 			produto.setBrand(marca);
-			produto.setSub_category(subCategoria);
+			produto.setSubCategory(subCategoria);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));
 			var userAtualizado = productRepository.save(produto);
@@ -108,8 +107,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductResponse> listByCategory(CategoryResponse categoryResponse) {
-		return productRepository.findAllByAvailableAndCategory(1, categoryResponse);
+	public List<ProductResponse> listByCategory(Long category_id) {
+		var subCategory = subCategoryRepository.findById(category_id)
+				.orElseThrow(SubCategoryNotFoundException::new);
+		return productRepository.findAllByAvailableAndSubCategory(1, subCategory);
 	}
 
 	@Override
@@ -126,9 +127,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	private Double changePromotion(Product produto) {
-
-		System.out.println("DEBUG UPDATE produto.getPrice_product(): " + produto.getPrice_product());
-		System.out.println("DEBUG UPDATE produto.getDiscount(): " + produto.getDiscount());
 
 		if (produto.getDiscount() > 0) {
 			return produto.getPrice_product() - ((produto.getPrice_product() * produto.getDiscount()) / 100);

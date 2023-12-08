@@ -25,7 +25,7 @@ public class ProductMapperImpl implements ProductMapper {
                 .in_stok(productRequest.getIn_stok())
                 .delivery(productRequest.getDelivery())
                 .brand(productRequest.getBrand())
-                .sub_category(productRequest.getSub_category())
+                .subCategory(productRequest.getSub_category())
                 .build();
     }
 
@@ -46,7 +46,7 @@ public class ProductMapperImpl implements ProductMapper {
                 .in_stok(product.getIn_stok())
                 .available(product.getAvailable())
                 .delivery(product.getDelivery())
-                .sub_category(product.getSub_category())
+                .sub_category(product.getSubCategory())
                 .brand(product.getBrand())
                 .createdAt(product.getCreatedAt())
                 .updatedAt(product.getUpdatedAt())

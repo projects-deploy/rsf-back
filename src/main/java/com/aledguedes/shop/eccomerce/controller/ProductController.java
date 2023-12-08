@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.ProductRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
-import com.aledguedes.shop.eccomerce.exceptions.core.CategoryNotFoundException;
-import com.aledguedes.shop.eccomerce.mapper.CategoryMapper;
-import com.aledguedes.shop.eccomerce.repository.CategoryRepository;
 import com.aledguedes.shop.eccomerce.service.ProductService;
 
 import jakarta.validation.Valid;
@@ -32,8 +29,6 @@ import lombok.RequiredArgsConstructor;
 public class ProductController {
 
     private final ProductService productService;
-    private final CategoryMapper categoryMapper;
-    private final CategoryRepository categoryRepository;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -68,15 +63,9 @@ public class ProductController {
         return productService.listaIndisponiveis();
     }
 
-    @GetMapping(value = "/by-category/{category_id}")
-    public List<ProductResponse> listByCategory(@PathVariable(name = "id") Long category_id) {
-        var category = categoryRepository.findById(category_id)
-                .map(categoryMapper::toCategoryResponse)
-                .orElseThrow(CategoryNotFoundException::new);
-        if (category != null)
-            return productService.listByCategory(category);
-
-        return null;
+    @GetMapping(value = "/by-sub-category/{sub_category_id}")
+    public List<ProductResponse> listByCategory(@PathVariable Long sub_category_id) {
+    	return productService.listByCategory(sub_category_id);
     }
 
     @GetMapping(value = "/find")

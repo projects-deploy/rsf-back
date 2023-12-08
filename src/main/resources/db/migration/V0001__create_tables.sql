@@ -10,15 +10,6 @@ CREATE TABLE `tbl_user` (
     `updated_at` TIMESTAMP
 );
 
-CREATE TABLE `tbl_subcategory` (
-    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
-    `name` VARCHAR(255) NOT NULL,
-    `category_id` BIGINT,
-    `created_at` TIMESTAMP NOT NULL,
-    `updated_at` TIMESTAMP,
-    FOREIGN KEY (`category_id`) REFERENCES `tbl_category`(`id`)
-);
-
 CREATE TABLE `tbl_category` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255),
@@ -32,6 +23,15 @@ CREATE TABLE `tbl_brand` (
     `link_photo` VARCHAR(255),
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP
+);
+
+CREATE TABLE `tbl_subcategory` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    `category_id` BIGINT,
+    `created_at` TIMESTAMP NOT NULL,
+    `updated_at` TIMESTAMP,
+    FOREIGN KEY (`category_id`) REFERENCES `tbl_category`(`id`)
 );
 
 CREATE TABLE `tbl_customer` (

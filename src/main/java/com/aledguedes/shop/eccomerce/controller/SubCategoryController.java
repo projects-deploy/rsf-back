@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @CrossOrigin("*")
 @RequiredArgsConstructor
-@RequestMapping("/api/sub-subCategory")
+@RequestMapping("/api/sub-category")
 public class SubCategoryController {
 
     private final SubCategoryService subCategoryService;
@@ -34,9 +34,9 @@ public class SubCategoryController {
         return subCategoryService.listAll();
     }
 
-    @GetMapping(value = "/{subCategory_id}")
-    public SubCategoryResponse subCategoryById(@PathVariable Long subCategory_id) {
-        return subCategoryService.subCategoryById(subCategory_id);
+    @GetMapping(value = "/{sub_category_id}")
+    public SubCategoryResponse subCategoryById(@PathVariable Long sub_category_id) {
+        return subCategoryService.subCategoryById(sub_category_id);
     }
 
     @GetMapping(value = "/search")
