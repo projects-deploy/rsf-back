@@ -12,11 +12,12 @@ import com.aledguedes.shop.eccomerce.dtoResponse.CategoryResponse;
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
 import com.aledguedes.shop.eccomerce.exceptions.core.CategoryNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.core.ProductNotFoundException;
+import com.aledguedes.shop.eccomerce.exceptions.core.SubCategoryNotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.ProductMapper;
 import com.aledguedes.shop.eccomerce.model.Product;
 import com.aledguedes.shop.eccomerce.repository.BrandRepository;
-import com.aledguedes.shop.eccomerce.repository.CategoryRepository;
 import com.aledguedes.shop.eccomerce.repository.ProductRepository;
+import com.aledguedes.shop.eccomerce.repository.SubCategoryRepository;
 import com.aledguedes.shop.eccomerce.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
 	private final ProductMapper productMapper;
 	private final BrandRepository brandRepository;
 	private final ProductRepository productRepository;
-	private final CategoryRepository categoryRepository;
+	private final SubCategoryRepository subCategoryRepository;
 
 	@Override
 	public ProductResponse createProduct(ProductRequest productRequest) {
@@ -37,19 +38,19 @@ public class ProductServiceImpl implements ProductService {
 
 			var produto = productMapper.toProduct(productRequest);
 
-			var categoria = categoryRepository.findById(productRequest.getCategory().getId())
-					.orElseThrow(CategoryNotFoundException::new);
+			var subCategoria = subCategoryRepository.findById(productRequest.getSub_category().getId())
+					.orElseThrow(SubCategoryNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())
 					.orElseThrow(CategoryNotFoundException::new);
 
 			produto.setBrand(marca);
-			produto.setCategory(categoria);
+			produto.setSub_category(subCategoria);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));
-			
+
 			var createdProduct = productRepository.save(produto);
-			
+
 			return productMapper.toProductResponse(createdProduct);
 		} catch (Exception ex) {
 			System.out.println("----- ProdutoService.inserirNovoProduto ---");
@@ -62,8 +63,8 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductResponse updateProduct(ProductRequest productRequest, Long product_id) {
 		try {
-			var categoria = categoryRepository.findById(productRequest.getCategory().getId())
-					.orElseThrow(CategoryNotFoundException::new);
+			var subCategoria = subCategoryRepository.findById(productRequest.getSub_category().getId())
+					.orElseThrow(SubCategoryNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())
 					.orElseThrow(CategoryNotFoundException::new);
@@ -71,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
 			var produto = productRepository.findById(product_id).orElseThrow(ProductNotFoundException::new);
 			BeanUtils.copyProperties(productRequest, produto, "id", "createdAt", "updatedAt");
 			produto.setBrand(marca);
-			produto.setCategory(categoria);
+			produto.setSub_category(subCategoria);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));
 			var userAtualizado = productRepository.save(produto);

@@ -2,6 +2,8 @@ package com.aledguedes.shop.eccomerce.dtoResponse;
 
 import java.time.LocalDateTime;
 
+import com.aledguedes.shop.eccomerce.model.Category;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,14 +13,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserResponse {
+public class SubCategoryResponse {
     
     private Long id;
-    private String email;
-    private String username;
     private String name;
-    private String link_photo;
-    private Integer user_active;
+    private Category category;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 }

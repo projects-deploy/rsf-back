@@ -1,7 +1,7 @@
 package com.aledguedes.shop.eccomerce.dtoRequest;
 
 import com.aledguedes.shop.eccomerce.model.Brand;
-import com.aledguedes.shop.eccomerce.model.Category;
+import com.aledguedes.shop.eccomerce.model.SubCategory;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
@@ -43,5 +43,5 @@ public class ProductRequest {
     private int discount;
     private int delivery;
     private Brand brand;
-    private Category category;
+    private SubCategory sub_category;
 }

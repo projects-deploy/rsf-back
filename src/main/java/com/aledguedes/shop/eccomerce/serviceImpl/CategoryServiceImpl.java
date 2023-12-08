@@ -49,8 +49,8 @@ public class CategoryServiceImpl implements CategoryService {
             return categoryMapper.toCategoryResponse(createdCategory);
         } catch (Exception e) {
             System.out.println("DEBUG = " + e.getMessage());
+            return null;
         }
-        return null;
     }
 
     @Override

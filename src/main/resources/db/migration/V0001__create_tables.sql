@@ -3,10 +3,20 @@ CREATE TABLE `tbl_user` (
     `email` VARCHAR(255),
     `username` VARCHAR(255),
     `name` VARCHAR(255),
+    `link_photo` VARCHAR(255),
     `user_active` INT,
     `password` VARCHAR(255),
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP
+);
+
+CREATE TABLE `tbl_subcategory` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
+    `category_id` BIGINT,
+    `created_at` TIMESTAMP NOT NULL,
+    `updated_at` TIMESTAMP,
+    FOREIGN KEY (`category_id`) REFERENCES `tbl_category`(`id`)
 );
 
 CREATE TABLE `tbl_category` (
@@ -69,10 +79,11 @@ CREATE TABLE `tbl_product` (
     `brand_id` INT,
     `in_stok` INT,
     `category_id` INT,
+    `subcategory_id` INT,
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP,
     FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand`(`id`),
-    FOREIGN KEY (`category_id`) REFERENCES `tbl_category`(`id`)
+    FOREIGN KEY (`subcategory_id`) REFERENCES `tbl_subcategory`(`id`)
 );
 
 CREATE TABLE `tbl_item_order` (
@@ -110,8 +121,8 @@ CREATE TABLE `tbl_favorites` (
 -- (4, 'Mi-Kel', 'img/brand/logo/04.png', '2023-11-28', '2023-11-28');
 
 INSERT INTO TBL_CUSTOMER VALUES
-(1, 'SP', '30890561869', '14056-150', 'Alexandre Guedes', 'aledguedes@gmail.com', '123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1983-04-07', '2023-11-28', '2023-11-28'),
-(2, 'SP', '402778098-19', '14056-150', 'Danielle Cristine Tenda Guedes', 'dani_helo@gmail.com', '123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1991-05-15', '2023-11-28', '2023-11-28');
+(1, 'SP', '30890561869', '14056-150', 'Alexandre Guedes', 'aledguedes@gmail.com', '00123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1983-04-07', '2023-11-28', '2023-11-28'),
+(2, 'SP', '402778098-19', '14056-150', 'Danielle Cristine Tenda Guedes', 'dani_helo@gmail.com', '00123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1991-05-15', '2023-11-28', '2023-11-28');
 
 --INSERT INTO TBL_PRODUCT VALUES
 --(1, 'Camisa Gola Polo', 'Camisa em algodão de ótima qualidade', 'products/1/polo_01.png', '95.00', '85.50', 1, 10, 1, 1, 10, 1, '2023-11-28', '2023-11-28'),
