@@ -28,10 +28,16 @@ CREATE TABLE `tbl_brand` (
 CREATE TABLE `tbl_subcategory` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
-    `category_id` BIGINT,
     `created_at` TIMESTAMP NOT NULL,
-    `updated_at` TIMESTAMP,
-    FOREIGN KEY (`category_id`) REFERENCES `tbl_category`(`id`)
+    `updated_at` TIMESTAMP
+);
+
+CREATE TABLE `category_subcategory` (
+    `category_id` BIGINT,
+    `subcategory_id` BIGINT,
+    PRIMARY KEY (`category_id`, `subcategory_id`),
+    FOREIGN KEY (`category_id`) REFERENCES `tbl_category` (`id`),
+    FOREIGN KEY (`subcategory_id`) REFERENCES `tbl_subcategory` (`id`)
 );
 
 CREATE TABLE `tbl_customer` (
@@ -127,3 +133,4 @@ INSERT INTO TBL_CUSTOMER VALUES
 --INSERT INTO TBL_PRODUCT VALUES
 --(1, 'Camisa Gola Polo', 'Camisa em algodão de ótima qualidade', 'products/1/polo_01.png', '95.00', '85.50', 1, 10, 1, 1, 10, 1, '2023-11-28', '2023-11-28'),
 --(2, 'Vestido longo', 'Vestido longo', 'products/2/vestido_01.png', '75.99', '75.00', 1, 0, 1, 2, 30, 2, '2023-11-28', '2023-11-28');
+

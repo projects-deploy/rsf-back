@@ -10,6 +10,7 @@ public interface CategoryService {
     List<CategoryResponse> listAll();
     List<CategoryResponse> listAllOrderById();
     CategoryResponse createCategory(CategoryRequest category);
+    CategoryResponse createCategoryWithSubCategories(CategoryRequest categoryRequest);
     CategoryResponse updateCategory(CategoryRequest category, Long category_id);
     List<CategoryResponse> listBykey(String key);
 }

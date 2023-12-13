@@ -11,5 +11,6 @@ public interface SubCategoryService {
     List<SubCategoryResponse> listBykey(String key);
     SubCategoryResponse subCategoryById(Long sub_category_id);
     SubCategoryResponse createSubCategory(SubCategoryRequest sub_category);
+    SubCategoryResponse createSubCategoryWithCategories(SubCategoryRequest sub_category);
     SubCategoryResponse updateSubCategory(SubCategoryRequest sub_category, Long sub_category_id);
 }

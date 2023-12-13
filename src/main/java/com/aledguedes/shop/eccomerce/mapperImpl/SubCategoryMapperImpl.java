@@ -18,7 +18,6 @@ public class SubCategoryMapperImpl implements SubCategoryMapper {
 
         return SubCategory.builder()
                 .name(subCategoryRequest.getName())
-                .category(subCategoryRequest.getCategory())
                 .build();
     }
 
@@ -31,7 +30,7 @@ public class SubCategoryMapperImpl implements SubCategoryMapper {
         return SubCategoryResponse.builder()
                 .id(subCategory.getId())
                 .name(subCategory.getName())
-                .category(subCategory.getCategory())
+                .categories(subCategory.getCategories())
                 .createdAt(subCategory.getCreatedAt())
                 .updatedAt(subCategory.getUpdatedAt())
                 .build();

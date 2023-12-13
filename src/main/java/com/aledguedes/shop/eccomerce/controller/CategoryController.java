@@ -55,6 +55,12 @@ public class CategoryController {
         return categoryService.createCategory(category);
     }
 
+    @PostMapping(value = "/with-sub-category")
+    @ResponseStatus(HttpStatus.CREATED)
+    public CategoryResponse createCategoryWithSubCategories(@RequestBody @Valid CategoryRequest categoryRequest) {
+        return categoryService.createCategoryWithSubCategories(categoryRequest);
+    }
+
     @PutMapping(value = "/{category_id}")
     public CategoryResponse updateCategory(@RequestBody @Valid CategoryRequest category, @PathVariable Long category_id) {
         return categoryService.updateCategory(category, category_id);
