@@ -34,11 +34,6 @@ public class CategoryController {
         return categoryService.listAll();
     }
 
-    @GetMapping(value = "/order-by-id")
-    public List<CategoryResponse> listAllOrderById() {
-        return categoryService.listAllOrderById();
-    }
-
     @GetMapping(value = "/{category_id}")
     public CategoryResponse categoryById(@PathVariable Long category_id) {
         return categoryService.categoryById(category_id);
@@ -55,14 +50,9 @@ public class CategoryController {
         return categoryService.createCategory(category);
     }
 
-    @PostMapping(value = "/with-sub-category")
-    @ResponseStatus(HttpStatus.CREATED)
-    public CategoryResponse createCategoryWithSubCategories(@RequestBody @Valid CategoryRequest categoryRequest) {
-        return categoryService.createCategoryWithSubCategories(categoryRequest);
-    }
-
     @PutMapping(value = "/{category_id}")
-    public CategoryResponse updateCategory(@RequestBody @Valid CategoryRequest category, @PathVariable Long category_id) {
+    public CategoryResponse updateDepartment(@RequestBody @Valid CategoryRequest category, @PathVariable Long category_id) {
         return categoryService.updateCategory(category, category_id);
     }
+    
 }

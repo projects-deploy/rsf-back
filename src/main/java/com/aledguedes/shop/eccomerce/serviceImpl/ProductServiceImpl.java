@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.ProductRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
-import com.aledguedes.shop.eccomerce.exceptions.core.CategoryNotFoundException;
+import com.aledguedes.shop.eccomerce.exceptions.core.DepartmentNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.core.ProductNotFoundException;
-import com.aledguedes.shop.eccomerce.exceptions.core.SubCategoryNotFoundException;
+import com.aledguedes.shop.eccomerce.exceptions.core.CategoryNotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.ProductMapper;
 import com.aledguedes.shop.eccomerce.model.Product;
 import com.aledguedes.shop.eccomerce.repository.BrandRepository;
 import com.aledguedes.shop.eccomerce.repository.ProductRepository;
-import com.aledguedes.shop.eccomerce.repository.SubCategoryRepository;
+import com.aledguedes.shop.eccomerce.repository.CategoryRepository;
 import com.aledguedes.shop.eccomerce.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
 	private final ProductMapper productMapper;
 	private final BrandRepository brandRepository;
 	private final ProductRepository productRepository;
-	private final SubCategoryRepository subCategoryRepository;
+	private final CategoryRepository categoryRepository;
 
 	@Override
 	public ProductResponse createProduct(ProductRequest productRequest) {
@@ -37,14 +37,14 @@ public class ProductServiceImpl implements ProductService {
 
 			var produto = productMapper.toProduct(productRequest);
 
-			var subCategoria = subCategoryRepository.findById(productRequest.getSub_category().getId())
-					.orElseThrow(SubCategoryNotFoundException::new);
-
-			var marca = brandRepository.findById(productRequest.getBrand().getId())
+			var category = categoryRepository.findById(productRequest.getCategory().getId())
 					.orElseThrow(CategoryNotFoundException::new);
 
+			var marca = brandRepository.findById(productRequest.getBrand().getId())
+					.orElseThrow(DepartmentNotFoundException::new);
+
 			produto.setBrand(marca);
-			produto.setSubCategory(subCategoria);
+			produto.setCategory(category);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));
 
@@ -62,16 +62,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductResponse updateProduct(ProductRequest productRequest, Long product_id) {
 		try {
-			var subCategoria = subCategoryRepository.findById(productRequest.getSub_category().getId())
-					.orElseThrow(SubCategoryNotFoundException::new);
+			var category = categoryRepository.findById(productRequest.getCategory().getId())
+					.orElseThrow(CategoryNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())
-					.orElseThrow(CategoryNotFoundException::new);
+					.orElseThrow(DepartmentNotFoundException::new);
 
 			var produto = productRepository.findById(product_id).orElseThrow(ProductNotFoundException::new);
 			BeanUtils.copyProperties(productRequest, produto, "id", "createdAt", "updatedAt");
 			produto.setBrand(marca);
-			produto.setSubCategory(subCategoria);
+			produto.setCategory(category);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));
 			var userAtualizado = productRepository.save(produto);
@@ -107,10 +107,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductResponse> listByCategory(Long category_id) {
-		var subCategory = subCategoryRepository.findById(category_id)
-				.orElseThrow(SubCategoryNotFoundException::new);
-		return productRepository.findAllByAvailableAndSubCategory(1, subCategory);
+	public List<ProductResponse> listByDepartment(Long department_id) {
+		var category = categoryRepository.findById(department_id)
+				.orElseThrow(CategoryNotFoundException::new);
+		return productRepository.findAllByAvailableAndCategory(1, category);
 	}
 
 	@Override

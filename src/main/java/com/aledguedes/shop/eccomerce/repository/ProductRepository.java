@@ -8,13 +8,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
 import com.aledguedes.shop.eccomerce.model.Product;
-import com.aledguedes.shop.eccomerce.model.SubCategory;
+import com.aledguedes.shop.eccomerce.model.Category;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<ProductResponse> findAllByAvailable(int i, PageRequest pageable);
 
-    List<ProductResponse> findAllByAvailableAndSubCategory(int i, SubCategory subCategory);
+    List<ProductResponse> findAllByAvailableAndCategory(int i, Category category);
 
     Page<ProductResponse> findAllByAvailableAndNameContainingOrAvailableAndDetailContaining(int i, String key, int j,
             String key2, PageRequest pageable);

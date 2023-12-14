@@ -24,6 +24,5 @@ public class BrandRequest {
     @Size(min = 3, max = 100)
     private String name;
 
-    @Size(min = 3, max = 100)
     private String link_photo;
 }

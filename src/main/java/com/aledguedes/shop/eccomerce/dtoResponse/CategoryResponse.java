@@ -3,7 +3,7 @@ package com.aledguedes.shop.eccomerce.dtoResponse;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.aledguedes.shop.eccomerce.model.SubCategory;
+import com.aledguedes.shop.eccomerce.model.Department;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -21,6 +21,6 @@ public class CategoryResponse {
     private String name;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
-    @JsonIgnoreProperties({ "categories", "createdAt", "updatedAt" })
-	private List<SubCategory> subCategories;
+    @JsonIgnoreProperties({ "subCategories", "createdAt", "updatedAt" })
+	private List<Department> categories;
 }

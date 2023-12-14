@@ -6,6 +6,6 @@ import com.aledguedes.shop.eccomerce.model.Category;
 
 public interface CategoryMapper {
 
-    Category toCategory(CategoryRequest categoryRequest);
-    CategoryResponse toCategoryResponse(Category category);
+    Category toCategory(CategoryRequest departmentRequest);
+    CategoryResponse toCategoryResponse(Category department);
 }

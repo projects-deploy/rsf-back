@@ -15,12 +15,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubCategoryResponse {
+public class DepartmentResponse {
     
     private Long id;
     private String name;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
-    @JsonIgnoreProperties({ "subCategories", "createdAt", "updatedAt" })
-	private List<Category> categories;
+    @JsonIgnoreProperties({ "categories", "createdAt", "updatedAt" })
+	private List<Category> subCategories;
 }

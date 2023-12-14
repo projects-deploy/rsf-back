@@ -58,8 +58,8 @@ public class Product extends Auditable {
     private int in_stok;
 
     @ManyToOne
-    @JoinColumn(name = "subcategory_id")
-    private SubCategory subCategory;
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")

@@ -1,7 +1,5 @@
 package com.aledguedes.shop.eccomerce.dtoRequest;
 
-import jakarta.validation.constraints.Size;
-
 import java.util.List;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
@@ -9,6 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +24,6 @@ public class CategoryRequest {
     @NotEmpty
     @Size(min = 3, max = 100)
     private String name;
-
-    private List<SubCategoryRequest> sub_categories;
+    
+    private List<Long> department_ids;
 }

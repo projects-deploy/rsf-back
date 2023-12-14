@@ -10,6 +10,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -37,17 +39,23 @@ public class Category extends Auditable {
 	@Column(name = "name")
 	private String name;
 
-	// @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	// @JoinTable(
-	// name = "category_subcategory",
-	// joinColumns = @JoinColumn(name = "category_id"),
-	// inverseJoinColumns = @JoinColumn(name = "subcategory_id")
-	// )
+	// @ManyToMany(mappedBy = "subCategories")
 	// @Builder.Default
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	}, mappedBy = "categories")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "department_category", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "department_id"))
 	@Builder.Default
-	private List<SubCategory> subCategories = new ArrayList<>();
+	private List<Department> categories = new ArrayList<>();
+
+	public void addDepartment(Department department) {
+		this.categories.add(department);
+		department.getSubCategories().add(this);
+	}
+
+	public void removeDepartment(long department_id) {
+		var department = this.categories.stream().filter(t -> t.getId() == department_id).findFirst().orElse(null);
+		if (department != null) {
+			this.categories.remove(department);
+			department.getSubCategories().remove(this);
+		}
+	}
 }

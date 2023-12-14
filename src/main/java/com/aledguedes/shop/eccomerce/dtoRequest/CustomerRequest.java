@@ -41,7 +41,7 @@ public class CustomerRequest {
 
     @NotNull
     @NotEmpty
-    @Size(min = 3, max = 25)
+    @Size(min = 3, max = 100)
     private String name;
 
     @Email

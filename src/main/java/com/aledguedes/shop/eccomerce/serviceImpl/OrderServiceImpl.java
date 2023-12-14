@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.OrderRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.OrderResponse;
-import com.aledguedes.shop.eccomerce.exceptions.core.CategoryNotFoundException;
+import com.aledguedes.shop.eccomerce.exceptions.core.DepartmentNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.core.OrderNotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.OrderMapper;
 import com.aledguedes.shop.eccomerce.model.ItemOrder;
@@ -47,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
 		try {
 
 			var cliente = customerRepository.findById(orderRequest.getCustomer().getId())
-                    .orElseThrow(CategoryNotFoundException::new);
+                    .orElseThrow(DepartmentNotFoundException::new);
 
             var novo = orderMapper.toOrder(orderRequest);
             

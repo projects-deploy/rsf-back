@@ -10,7 +10,7 @@ CREATE TABLE `tbl_user` (
     `updated_at` TIMESTAMP
 );
 
-CREATE TABLE `tbl_category` (
+CREATE TABLE `tbl_department` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255),
     `created_at` TIMESTAMP,
@@ -25,19 +25,19 @@ CREATE TABLE `tbl_brand` (
     `updated_at` TIMESTAMP
 );
 
-CREATE TABLE `tbl_subcategory` (
+CREATE TABLE `tbl_category` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `created_at` TIMESTAMP NOT NULL,
     `updated_at` TIMESTAMP
 );
 
-CREATE TABLE `category_subcategory` (
+CREATE TABLE `department_category` (
+    `department_id` BIGINT,
     `category_id` BIGINT,
-    `subcategory_id` BIGINT,
-    PRIMARY KEY (`category_id`, `subcategory_id`),
-    FOREIGN KEY (`category_id`) REFERENCES `tbl_category` (`id`),
-    FOREIGN KEY (`subcategory_id`) REFERENCES `tbl_subcategory` (`id`)
+    PRIMARY KEY (`department_id`, `category_id`),
+    FOREIGN KEY (`department_id`) REFERENCES `tbl_department` (`id`),
+    FOREIGN KEY (`category_id`) REFERENCES `tbl_category` (`id`)
 );
 
 CREATE TABLE `tbl_customer` (
@@ -84,12 +84,12 @@ CREATE TABLE `tbl_product` (
     `delivery` INT,
     `brand_id` INT,
     `in_stok` INT,
+    `department_id` INT,
     `category_id` INT,
-    `subcategory_id` INT,
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP,
     FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand`(`id`),
-    FOREIGN KEY (`subcategory_id`) REFERENCES `tbl_subcategory`(`id`)
+    FOREIGN KEY (`category_id`) REFERENCES `tbl_category`(`id`)
 );
 
 CREATE TABLE `tbl_item_order` (
@@ -126,9 +126,9 @@ CREATE TABLE `tbl_favorites` (
 -- (3, 'Cheiro Bom', 'img/brand/logo/03.png', '2023-11-28', '2023-11-28'),
 -- (4, 'Mi-Kel', 'img/brand/logo/04.png', '2023-11-28', '2023-11-28');
 
-INSERT INTO TBL_CUSTOMER VALUES
-(1, 'SP', '30890561869', '14056-150', 'Alexandre Guedes', 'aledguedes@gmail.com', '00123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1983-04-07', '2023-11-28', '2023-11-28'),
-(2, 'SP', '402778098-19', '14056-150', 'Danielle Cristine Tenda Guedes', 'dani_helo@gmail.com', '00123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1991-05-15', '2023-11-28', '2023-11-28');
+--INSERT INTO TBL_CUSTOMER VALUES
+--(1, 'SP', '30890561869', '14056-150', 'Alexandre Guedes', 'aledguedes@gmail.com', '00123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1983-04-07', '2023-11-28', '2023-11-28'),
+--(2, 'SP', '402778098-19', '14056-150', 'Danielle Cristine Tenda Guedes', 'dani_helo@gmail.com', '00123456789', 278, 'Planalto Verde', 'Ribeirão Preto', 'Rua E JM Vasconcelos', 'casa', '1991-05-15', '2023-11-28', '2023-11-28');
 
 --INSERT INTO TBL_PRODUCT VALUES
 --(1, 'Camisa Gola Polo', 'Camisa em algodão de ótima qualidade', 'products/1/polo_01.png', '95.00', '85.50', 1, 10, 1, 1, 10, 1, '2023-11-28', '2023-11-28'),

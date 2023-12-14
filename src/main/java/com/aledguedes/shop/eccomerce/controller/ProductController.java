@@ -63,9 +63,9 @@ public class ProductController {
         return productService.listaIndisponiveis();
     }
 
-    @GetMapping(value = "/by-sub-category/{sub_category_id}")
-    public List<ProductResponse> listByCategory(@PathVariable Long sub_category_id) {
-    	return productService.listByCategory(sub_category_id);
+    @GetMapping(value = "/by-sub-department/{category_id}")
+    public List<ProductResponse> listByDepartment(@PathVariable Long category_id) {
+    	return productService.listByDepartment(category_id);
     }
 
     @GetMapping(value = "/find")

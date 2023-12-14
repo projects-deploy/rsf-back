@@ -16,7 +16,7 @@ public interface ProductService {
     public Page<ProductResponse> listarDisponiveis(Integer page);
     public Page<ProductResponse> listarDestaques(Integer page);
     public List<ProductResponse> listaIndisponiveis();
-    public List<ProductResponse> listByCategory(Long sub_category_id);
+    public List<ProductResponse> listByDepartment(Long category_id);
     public Page<ProductResponse> listarPorPalavraChave(String key, Integer page);
     public ProductResponse listById(Long id);
 }
