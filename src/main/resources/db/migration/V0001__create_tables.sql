@@ -84,6 +84,8 @@ CREATE TABLE `tbl_product` (
     `delivery` INT,
     `brand_id` INT,
     `in_stok` INT,
+    `department_idd` BIGINT,
+    `category_idd`  BIGINT,
     `department_id` INT,
     `category_id` INT,
     `created_at` TIMESTAMP,

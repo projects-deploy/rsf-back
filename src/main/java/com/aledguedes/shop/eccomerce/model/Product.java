@@ -58,6 +58,12 @@ public class Product extends Auditable {
     
     @Column(name = "in_stok")
     private int in_stok;
+    
+    @Column(name = "category_idd")
+    private Long category_idd;
+    
+    @Column(name = "department_idd")
+    private Long department_idd;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

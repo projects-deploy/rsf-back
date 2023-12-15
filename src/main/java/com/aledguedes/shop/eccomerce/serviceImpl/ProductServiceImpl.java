@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
 
 			var produto = productMapper.toProduct(productRequest);
 
-			var category = categoryRepository.findById(productRequest.getCategory().getId())
+			var category = categoryRepository.findById(productRequest.getCategory_idd())
 					.orElseThrow(CategoryNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())
@@ -62,7 +62,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductResponse updateProduct(ProductRequest productRequest, Long product_id) {
 		try {
-			var category = categoryRepository.findById(productRequest.getCategory().getId())
+			var category = categoryRepository.findById(productRequest.getCategory_idd())
 					.orElseThrow(CategoryNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())

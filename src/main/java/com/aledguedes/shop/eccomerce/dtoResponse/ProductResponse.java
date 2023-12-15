@@ -29,6 +29,8 @@ public class ProductResponse {
     private int available;
     private int delivery;
     private double discount;
+    private Long category_idd;
+    private Long department_idd;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     
