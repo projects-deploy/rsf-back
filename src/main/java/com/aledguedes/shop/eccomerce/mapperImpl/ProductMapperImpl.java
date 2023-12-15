@@ -46,7 +46,6 @@ public class ProductMapperImpl implements ProductMapper {
                 .in_stok(product.getIn_stok())
                 .available(product.getAvailable())
                 .delivery(product.getDelivery())
-                .category(product.getCategory())
                 .brand(product.getBrand())
                 .createdAt(product.getCreatedAt())
                 .updatedAt(product.getUpdatedAt())

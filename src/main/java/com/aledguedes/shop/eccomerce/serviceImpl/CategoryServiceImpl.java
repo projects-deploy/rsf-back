@@ -13,6 +13,7 @@ import com.aledguedes.shop.eccomerce.exceptions.core.CategoryNotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.CategoryMapper;
 import com.aledguedes.shop.eccomerce.model.Department;
 import com.aledguedes.shop.eccomerce.repository.DepartmentRepository;
+import com.aledguedes.shop.eccomerce.repository.MenuEntityRepository;
 import com.aledguedes.shop.eccomerce.repository.CategoryRepository;
 import com.aledguedes.shop.eccomerce.service.CategoryService;
 
@@ -23,8 +24,9 @@ import lombok.RequiredArgsConstructor;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryMapper categoryMapper;
-    private final DepartmentRepository departmentRepository;
     private final CategoryRepository categoryRepository;
+    private final MenuEntityRepository menuEntityRepository;
+    private final DepartmentRepository departmentRepository;
 
     @Override
     public List<CategoryResponse> listAll() {
@@ -50,18 +52,21 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse createCategory(CategoryRequest categoryRequest) {
-        var newDepartment = categoryMapper.toCategory(categoryRequest);
+        var newCategory = categoryMapper.toCategory(categoryRequest);
 
-        List<Department> categories = new ArrayList<>();
+        List<Department> departments = new ArrayList<>();
         for (Long department_id : categoryRequest.getDepartment_ids()) {
             Department department = departmentRepository.findById(department_id)
                     .orElseThrow(DepartmentNotFoundException::new);
-            categories.add(department);
+            departments.add(department);
         }
 
-        newDepartment.setCategories(categories);
-        var createdDepartment = categoryRepository.save(newDepartment);
-        return categoryMapper.toCategoryResponse(createdDepartment);
+        newCategory.setCategories(departments);
+        var createdCategory = categoryRepository.save(newCategory);
+
+        saveNameToEntity(createdCategory.getName());
+
+        return categoryMapper.toCategoryResponse(createdCategory);
     }
 
     @Override
@@ -76,6 +81,20 @@ public class CategoryServiceImpl implements CategoryService {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public void saveNameToEntity(String novaCategoria) {
+        long idMenuEntity = 1;
+
+        var menuEntity = menuEntityRepository.findById(idMenuEntity)
+        .orElseThrow(DepartmentNotFoundException::new);
+
+        if (menuEntity.getCategories() == null) {
+            return;
+        } else {
+            menuEntity.setCategories(menuEntity.getCategories() + "," + novaCategoria);
+        }
+        menuEntityRepository.save(menuEntity);
     }
 
 }

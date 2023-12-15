@@ -30,7 +30,7 @@ public class CategoryMapperImpl implements CategoryMapper {
         return CategoryResponse.builder()
                 .id(category.getId())
                 .name(category.getName())
-                .categories(category.getCategories())
+                .department(category.getCategories())
                 .createdAt(category.getCreatedAt())
                 .updatedAt(category.getUpdatedAt())
                 .build();

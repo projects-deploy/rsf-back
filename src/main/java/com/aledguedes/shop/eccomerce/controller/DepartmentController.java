@@ -55,12 +55,6 @@ public class DepartmentController {
         return departmentService.createDepartment(department);
     }
 
-    @PostMapping(value = "/with-sub-department")
-    @ResponseStatus(HttpStatus.CREATED)
-    public DepartmentResponse createDepartmentWithSubCategories(@RequestBody @Valid DepartmentRequest departmentRequest) {
-        return departmentService.createDepartmentWithSubCategories(departmentRequest);
-    }
-
     @PutMapping(value = "/{department_id}")
     public DepartmentResponse updateDepartment(@RequestBody @Valid DepartmentRequest department, @PathVariable Long department_id) {
         return departmentService.updateDepartment(department, department_id);

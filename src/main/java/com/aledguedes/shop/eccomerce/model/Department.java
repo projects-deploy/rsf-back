@@ -37,13 +37,6 @@ public class Department extends Auditable {
 	@Column(name = "name")
 	private String name;
 
-	// @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	// @JoinTable(
-	// name = "department_category",
-	// joinColumns = @JoinColumn(name = "department_id"),
-	// inverseJoinColumns = @JoinColumn(name = "category_id")
-	// )
-	// @Builder.Default
 	@ManyToMany(fetch = FetchType.EAGER, cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE

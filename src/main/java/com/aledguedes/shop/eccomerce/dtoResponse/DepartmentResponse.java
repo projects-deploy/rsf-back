@@ -22,5 +22,5 @@ public class DepartmentResponse {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
     @JsonIgnoreProperties({ "categories", "createdAt", "updatedAt" })
-	private List<Category> subCategories;
+	private List<Category> categories;
 }

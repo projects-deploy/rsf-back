@@ -10,7 +10,6 @@ public interface DepartmentService {
     List<DepartmentResponse> listAll();
     List<DepartmentResponse> listAllOrderById();
     DepartmentResponse createDepartment(DepartmentRequest department);
-    DepartmentResponse createDepartmentWithSubCategories(DepartmentRequest departmentRequest);
     DepartmentResponse updateDepartment(DepartmentRequest department, Long department_id);
     List<DepartmentResponse> listBykey(String key);
 }

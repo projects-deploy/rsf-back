@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.aledguedes.shop.eccomerce.model.Department;
+import com.aledguedes.shop.eccomerce.model.Product;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -22,5 +23,7 @@ public class CategoryResponse {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
     @JsonIgnoreProperties({ "subCategories", "createdAt", "updatedAt" })
-	private List<Department> categories;
+	private List<Department> department;
+    @JsonIgnoreProperties({ "products", "createdAt", "updatedAt" })
+    List<Product> products;
 }
