@@ -13,7 +13,6 @@ import com.aledguedes.shop.eccomerce.exceptions.core.CategoryNotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.CategoryMapper;
 import com.aledguedes.shop.eccomerce.model.Department;
 import com.aledguedes.shop.eccomerce.repository.DepartmentRepository;
-import com.aledguedes.shop.eccomerce.repository.MenuEntityRepository;
 import com.aledguedes.shop.eccomerce.repository.CategoryRepository;
 import com.aledguedes.shop.eccomerce.service.CategoryService;
 
@@ -25,7 +24,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryMapper categoryMapper;
     private final CategoryRepository categoryRepository;
-    private final MenuEntityRepository menuEntityRepository;
     private final DepartmentRepository departmentRepository;
 
     @Override
@@ -64,8 +62,6 @@ public class CategoryServiceImpl implements CategoryService {
         newCategory.setCategories(departments);
         var createdCategory = categoryRepository.save(newCategory);
 
-        saveNameToEntity(createdCategory.getName());
-
         return categoryMapper.toCategoryResponse(createdCategory);
     }
 
@@ -81,20 +77,6 @@ public class CategoryServiceImpl implements CategoryService {
             ex.printStackTrace();
             return null;
         }
-    }
-
-    public void saveNameToEntity(String novaCategoria) {
-        long idMenuEntity = 1;
-
-        var menuEntity = menuEntityRepository.findById(idMenuEntity)
-        .orElseThrow(DepartmentNotFoundException::new);
-
-        if (menuEntity.getCategories() == null) {
-            return;
-        } else {
-            menuEntity.setCategories(menuEntity.getCategories() + "," + novaCategoria);
-        }
-        menuEntityRepository.save(menuEntity);
     }
 
 }

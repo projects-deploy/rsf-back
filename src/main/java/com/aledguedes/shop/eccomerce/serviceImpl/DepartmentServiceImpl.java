@@ -12,7 +12,6 @@ import com.aledguedes.shop.eccomerce.exceptions.core.DepartmentNotFoundException
 import com.aledguedes.shop.eccomerce.mapper.DepartmentMapper;
 import com.aledguedes.shop.eccomerce.model.Category;
 import com.aledguedes.shop.eccomerce.repository.DepartmentRepository;
-import com.aledguedes.shop.eccomerce.repository.MenuEntityRepository;
 import com.aledguedes.shop.eccomerce.repository.CategoryRepository;
 import com.aledguedes.shop.eccomerce.service.DepartmentService;
 
@@ -24,7 +23,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	private final DepartmentMapper departmentMapper;
 	private final CategoryRepository categoryRepository;
-	private final MenuEntityRepository menuEntityRepository;
 	private final DepartmentRepository departmentRepository;
 
 	@Override
@@ -67,7 +65,6 @@ public class DepartmentServiceImpl implements DepartmentService {
 			}
 
 			newDepartment.setSubCategories(subCategories);
-			saveNameToEntity(categoriesArray.toString(), newDepartment.getName());
 			var savedDepartment = departmentRepository.save(newDepartment);
 
 			return departmentMapper.toDepartmentResponse(savedDepartment);
@@ -97,26 +94,4 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return null;
 	}
 
-	public void saveNameToEntity(String novaCategoria, String departmentName) {
-		long idMenuEntity = 1;
-
-		var menuEntity = menuEntityRepository.findById(idMenuEntity).orElseThrow(DepartmentNotFoundException::new);
-
-		if (menuEntity.getDepartments() != null) {
-			if (!novaCategoria.isEmpty() && novaCategoria.length() > 0) {
-				menuEntity.setCategories(menuEntity.getCategories() + "," + novaCategoria);
-			}
-			menuEntity.setDepartments(menuEntity.getDepartments() + "," + departmentName);
-			menuEntityRepository.save(menuEntity);
-		}
-	}
-
 }
-
-/*
- * 
- * 
- * 
- * if (categoriesArray.length() > 0) { categoriesArray.append(","); }
- * categoriesArray.append(categoryRequest.getName());
- */
