@@ -53,7 +53,7 @@ INSERT INTO department_category (department_id, category_id) VALUES (3, 1), (3, 
 INSERT INTO department_category (department_id, category_id) VALUES (4, 4), (4, 6), (4, 14);
 INSERT INTO department_category (department_id, category_id) VALUES (5, 5), (5, 10), (5, 22);
 INSERT INTO department_category (department_id, category_id) VALUES (6, 6), (6, 11), (6, 23);
-INSERT INTO department_category (department_id, category_id) VALUES (7, 7), (7, 14), (7, 25);
+INSERT INTO department_category (department_id, category_id) VALUES (7, 7), (7, 14), (7, 2);
 INSERT INTO department_category (department_id, category_id) VALUES (8, 8), (8, 16), (8, 17);
 INSERT INTO department_category (department_id, category_id) VALUES (9, 9), (9, 18), (9, 19);
 INSERT INTO department_category (department_id, category_id) VALUES (10, 5), (10, 20), (10, 21);

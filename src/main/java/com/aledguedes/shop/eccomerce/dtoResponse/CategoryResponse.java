@@ -25,5 +25,5 @@ public class CategoryResponse {
     @JsonIgnoreProperties({ "subCategories", "createdAt", "updatedAt" })
 	private List<Department> department;
     @JsonIgnoreProperties({ "products", "createdAt", "updatedAt" })
-    List<Product> products;
+    private List<Product> products;
 }
