@@ -3,6 +3,8 @@ package com.aledguedes.shop.eccomerce.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,10 +40,12 @@ public class Department extends Auditable {
 	@Column(name = "name")
 	private String name;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	}, mappedBy = "categories")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "categories")
 	@Builder.Default
 	private List<Category> subCategories = new ArrayList<>();
+
+	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("department")
+	@Builder.Default
+	List<Product> products = new ArrayList<>();
 }

@@ -17,6 +17,7 @@ import com.aledguedes.shop.eccomerce.model.Product;
 import com.aledguedes.shop.eccomerce.repository.BrandRepository;
 import com.aledguedes.shop.eccomerce.repository.ProductRepository;
 import com.aledguedes.shop.eccomerce.repository.CategoryRepository;
+import com.aledguedes.shop.eccomerce.repository.DepartmentRepository;
 import com.aledguedes.shop.eccomerce.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ public class ProductServiceImpl implements ProductService {
 	private final BrandRepository brandRepository;
 	private final ProductRepository productRepository;
 	private final CategoryRepository categoryRepository;
+	private final DepartmentRepository departmentRepository;
 
 	@Override
 	public ProductResponse createProduct(ProductRequest productRequest) {
@@ -39,11 +41,15 @@ public class ProductServiceImpl implements ProductService {
 
 			var category = categoryRepository.findById(productRequest.getCategory_idd())
 					.orElseThrow(CategoryNotFoundException::new);
+			
+			var depto = departmentRepository.findById(productRequest.getDepartment_idd())
+					.orElseThrow(DepartmentNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())
 					.orElseThrow(DepartmentNotFoundException::new);
 
 			produto.setBrand(marca);
+			produto.setDepartment(depto);
 			produto.setCategory(category);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));

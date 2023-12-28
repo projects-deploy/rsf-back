@@ -42,6 +42,14 @@ public class ProductRequest {
 
 	@NotNull
 	private Long department_idd;
+	
+	@NotNull
+	@NotEmpty
+	private String product_size;
+	
+	@NotNull
+	@NotEmpty
+	private String product_colors;
 
 	@NotNull
 	private int in_stok;

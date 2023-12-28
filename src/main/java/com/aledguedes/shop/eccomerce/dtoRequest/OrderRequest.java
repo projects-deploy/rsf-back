@@ -22,10 +22,10 @@ public class OrderRequest {
 
     private LocalDateTime date_order;
     private double value_total;
-    private double shipping; // retirar
-    private Integer to_remove;
+    private Integer shipping;
     private String comments;
     private Integer status;
+    private Integer payment;
     private Customer customer;
-    private List<ItemOrder> itemsOrder;
+    private List<ItemOrder> items;
 }

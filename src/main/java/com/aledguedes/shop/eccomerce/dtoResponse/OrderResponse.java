@@ -25,10 +25,11 @@ public class OrderResponse {
     private LocalDateTime date_order;
     private double value_total;
     private double shipping; // retirar
-    private Integer to_remove;
     private String comments;
     private Integer status;
+    private Integer payment;
+    @JsonIgnoreProperties("favorites")
     private Customer customer;
     @JsonIgnoreProperties("order")
-    private List<ItemOrder> itemsOrder;
+    private List<ItemOrder> items;
 }

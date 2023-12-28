@@ -20,11 +20,11 @@ public class OrderMapperImpl implements OrderMapper {
                 .dateOrder(orderRequest.getDate_order())
                 .value_total(orderRequest.getValue_total())
                 .shipping(orderRequest.getShipping())
-                .to_remove(orderRequest.getTo_remove())
                 .comments(orderRequest.getComments())
+                .payment(orderRequest.getPayment())
                 .status(orderRequest.getStatus())
                 .customer(orderRequest.getCustomer())
-                .itemsOrder(orderRequest.getItemsOrder())
+                .items(orderRequest.getItems())
                 .build();
     }
 
@@ -39,11 +39,10 @@ public class OrderMapperImpl implements OrderMapper {
                 .date_order(order.getDateOrder())
                 .value_total(order.getValue_total())
                 .shipping(order.getShipping())
-                .to_remove(order.getTo_remove())
                 .comments(order.getComments())
                 .status(order.getStatus())
                 .customer(order.getCustomer())
-                .itemsOrder(order.getItemsOrder())
+                .items(order.getItems())
                 .build();
     }
 

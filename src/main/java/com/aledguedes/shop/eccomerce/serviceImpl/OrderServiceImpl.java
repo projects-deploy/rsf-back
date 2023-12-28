@@ -52,17 +52,16 @@ public class OrderServiceImpl implements OrderService {
             var novo = orderMapper.toOrder(orderRequest);
             
             List<ItemOrder> newItems = new ArrayList<>();
-            for (ItemOrder itemRequest : novo.getItemsOrder()) {
+            for (ItemOrder itemRequest : novo.getItems()) {
                 ItemOrder newItem = new ItemOrder();
                 newItem.setProduct(productRepository.findById(itemRequest.getProduct().getId()).orElse(null));
                 newItem.setQtde_item(itemRequest.getQtde_item());
-                newItem.setUnit_price(newItem.getProduct().getPrice_promo());
-                newItem.setTotal_price(newItem.getProduct().getPrice_promo() * newItem.getQtde_item());
+                newItem.setAmount(newItem.getProduct().getPrice_promo() * newItem.getQtde_item());
                 newItem.setOrder(novo);
                 newItems.add(newItem);
             }
             
-            novo.setItemsOrder(newItems);
+            novo.setItems(newItems);
             novo.setStatus(Order.NOVO_PEDIDO);
             novo.setCustomer(cliente);
             
