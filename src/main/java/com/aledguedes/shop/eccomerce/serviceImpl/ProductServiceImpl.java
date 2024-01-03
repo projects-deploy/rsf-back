@@ -145,4 +145,9 @@ public class ProductServiceImpl implements ProductService {
 		return inStok > 1 ? 1 : 0;
 	}
 
+	@Override
+	public List<Product> getProductsByBrand(Long brandId) {
+		return productRepository.findByBrandId(brandId);
+	}
+
 }

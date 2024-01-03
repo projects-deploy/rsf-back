@@ -136,4 +136,18 @@ CREATE TABLE `tbl_menu_entity` (
     `departments` TEXT
 );
 
+CREATE TABLE `tbl_review` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `title` VARCHAR(255),
+    `rating` INT,
+    `comment` VARCHAR(255),
+    `product_id` BIGINT,
+    `customer_id` BIGINT,
+    `created_at` TIMESTAMP,
+    `updated_at` TIMESTAMP,
+    FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`),
+    FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`)
+);
+
+
 INSERT INTO tbl_menu_entity (id, categories, departments) VALUES (1, null, null);

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.ProductRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
+import com.aledguedes.shop.eccomerce.model.Product;
 
 public interface ProductService {
 
@@ -19,4 +20,5 @@ public interface ProductService {
     public List<ProductResponse> listByDepartment(Long category_id);
     public Page<ProductResponse> listarPorPalavraChave(String key, Integer page);
     public ProductResponse listById(Long id);
+    public List<Product> getProductsByBrand(Long brandId);
 }

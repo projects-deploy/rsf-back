@@ -83,6 +83,7 @@ public class Product extends Auditable {
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
+    @JsonIgnore
     private Brand brand;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
