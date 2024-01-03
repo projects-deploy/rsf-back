@@ -6,12 +6,12 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.ReviewRequest;
+import com.aledguedes.shop.eccomerce.dtoResponse.ReviewByProductResponse;
 import com.aledguedes.shop.eccomerce.dtoResponse.ReviewResponse;
 import com.aledguedes.shop.eccomerce.exceptions.core.CustomerNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.core.ProductNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.core.ReviewNotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.ReviewMapper;
-import com.aledguedes.shop.eccomerce.model.Review;
 import com.aledguedes.shop.eccomerce.repository.CustomerRepository;
 import com.aledguedes.shop.eccomerce.repository.ProductRepository;
 import com.aledguedes.shop.eccomerce.repository.ReviewRepository;
@@ -44,11 +44,11 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<ReviewResponse> getReviewsByProductId(Long product_id) {
-        List<Review> reviews = reviewRepository.findByProduct_Id(product_id);
+    public List<ReviewByProductResponse> getReviewsByProductId(Long product_id) {
+        var reviews = reviewRepository.findByProduct_Id(product_id);
 
         return reviews.stream()
-                .map(reviewMapper::toReviewResponse)
+                .map(reviewMapper::toReviewByProductResponse)
                 .toList();
     }
 

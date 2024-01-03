@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.ReviewRequest;
+import com.aledguedes.shop.eccomerce.dtoResponse.ReviewByProductResponse;
 import com.aledguedes.shop.eccomerce.dtoResponse.ReviewResponse;
 import com.aledguedes.shop.eccomerce.service.ReviewService;
 
@@ -40,7 +41,7 @@ public class ReviewController {
     }
 
     @GetMapping(value = "/by-product/{product_id}")
-    public List<ReviewResponse> getReviewsByProductId(@PathVariable Long product_id) {
+    public List<ReviewByProductResponse> getReviewsByProductId(@PathVariable Long product_id) {
         return reviewService.getReviewsByProductId(product_id);
     }
 
