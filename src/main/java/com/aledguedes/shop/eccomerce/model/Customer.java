@@ -77,4 +77,8 @@ public class Customer extends Auditable {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("customer")
     private List<FavoriteProducts> favorites;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"customer"})
+    private List<Review> reviews;
 }

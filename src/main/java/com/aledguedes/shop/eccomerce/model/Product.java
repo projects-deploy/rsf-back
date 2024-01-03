@@ -90,4 +90,8 @@ public class Product extends Auditable {
     @Size(max = 6)
     @Builder.Default
     private List<ProductImage> images = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Review> reviews;
 }

@@ -37,6 +37,7 @@ public class ReviewMapperImpl implements ReviewMapper {
                 .rating(review.getRating())
                 .comment(review.getComment())
                 .customer((review.getCustomer()))
+                .product(review.getProduct())
                 .createdAt(review.getCreatedAt())
                 .updatedAt(review.getUpdatedAt())
                 .build();

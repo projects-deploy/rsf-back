@@ -59,6 +59,7 @@ public class CustomerMapperImpl implements CustomerMapper {
 	            .createdAt(customer.getCreatedAt())
 	            .updatedAt(customer.getUpdatedAt())
 	            .favorites(customer.getFavorites())
+                .reviews(customer.getReviews())
                 .build();
     }
     
