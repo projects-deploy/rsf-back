@@ -55,7 +55,6 @@ public class ProductMapperImpl implements ProductMapper {
                 .product_colors(product.getProduct_colors())
                 .createdAt(product.getCreatedAt())
                 .updatedAt(product.getUpdatedAt())
-                .reviews(product.getReviews())
                 .category(product.getCategory())
                 .department(product.getDepartment())
                 .build();

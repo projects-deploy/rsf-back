@@ -1,5 +1,7 @@
 package com.aledguedes.shop.eccomerce.model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -112,8 +114,11 @@ public class Product extends Auditable {
         for (Review review : reviews) {
             sum += review.getRating();
         }
+        
+        double average = sum / reviews.size();
+        BigDecimal roundedAverage = BigDecimal.valueOf(average).setScale(1, RoundingMode.HALF_UP);
 
-        return sum / reviews.size();
+        return roundedAverage.doubleValue();
     }
 
     public void updateRatingAndReviewCount() {

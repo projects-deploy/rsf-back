@@ -24,6 +24,7 @@ public class CustomerResponse {
     private String cep;
     private String name;
     private String surname;
+    private String link_photo;
     private String email;
     private String phone;
     private String numero;

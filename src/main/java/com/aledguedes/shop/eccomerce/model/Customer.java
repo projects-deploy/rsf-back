@@ -44,6 +44,9 @@ public class Customer extends Auditable {
 	@Column(name = "email")
 	private String email;
 	
+	@Column(name = "link_photo")
+	private String link_photo;
+	
 	@Column(name = "phone")
 	private String phone;
 	
