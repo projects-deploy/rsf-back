@@ -55,7 +55,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public ReviewResponse createReview(ReviewRequest reviewRequest) {
         try {
-            
+
             var customer = customerRepository.findById(reviewRequest.getCustomer().getId())
                     .orElseThrow(CustomerNotFoundException::new);
 
@@ -68,6 +68,12 @@ public class ReviewServiceImpl implements ReviewService {
             newReview.setProduct(product);
 
             var createdReview = reviewRepository.save(newReview);
+
+            // Atualiza a média e a quantidade de comentários do produto
+            product.getReviews().add(createdReview);
+            product.updateRatingAndReviewCount();
+            productRepository.save(product);
+
             return reviewMapper.toReviewResponse(createdReview);
         } catch (Exception e) {
             System.out.println("DEBUG = " + e.getMessage());

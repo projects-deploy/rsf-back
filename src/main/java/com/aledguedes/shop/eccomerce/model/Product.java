@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -61,9 +62,15 @@ public class Product extends Auditable {
 
     @Column(name = "delivery")
     private int delivery;
-    
+
     @Column(name = "in_stok")
     private int in_stok;
+
+    @Column(name = "average_rating")
+    private Double average_rating;
+
+    @Column(name = "review_count")
+    private Integer review_count;
 
     @Column(name = "product_size")
     private String product_size;
@@ -75,7 +82,7 @@ public class Product extends Auditable {
     @JoinColumn(name = "category_id")
     @JsonIgnore
     private Category category;
-    
+
     @ManyToOne
     @JoinColumn(name = "department_id")
     @JsonIgnore
@@ -94,4 +101,23 @@ public class Product extends Auditable {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Review> reviews;
+
+    @Transient
+    public double getAverageRating() {
+        if (reviews == null || reviews.isEmpty()) {
+            return 0.0;
+        }
+
+        double sum = 0.0;
+        for (Review review : reviews) {
+            sum += review.getRating();
+        }
+
+        return sum / reviews.size();
+    }
+
+    public void updateRatingAndReviewCount() {
+        this.average_rating = getAverageRating();
+        this.review_count = reviews.size();
+    }
 }

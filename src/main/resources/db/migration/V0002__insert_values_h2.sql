@@ -58,7 +58,13 @@ INSERT INTO department_category (department_id, category_id) VALUES (8, 8), (8, 
 INSERT INTO department_category (department_id, category_id) VALUES (9, 9), (9, 18), (9, 19);
 INSERT INTO department_category (department_id, category_id) VALUES (10, 5), (10, 20), (10, 21);
 
-INSERT INTO TBL_CUSTOMER VALUES(1, 'SP', '308.905.618-69', '14056-150', 'Alexandre', 'Guedes', 'aledguedes@gmail.com', '(16) 99304-4438', 278, 'Planalto Verde',  'Ribeirão Preto', 'Rua Escritor José Mauro de Vasconcelos', 'casa', '1983-04-07', '2023-12-19', '2023-12-19');
+INSERT INTO TBL_CUSTOMER VALUES
+(1, 'SP', 'CPF', '14056-150', 'Alexandre', 'Guedes', 'aledguedes@gmail.com', '(16) 12345-6789', 278, 'Planalto Verde',  'Ribeirão Preto', 'Rua Escritor José Mauro de Vasconcelos', 'Casa', '1983-04-07', '2023-12-19', '2023-12-19'),
+(2, 'AL', '994.306.580-00', '57083-154', 'Reinu', 'Kagoron', 'kagoron@gmail.com', '(16) 12345-6789', 278, 'Antares',  'Maceió', 'Quadra D', 'casa', '1983-04-07', '2023-12-19', '2023-12-19'),
+(3, 'AM', '262.509.140-13', '69098-146', 'Syuvi', 'Ugdkul', 'ugdkul@gmail.com', '(16) 12345-6789', 278, 'Novo Aleixo',  'Manaus', 'Travessa Iramaia', 'Apartamento', '1983-04-07', '2023-12-19', '2023-12-19'),
+(4, 'CE', '029.669.340-50', '60355-810', 'Rone', 'Eswen', 'eswen@gmail.com', '(16) 12345-6789', 278, 'Presidente Kennedy',  'Fortaleza', 'Vila Joanópolis', 'casa', '1983-04-07', '2023-12-19', '2023-12-19'),
+(5, 'RS', '319.990.340-15', '92310-440', 'Olonr', 'Wimo', 'wimo@gmail.com', '(16) 12345-6789', 278, 'Harmonia',  'Canoas', 'Rua Eça de Queiroz', 'Condomínio', '1983-04-07', '2023-12-19', '2023-12-19'),
+(6, 'MT', '616.142.220-45', '78050-616', 'Mefan', 'Murpofo', 'murpofo@gmail.com', '(16) 12345-6789', 278, 'São Roque',  'Cuiabá', 'Rua San Rafael', 'Apartamento', '1983-04-07', '2023-12-19', '2023-12-19');
 
 INSERT INTO tbl_product (id, name, detail, link_photo, price_product, price_promo, available, discount, delivery, in_stok, product_size, product_colors, category_id, department_id, brand_id, created_at, updated_at)
 VALUES

@@ -84,6 +84,8 @@ CREATE TABLE `tbl_product` (
     `discount` INT,
     `delivery` INT,
     `in_stok` INT,
+    `average_rating` DOUBLE DEFAULT 0.0,
+    `review_count` INT DEFAULT 0,
     `product_size` TEXT,
     `product_colors` TEXT,
     `category_id` BIGINT,

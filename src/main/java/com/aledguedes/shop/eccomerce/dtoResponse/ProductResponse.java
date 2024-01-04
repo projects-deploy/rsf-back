@@ -23,31 +23,34 @@ import lombok.NoArgsConstructor;
 @JsonNaming(SnakeCaseStrategy.class)
 public class ProductResponse {
 
-    private Long id;
-    private String name;
-    private String detail;
-    private String link_photo;
-    private double price_product;
-    private double price_promo;
-    private int in_stok;
-    private int available;
-    private int delivery;
-    private double discount;
-    private String product_size;
-    private String product_colors;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+	private Long id;
+	private String name;
+	private String detail;
+	private String link_photo;
+	private double price_product;
+	private double price_promo;
+	private int in_stok;
+	private int available;
+	private int delivery;
+	private double discount;
+	private Double average_rating;
+	private Integer review_count;
+	private String product_size;
+	private String product_colors;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 
-    @JsonIgnoreProperties({ "createdAt", "updatedAt" })
-    private Brand brand;
-    @JsonIgnoreProperties({ "createdAt", "updatedAt" })
-    private Category category;
-    
-    @JsonIgnoreProperties({ "createdAt", "updatedAt" })
-    private Department department;
+	@JsonIgnoreProperties({ "brand", "createdAt", "updatedAt" })
+	private Brand brand;
+
+	@JsonIgnoreProperties({ "department", "products", "createdAt", "updatedAt" })
+	private Category category;
+
+	@JsonIgnoreProperties({ "categories", "products", "createdAt", "updatedAt" })
+	private Department department;
 
 //    private List<ProductImage> images;
 
-    @JsonIgnoreProperties({"customer", "product"})
-    private List<Review> reviews;
+	@JsonIgnoreProperties({ "customer", "product" })
+	private List<Review> reviews;
 }

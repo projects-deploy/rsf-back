@@ -48,12 +48,16 @@ public class ProductMapperImpl implements ProductMapper {
                 .available(product.getAvailable())
                 .delivery(product.getDelivery())
                 .brand(product.getBrand())
+                .average_rating(product.getAverage_rating())
+                .review_count(product.getReview_count())
 //                .images(product.getImages())
                 .product_size(product.getProduct_size())
                 .product_colors(product.getProduct_colors())
                 .createdAt(product.getCreatedAt())
                 .updatedAt(product.getUpdatedAt())
                 .reviews(product.getReviews())
+                .category(product.getCategory())
+                .department(product.getDepartment())
                 .build();
     }
 
