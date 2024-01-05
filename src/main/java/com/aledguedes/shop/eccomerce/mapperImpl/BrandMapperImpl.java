@@ -36,5 +36,4 @@ public class BrandMapperImpl implements BrandMapper {
                 .updatedAt(brand.getUpdatedAt())
                 .build();
     }
-
 }

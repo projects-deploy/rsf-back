@@ -152,5 +152,19 @@ CREATE TABLE `tbl_review` (
     FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`)
 );
 
+CREATE TABLE IF NOT EXISTS `tbl_coupon` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `code` VARCHAR(255),
+    `discount` DOUBLE,
+    `expiration_date` DATETIME,
+    `active` BOOLEAN,
+    `customer_id` BIGINT,
+    `product_id` BIGINT,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`),
+    FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`)
+);
+
 
 INSERT INTO tbl_menu_entity (id, categories, departments) VALUES (1, null, null);
