@@ -36,7 +36,7 @@ public class Coupon extends Auditable {
     private String code;
 
     @Column(name = "discount")
-    private Double discount;
+    private Integer discount;
 
     @Column(name = "expiration_date")
     private LocalDateTime expiration_date;

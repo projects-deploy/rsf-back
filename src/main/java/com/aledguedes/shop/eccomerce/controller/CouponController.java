@@ -44,15 +44,17 @@ public class CouponController {
     public CouponResponse applyCoupon(
         @RequestParam(name = "code", required = true, defaultValue = "") String code,
         @RequestParam(name = "product", required = false, defaultValue = "") Long product,
-        @RequestParam(name = "code", required = false, defaultValue = "") Long customer
+        @RequestParam(name = "customer", required = false, defaultValue = "") Long customer
     ) {
         return couponService.applyCoupon(code, customer, product);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CouponResponse createCoupon(@RequestBody @Valid CouponRequest coupon) {
-        return couponService.createCoupon(coupon);
+    public CouponResponse createCoupon(
+    		@RequestBody @Valid CouponRequest coupon,
+    		@RequestParam(name = "days", required = false, defaultValue = "0") Integer expirationDays) {
+        return couponService.createCoupon(coupon, expirationDays);
     }
 
     @PutMapping(value = "/{coupon_id}")

@@ -53,10 +53,10 @@ public class Order extends Auditable {
     private double value_total;
 
     @Column(name = "shipping")
-    private Integer shipping;
+    private String shipping;
 
     @Column(name = "payment")
-    private Integer payment;
+    private String payment;
 
     @Column(name = "comments")
     private String comments;

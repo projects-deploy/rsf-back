@@ -9,7 +9,7 @@ public interface CouponService {
     
     List<CouponResponse> listAll();
     CouponResponse couponById(Long coupon_id);
-    CouponResponse createCoupon(CouponRequest coupon);
+    CouponResponse createCoupon(CouponRequest coupon, Integer expirationDays);
     CouponResponse updateCoupon(CouponRequest coupon, Long coupon_id);
     void deleteCoupon(Long coupon_id);
 

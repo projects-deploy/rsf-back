@@ -24,10 +24,10 @@ public class OrderResponse {
     private Long id;
     private LocalDateTime date_order;
     private double value_total;
-    private double shipping; // retirar
+    private String shipping; // retirar
     private String comments;
     private Integer status;
-    private Integer payment;
+    private String payment;
     @JsonIgnoreProperties("favorites")
     private Customer customer;
     @JsonIgnoreProperties("order")

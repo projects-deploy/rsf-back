@@ -18,7 +18,7 @@ public class CouponResponse {
 
     private Long id;
     private String code;
-    private double discount;
+    private Integer discount;
     private boolean active;
     private LocalDateTime expiration_date;
     private Product product;
