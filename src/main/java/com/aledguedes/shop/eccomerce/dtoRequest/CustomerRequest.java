@@ -44,12 +44,20 @@ public class CustomerRequest {
     @Size(min = 3, max = 100)
     private String name;
 
+    @NotNull
+    @NotEmpty
+    @Size(min = 3, max = 100)
+    private String surname;
+    
     @Email
     @NotNull
     @NotEmpty
     // @UniqueEmail
     @Size(min = 3, max = 255)
     private String email;
+    
+    @NotEmpty
+    private String link_photo;
 
     @NotNull
     private String phone;

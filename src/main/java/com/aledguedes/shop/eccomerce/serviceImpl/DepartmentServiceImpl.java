@@ -47,7 +47,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 			var newDepartment = departmentMapper.toDepartment(departmentRequest);
 
 			StringBuilder categoriesArray = new StringBuilder();
-			List<Category> subCategories = new ArrayList<>();
+			List<Category> categories = new ArrayList<>();
 
 			if (departmentRequest.getSub_categories() != null && !departmentRequest.getSub_categories().isEmpty()) {
 
@@ -56,7 +56,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 					category.setName(categoryRequest.getName());
 					category.addDepartment(newDepartment);
 					categoryRepository.save(category);
-					subCategories.add(category);
+					categories.add(category);
 					if (categoriesArray.length() > 0) {
 						categoriesArray.append(",");
 					}
@@ -64,7 +64,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 				}
 			}
 
-			newDepartment.setSubCategories(subCategories);
+			newDepartment.setCategories(categories);
 			var savedDepartment = departmentRepository.save(newDepartment);
 
 			return departmentMapper.toDepartmentResponse(savedDepartment);

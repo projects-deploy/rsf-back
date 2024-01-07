@@ -20,5 +20,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             String key2, PageRequest pageable);
 
     Page<ProductResponse> findAllByDeliveryAndAvailable(int i, int j, PageRequest pageable);
+
+	List<Product> findByBrandId(Long brandId);
     
 }

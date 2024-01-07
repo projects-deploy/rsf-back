@@ -19,7 +19,7 @@ public class ItemOrderRequest {
 
     private Integer qtde_item;
     private double unit_price;
-    private double total_price;
+    private double amount;
     private Order order;
     private Product product;
 }

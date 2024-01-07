@@ -31,7 +31,7 @@ public class CategoryMapperImpl implements CategoryMapper {
                 .id(category.getId())
                 .name(category.getName())
                 .products(category.getProducts())
-                .department(category.getCategories())
+                .department(category.getDepartment())
                 .createdAt(category.getCreatedAt())
                 .updatedAt(category.getUpdatedAt())
                 .build();

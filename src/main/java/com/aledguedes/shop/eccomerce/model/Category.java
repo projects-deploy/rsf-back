@@ -3,7 +3,7 @@ package com.aledguedes.shop.eccomerce.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -45,23 +45,23 @@ public class Category extends Auditable {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "department_category", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "department_id"))
 	@Builder.Default
-	private List<Department> categories = new ArrayList<>();
+	@JsonIgnore
+	private List<Department> department = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("category")
 	@Builder.Default
 	List<Product> products = new ArrayList<>();
 
 	public void addDepartment(Department department) {
-		this.categories.add(department);
-		department.getSubCategories().add(this);
+		this.department.add(department);
+		department.getCategories().add(this);
 	}
 
 	public void removeDepartment(long department_id) {
-		var department = this.categories.stream().filter(t -> t.getId() == department_id).findFirst().orElse(null);
+		var department = this.department.stream().filter(t -> t.getId() == department_id).findFirst().orElse(null);
 		if (department != null) {
-			this.categories.remove(department);
-			department.getSubCategories().remove(this);
+			this.department.remove(department);
+			department.getCategories().remove(this);
 		}
 	}
 }

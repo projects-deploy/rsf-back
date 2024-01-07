@@ -37,19 +37,17 @@ public class ItemOrder {
 	@Column(name = "qtde_item")
 	private int qtde_item;
 	
-	@Column(name = "unit_price")
-	private double unit_price;
-	
-	@Column(name = "total_price")
-	private double total_price;
+	@Column(name = "amount")
+	private double amount;
 	
 	@ManyToOne
 	@JoinColumn(name = "order_id")
-	@JsonIgnoreProperties("itemsOrder")
+	@JsonIgnoreProperties("items")
 	private Order order;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_id")
+    @JsonIgnoreProperties({"brand", "images"})
 	private Product product;
 }
 

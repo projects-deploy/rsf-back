@@ -46,6 +46,8 @@ CREATE TABLE `tbl_customer` (
     `cpf` VARCHAR(255),
     `cep` VARCHAR(255),
     `name` VARCHAR(255),
+    `surname` VARCHAR(255),
+    `link_photo` VARCHAR(255),
     `email` VARCHAR(255),
     `phone` VARCHAR(255),
     `numero` VARCHAR(255),
@@ -62,11 +64,11 @@ CREATE TABLE `tbl_order` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `date_order` TIMESTAMP,
     `value_total` DECIMAL(10, 2),
-    `shipping` DECIMAL(10, 2),
+    `shipping` VARCHAR(100),
     `comments` TEXT,
     `status` INT,
+    `payment`  VARCHAR(100),
     `customer_id` INT,
-    `to_remove` INT,
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP,
     FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`)
@@ -82,23 +84,38 @@ CREATE TABLE `tbl_product` (
     `available` INT,
     `discount` INT,
     `delivery` INT,
-    `brand_id` INT,
     `in_stok` INT,
-    `department_idd` BIGINT,
-    `category_idd`  BIGINT,
-    `department_id` INT,
-    `category_id` INT,
+    `average_rating` DECIMAL(3,1) DEFAULT 0.0,
+    `review_count` BIGINT DEFAULT 0,
+    `product_size` TEXT,
+    `product_colors` TEXT,
+    `category_id` BIGINT,
+    `department_id` BIGINT,
+    `brand_id` INT,
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP,
-    FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand`(`id`),
-    FOREIGN KEY (`category_id`) REFERENCES `tbl_category`(`id`)
+    FOREIGN KEY (`category_id`) REFERENCES `tbl_category`(`id`),
+    FOREIGN KEY (`department_id`) REFERENCES `tbl_department`(`id`),
+    FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand`(`id`)
+);
+
+CREATE TABLE `tbl_products_images` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `product_id` BIGINT,
+    FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`)
+);
+
+CREATE TABLE `product_images` (
+    `product_image_id` BIGINT,
+    `images_url` VARCHAR(255),
+    FOREIGN KEY (`product_image_id`) REFERENCES `tbl_products_images`(`id`)
 );
 
 CREATE TABLE `tbl_item_order` (
 	`id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `qtde_item` INT,
     `unit_price` DECIMAL(10, 2),
-    `total_price` DECIMAL(10, 2),
+    `amount` DECIMAL(10, 2),
     `order_id` INT,
     `product_id` INT,
     `created_at` TIMESTAMP,
@@ -121,5 +138,33 @@ CREATE TABLE `tbl_menu_entity` (
     `categories` TEXT,
     `departments` TEXT
 );
+
+CREATE TABLE `tbl_review` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `title` VARCHAR(255),
+    `rating` INT,
+    `comment` VARCHAR(255),
+    `product_id` BIGINT,
+    `customer_id` BIGINT,
+    `created_at` TIMESTAMP,
+    `updated_at` TIMESTAMP,
+    FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`),
+    FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `tbl_coupon` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `code` VARCHAR(255),
+    `discount` INT,
+    `expiration_date` DATETIME,
+    `active` BOOLEAN,
+    `customer_id` BIGINT,
+    `product_id` BIGINT,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`),
+    FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`)
+);
+
 
 INSERT INTO tbl_menu_entity (id, categories, departments) VALUES (1, null, null);

@@ -22,7 +22,8 @@ public class CustomerMapperImpl implements CustomerMapper {
                 .uf(customerRequest.getUf())
                 .cpf(customerRequest.getCpf())
                 .cep(customerRequest.getCep())
-                .name(customerRequest.getName())
+                .surname(customerRequest.getSurname())
+                .link_photo(customerRequest.getLink_photo())
                 .email(customerRequest.getEmail())
                 .phone(customerRequest.getPhone())
                 .numero(customerRequest.getNumero())
@@ -47,7 +48,8 @@ public class CustomerMapperImpl implements CustomerMapper {
                 .uf(customer.getUf())
                 .cpf(customer.getCpf())
                 .cep(customer.getCep())
-                .name(customer.getName())
+                .surname(customer.getSurname())
+                .link_photo(customer.getLink_photo())
                 .email(customer.getEmail())
                 .phone(customer.getPhone())
                 .numero(customer.getNumero())
@@ -59,6 +61,7 @@ public class CustomerMapperImpl implements CustomerMapper {
 	            .createdAt(customer.getCreatedAt())
 	            .updatedAt(customer.getUpdatedAt())
 	            .favorites(customer.getFavorites())
+                .reviews(customer.getReviews())
                 .build();
     }
     

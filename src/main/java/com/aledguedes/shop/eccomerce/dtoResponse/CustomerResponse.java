@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.aledguedes.shop.eccomerce.model.FavoriteProducts;
+import com.aledguedes.shop.eccomerce.model.Review;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -22,6 +23,8 @@ public class CustomerResponse {
     private String cpf;
     private String cep;
     private String name;
+    private String surname;
+    private String link_photo;
     private String email;
     private String phone;
     private String numero;
@@ -34,4 +37,6 @@ public class CustomerResponse {
     private LocalDateTime updatedAt;
     @JsonIgnoreProperties("customer")
     private List<FavoriteProducts> favorites;
+    @JsonIgnoreProperties({"customer"})
+    private List<Review> reviews;
 }
