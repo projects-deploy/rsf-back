@@ -1,11 +1,11 @@
 CREATE TABLE `tbl_user` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
-    `email` VARCHAR(255),
-    `username` VARCHAR(255),
+    `enabled` BOOLEAN,
     `name` VARCHAR(255),
-    `link_photo` VARCHAR(255),
-    `user_active` INT,
+    `email` VARCHAR(255),
     `password` VARCHAR(255),
+    `link_photo` VARCHAR(255),
+    `verification_code` VARCHAR(255),
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP
 );

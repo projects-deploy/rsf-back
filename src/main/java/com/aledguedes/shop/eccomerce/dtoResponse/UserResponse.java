@@ -14,11 +14,11 @@ import lombok.NoArgsConstructor;
 public class UserResponse {
     
     private Long id;
-    private String email;
-    private String username;
     private String name;
-    private String link_photo;
-    private Integer user_active;
+    private String email;
+	private Boolean enabled;
+    private String linkPhoto;
+    private String verificationCode;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 }

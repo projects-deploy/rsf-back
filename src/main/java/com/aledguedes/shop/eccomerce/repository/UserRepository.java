@@ -9,4 +9,5 @@ import com.aledguedes.shop.eccomerce.model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);
     Optional<User> findByEmail(String email);
+	User findByVerificationCode(String verificationCode);
 }

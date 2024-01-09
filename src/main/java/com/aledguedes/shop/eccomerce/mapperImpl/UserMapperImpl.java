@@ -19,10 +19,10 @@ public class UserMapperImpl implements UserMapper {
         return User.builder()
                 .email(userRequest.getEmail())
                 .name(userRequest.getName())
-                .link_photo(userRequest.getLink_photo())
+                .linkPhoto(userRequest.getLinkPhoto())
                 .password(userRequest.getPassword())
-                .username(userRequest.getUsername())
-                .user_active(userRequest.getUser_active())
+                .verificationCode(userRequest.getVerificationCode())
+                .enabled(userRequest.getEnabled())
                 .build();
     }
 
@@ -34,11 +34,11 @@ public class UserMapperImpl implements UserMapper {
 		
 		return UserResponse.builder()
 				.id(user.getId())
+				.name(user.getName())
 				.email(user.getEmail())
-                .name(user.getName())
-                .username(user.getUsername())
-                .link_photo(user.getLink_photo())
-                .user_active(user.getUser_active())
+                .enabled(user.getEnabled())
+                .linkPhoto(user.getLinkPhoto())
+                .verificationCode(user.getVerificationCode())
 	            .createdAt(user.getCreatedAt())
 	            .updatedAt(user.getUpdatedAt())
 	            .build();

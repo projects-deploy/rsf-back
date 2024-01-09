@@ -1,5 +1,10 @@
 package com.aledguedes.shop.eccomerce.model;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,29 +26,60 @@ import lombok.ToString;
 @Table(name = "tbl_user")
 @ToString(onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class User extends Auditable {
+public class User extends Auditable implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-	
-	@Column(name="username")
-	private String username;
-	
-	@Column(name="email")
-	private String email;
-	
-	@Column(name="password")
-	private String password;
-	
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+
 	@Column(name = "name")
 	private String name;
-	
-	@Column(name = "user_active")
-	private Integer user_active;
 
-    @Column(name = "link_photo")
-    private String link_photo;   
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "password")
+	private String password;
+
+	@Column(name = "enabled")
+	private Boolean enabled;
+
+	@Column(name = "link_photo")
+	private String linkPhoto;
+
+	@Column(name = "verification_code")
+	private String verificationCode;
+
+	@Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+    @Override
+    public boolean isEnabled(){
+        return this.enabled;
+    }
+
 }
-

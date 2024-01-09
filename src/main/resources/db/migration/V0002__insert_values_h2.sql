@@ -58,7 +58,7 @@ INSERT INTO department_category (department_id, category_id) VALUES (8, 8), (8, 
 INSERT INTO department_category (department_id, category_id) VALUES (9, 9), (9, 18), (9, 19);
 INSERT INTO department_category (department_id, category_id) VALUES (10, 5), (10, 20), (10, 21);
 
-INSERT INTO TBL_CUSTOMER VALUES(1, 'SP', '308.905.618-69', '14056-150', 'Alexandre Guedes', 'aledguedes@gmail.com', '(16) 99304-4438', 278, 'Planalto Verde',  'Ribeirão Preto', 'Rua Escritor José Mauro de Vasconcelos', 'casa', '1983-04-07', '2023-12-19', '2023-12-19');
+--INSERT INTO TBL_CUSTOMER VALUES(1, 'SP', '308.905.618-69', '14056-150', 'Alexandre Guedes', 'aledguedes@gmail.com', '(16) 99304-4438', 278, 'Planalto Verde',  'Ribeirão Preto', 'Rua Escritor José Mauro de Vasconcelos', 'casa', '1983-04-07', '2023-12-19', '2023-12-19');
 
 INSERT INTO tbl_product (id, name, detail, link_photo, price_product, price_promo, available, discount, delivery, in_stok, category_id, brand_id, created_at, updated_at)
 VALUES
