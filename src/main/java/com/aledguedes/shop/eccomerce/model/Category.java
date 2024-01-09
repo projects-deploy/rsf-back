@@ -45,7 +45,7 @@ public class Category extends Auditable {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "department_category", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "department_id"))
 	@Builder.Default
-	private List<Department> categories = new ArrayList<>();
+	private List<Department> department = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("category")
@@ -53,14 +53,14 @@ public class Category extends Auditable {
 	List<Product> products = new ArrayList<>();
 
 	public void addDepartment(Department department) {
-		this.categories.add(department);
+		this.department.add(department);
 		department.getSubCategories().add(this);
 	}
 
 	public void removeDepartment(long department_id) {
-		var department = this.categories.stream().filter(t -> t.getId() == department_id).findFirst().orElse(null);
+		var department = this.department.stream().filter(t -> t.getId() == department_id).findFirst().orElse(null);
 		if (department != null) {
-			this.categories.remove(department);
+			this.department.remove(department);
 			department.getSubCategories().remove(this);
 		}
 	}

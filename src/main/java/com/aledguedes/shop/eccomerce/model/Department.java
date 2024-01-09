@@ -40,7 +40,7 @@ public class Department extends Auditable {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = {
 			CascadeType.PERSIST,
 			CascadeType.MERGE
-	}, mappedBy = "categories")
+	}, mappedBy = "department")
 	@Builder.Default
 	private List<Category> subCategories = new ArrayList<>();
 }

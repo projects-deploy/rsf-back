@@ -3,6 +3,7 @@ package com.aledguedes.shop.eccomerce.dtoResponse;
 import java.time.LocalDateTime;
 
 import com.aledguedes.shop.eccomerce.model.Brand;
+import com.aledguedes.shop.eccomerce.model.Category;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -29,11 +30,12 @@ public class ProductResponse {
     private int available;
     private int delivery;
     private double discount;
-    private Long category_idd;
-    private Long department_idd;
+    private Boolean isNew;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     
     @JsonIgnoreProperties({"createdAt", "updatedAt"})
     private Brand brand;
+    @JsonIgnoreProperties({"department", "products", "createdAt", "updatedAt"})
+    private Category categoryResponse;
 }

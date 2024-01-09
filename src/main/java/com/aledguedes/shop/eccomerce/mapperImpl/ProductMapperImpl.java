@@ -22,11 +22,11 @@ public class ProductMapperImpl implements ProductMapper {
                 .link_photo(productRequest.getLink_photo())
                 .price_product(productRequest.getPrice_product())
                 .discount(productRequest.getDiscount())
-                .category_idd(productRequest.getCategory_idd())
-                .department_idd(productRequest.getDepartment_idd())
+                .isNew(productRequest.getIsNew())
                 .in_stok(productRequest.getIn_stok())
                 .delivery(productRequest.getDelivery())
                 .brand(productRequest.getBrand())
+                .category(productRequest.getCategoryRequest())
                 .build();
     }
 
@@ -46,10 +46,10 @@ public class ProductMapperImpl implements ProductMapper {
                 .discount(product.getDiscount())
                 .in_stok(product.getIn_stok())
                 .available(product.getAvailable())
-                .category_idd(product.getCategory_idd())
-                .department_idd(product.getDepartment_idd())
+                .isNew(product.getIsNew())
                 .delivery(product.getDelivery())
                 .brand(product.getBrand())
+                .categoryResponse(product.getCategory())
                 .createdAt(product.getCreatedAt())
                 .updatedAt(product.getUpdatedAt())
                 .build();

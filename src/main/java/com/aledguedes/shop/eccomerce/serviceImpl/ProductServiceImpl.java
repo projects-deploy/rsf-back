@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.ProductRequest;
@@ -37,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
 
 			var produto = productMapper.toProduct(productRequest);
 
-			var category = categoryRepository.findById(productRequest.getCategory_idd())
+			var category = categoryRepository.findById(productRequest.getCategoryRequest().getId())
 					.orElseThrow(CategoryNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())
@@ -62,7 +63,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductResponse updateProduct(ProductRequest productRequest, Long product_id) {
 		try {
-			var category = categoryRepository.findById(productRequest.getCategory_idd())
+			var category = categoryRepository.findById(productRequest.getCategoryRequest().getId())
 					.orElseThrow(CategoryNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())
@@ -137,6 +138,11 @@ public class ProductServiceImpl implements ProductService {
 
 	private int existStok(int inStok) {
 		return inStok > 1 ? 1 : 0;
+	}
+
+	@Override
+	public Page<Product> getLatestProducts(Pageable pageable) {
+		return productRepository.findByIsNewTrue(pageable);
 	}
 
 }

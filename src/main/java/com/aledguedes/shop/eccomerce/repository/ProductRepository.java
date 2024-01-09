@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
@@ -20,5 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             String key2, PageRequest pageable);
 
     Page<ProductResponse> findAllByDeliveryAndAvailable(int i, int j, PageRequest pageable);
+    
+    Page<Product> findByIsNewTrue(Pageable pageable);
     
 }

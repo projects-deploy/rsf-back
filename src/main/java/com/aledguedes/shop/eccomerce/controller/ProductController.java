@@ -3,6 +3,8 @@ package com.aledguedes.shop.eccomerce.controller;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.ProductRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
+import com.aledguedes.shop.eccomerce.model.Product;
 import com.aledguedes.shop.eccomerce.service.ProductService;
 
 import jakarta.validation.Valid;
@@ -76,6 +79,12 @@ public class ProductController {
     @GetMapping(value = "/{product_id}")
     public ProductResponse listById(@PathVariable Long product_id) {
         return productService.listById(product_id);
+    }
+    
+    @GetMapping("/find/by-news")
+    public Page<Product> getLatestProducts() {
+        PageRequest pageable = PageRequest.of(0, 10, Sort.by("createdAt").descending());
+        return productService.getLatestProducts(pageable);
     }
 
 }

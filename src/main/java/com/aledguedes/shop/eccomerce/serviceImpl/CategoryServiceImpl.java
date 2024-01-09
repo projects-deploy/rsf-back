@@ -59,7 +59,7 @@ public class CategoryServiceImpl implements CategoryService {
             departments.add(department);
         }
 
-        newCategory.setCategories(departments);
+        newCategory.setDepartment(departments);
         var createdCategory = categoryRepository.save(newCategory);
 
         return categoryMapper.toCategoryResponse(createdCategory);
