@@ -86,9 +86,11 @@ CREATE TABLE `tbl_product` (
     `is_new` BOOLEAN,
     `brand_id` INT,
     `category_id` INT,
+    `department_id` INT,
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP,
     FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand`(`id`),
+    FOREIGN KEY (`department_id`) REFERENCES `tbl_department`(`id`),
     FOREIGN KEY (`category_id`) REFERENCES `tbl_category`(`id`)
 );
 

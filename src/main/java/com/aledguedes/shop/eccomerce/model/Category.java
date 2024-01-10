@@ -54,14 +54,14 @@ public class Category extends Auditable {
 
 	public void addDepartment(Department department) {
 		this.department.add(department);
-		department.getSubCategories().add(this);
+		department.getCategories().add(this);
 	}
 
 	public void removeDepartment(long department_id) {
 		var department = this.department.stream().filter(t -> t.getId() == department_id).findFirst().orElse(null);
 		if (department != null) {
 			this.department.remove(department);
-			department.getSubCategories().remove(this);
+			department.getCategories().remove(this);
 		}
 	}
 }

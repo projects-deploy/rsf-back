@@ -42,5 +42,5 @@ public class Department extends Auditable {
 			CascadeType.MERGE
 	}, mappedBy = "department")
 	@Builder.Default
-	private List<Category> subCategories = new ArrayList<>();
+	private List<Category> categories = new ArrayList<>();
 }

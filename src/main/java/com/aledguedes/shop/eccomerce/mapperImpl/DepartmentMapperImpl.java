@@ -30,7 +30,7 @@ public class DepartmentMapperImpl implements DepartmentMapper {
         return DepartmentResponse.builder()
                 .id(department.getId())
                 .name(department.getName())
-                .categories(department.getSubCategories())
+                .categories(department.getCategories())
                 .createdAt(department.getCreatedAt())
                 .updatedAt(department.getUpdatedAt())
                 .build();

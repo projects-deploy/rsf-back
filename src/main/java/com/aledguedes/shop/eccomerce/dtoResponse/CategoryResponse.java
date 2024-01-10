@@ -22,8 +22,8 @@ public class CategoryResponse {
     private String name;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
-    @JsonIgnoreProperties({ "subCategories", "createdAt", "updatedAt" })
+    @JsonIgnoreProperties({ "categories", "products", "createdAt", "updatedAt" })
 	private List<Department> department;
-    @JsonIgnoreProperties({ "products", "createdAt", "updatedAt" })
+    @JsonIgnoreProperties({ "department", "createdAt", "updatedAt" })
     private List<Product> products;
 }

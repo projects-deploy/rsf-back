@@ -12,5 +12,5 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     
     ArrayList<DepartmentResponse> findAllByOrderById();
     ArrayList<DepartmentResponse> findByNameContaining(String name);
-    List<DepartmentResponse> findDepartmentBySubCategoriesId(Long categoryId);
+    List<DepartmentResponse> findDepartmentByCategoriesId(Long categoryId);
 }

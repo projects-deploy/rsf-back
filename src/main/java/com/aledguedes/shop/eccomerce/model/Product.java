@@ -70,4 +70,8 @@ public class Product extends Auditable {
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
+    
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 }
