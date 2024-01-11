@@ -40,13 +40,22 @@ public class ProductRequest {
 	private double price_product;
 
 	@NotNull
+	private String product_size;
+	
+	@NotNull
+	private String product_colors;
+
+	@NotNull
 	private Boolean isNew;
 
 	@NotNull
 	private int in_stok;
 	private int discount;
 	private int delivery;
+	@NotNull
 	private Brand brand;
+	@NotNull
 	private Category category;
+	@NotNull
 	private Department department;
 }

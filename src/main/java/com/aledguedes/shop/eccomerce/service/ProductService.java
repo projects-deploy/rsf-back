@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.ProductRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
-import com.aledguedes.shop.eccomerce.model.Product;
 
 public interface ProductService {
 

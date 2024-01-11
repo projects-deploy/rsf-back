@@ -31,11 +31,15 @@ public class ProductResponse {
 	private int available;
 	private int delivery;
 	private double discount;
+	private Double average_rating;
+	private Integer review_count;
+	private String product_size;
+	private String product_colors;
 	private Boolean isNew;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 
-	@JsonIgnoreProperties({ "createdAt", "updatedAt" })
+	@JsonIgnoreProperties({ "brand", "createdAt", "updatedAt" })
 	private Brand brand;
 	@JsonIgnoreProperties({ "department", "products", "createdAt", "updatedAt" })
 	private Category category;

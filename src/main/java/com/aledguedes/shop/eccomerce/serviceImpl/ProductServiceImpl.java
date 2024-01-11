@@ -44,9 +44,6 @@ public class ProductServiceImpl implements ProductService {
 
 			var category = categoryRepository.findById(productRequest.getCategory().getId())
 					.orElseThrow(CategoryNotFoundException::new);
-			
-			var depto = departmentRepository.findById(productRequest.getDepartment_idd())
-					.orElseThrow(DepartmentNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())
 					.orElseThrow(BrandNotFoundException::new);
@@ -74,6 +71,10 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductResponse updateProduct(ProductRequest productRequest, Long product_id) {
 		try {
+
+			var produto = productRepository.findById(product_id)
+					.orElseThrow(ProductNotFoundException::new);
+
 			var category = categoryRepository.findById(productRequest.getCategory().getId())
 					.orElseThrow(CategoryNotFoundException::new);
 
@@ -83,7 +84,6 @@ public class ProductServiceImpl implements ProductService {
 			var depto = departmentRepository.findById(productRequest.getDepartment().getId())
 					.orElseThrow(DepartmentNotFoundException::new);
 
-			var produto = productRepository.findById(product_id).orElseThrow(ProductNotFoundException::new);
 			BeanUtils.copyProperties(productRequest, produto, "id", "createdAt", "updatedAt");
 			produto.setBrand(marca);
 			produto.setCategory(category);
@@ -175,11 +175,6 @@ public class ProductServiceImpl implements ProductService {
 
 	private int existStok(int inStok) {
 		return inStok > 1 ? 1 : 0;
-	}
-
-	@Override
-	public List<Product> getProductsByBrand(Long brandId) {
-		return productRepository.findByBrandId(brandId);
 	}
 
 }
