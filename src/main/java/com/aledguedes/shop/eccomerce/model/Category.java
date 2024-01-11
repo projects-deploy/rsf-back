@@ -45,7 +45,6 @@ public class Category extends Auditable {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "department_category", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "department_id"))
 	@Builder.Default
-	@JsonIgnore
 	private List<Department> department = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)

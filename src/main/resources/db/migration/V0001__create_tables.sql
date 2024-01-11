@@ -1,11 +1,11 @@
 CREATE TABLE `tbl_user` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
-    `email` VARCHAR(255),
-    `username` VARCHAR(255),
+    `enabled` BOOLEAN,
     `name` VARCHAR(255),
-    `link_photo` VARCHAR(255),
-    `user_active` INT,
+    `email` VARCHAR(255),
     `password` VARCHAR(255),
+    `link_photo` VARCHAR(255),
+    `verification_code` VARCHAR(255),
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP
 );
@@ -85,30 +85,15 @@ CREATE TABLE `tbl_product` (
     `discount` INT,
     `delivery` INT,
     `in_stok` INT,
-    `average_rating` DECIMAL(3,1) DEFAULT 0.0,
-    `review_count` BIGINT DEFAULT 0,
-    `product_size` TEXT,
-    `product_colors` TEXT,
-    `category_id` BIGINT,
-    `department_id` BIGINT,
+    `is_new` BOOLEAN,
     `brand_id` INT,
+    `category_id` INT,
+    `department_id` INT,
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP,
-    FOREIGN KEY (`category_id`) REFERENCES `tbl_category`(`id`),
+    FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand`(`id`),
     FOREIGN KEY (`department_id`) REFERENCES `tbl_department`(`id`),
-    FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand`(`id`)
-);
-
-CREATE TABLE `tbl_products_images` (
-    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
-    `product_id` BIGINT,
-    FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`)
-);
-
-CREATE TABLE `product_images` (
-    `product_image_id` BIGINT,
-    `images_url` VARCHAR(255),
-    FOREIGN KEY (`product_image_id`) REFERENCES `tbl_products_images`(`id`)
+    FOREIGN KEY (`category_id`) REFERENCES `tbl_category`(`id`)
 );
 
 CREATE TABLE `tbl_item_order` (

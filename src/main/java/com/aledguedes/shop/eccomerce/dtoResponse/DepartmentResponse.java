@@ -22,7 +22,7 @@ public class DepartmentResponse {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 
-	@JsonIgnoreProperties({ "categories", "createdAt", "updatedAt" })
+  @JsonIgnoreProperties({ "department", "products", "createdAt", "updatedAt" })
 	private List<Category> categories;
 
 //	@JsonIgnoreProperties({ "createdAt", "updatedAt" })

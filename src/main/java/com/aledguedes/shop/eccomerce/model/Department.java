@@ -40,12 +40,10 @@ public class Department extends Auditable {
 	@Column(name = "name")
 	private String name;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "department")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	}, mappedBy = "department")
 	@Builder.Default
 	private List<Category> categories = new ArrayList<>();
-
-	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("department")
-	@Builder.Default
-	List<Product> products = new ArrayList<>();
 }

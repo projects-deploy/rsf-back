@@ -68,17 +68,8 @@ public class Product extends Auditable {
     @Column(name = "in_stok")
     private int in_stok;
 
-    @Column(name = "average_rating")
-    private Double average_rating;
-
-    @Column(name = "review_count")
-    private Integer review_count;
-
-    @Column(name = "product_size")
-    private String product_size;
-
-    @Column(name = "product_colors")
-    private String product_colors;
+    @Column(name = "is_new")
+    private Boolean isNew;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -94,35 +85,8 @@ public class Product extends Auditable {
     @JoinColumn(name = "brand_id")
     @JsonIgnore
     private Brand brand;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Size(max = 6)
-    @Builder.Default
-    private List<ProductImage> images = new ArrayList<>();
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Review> reviews;
-
-    @Transient
-    public double getAverageRating() {
-        if (reviews == null || reviews.isEmpty()) {
-            return 0.0;
-        }
-
-        double sum = 0.0;
-        for (Review review : reviews) {
-            sum += review.getRating();
-        }
-        
-        double average = sum / reviews.size();
-        BigDecimal roundedAverage = BigDecimal.valueOf(average).setScale(1, RoundingMode.HALF_UP);
-
-        return roundedAverage.doubleValue();
-    }
-
-    public void updateRatingAndReviewCount() {
-        this.average_rating = getAverageRating();
-        this.review_count = reviews.size();
-    }
+    
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 }

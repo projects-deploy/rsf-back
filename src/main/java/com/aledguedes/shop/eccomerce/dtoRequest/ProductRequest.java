@@ -1,6 +1,8 @@
 package com.aledguedes.shop.eccomerce.dtoRequest;
 
 import com.aledguedes.shop.eccomerce.model.Brand;
+import com.aledguedes.shop.eccomerce.model.Category;
+import com.aledguedes.shop.eccomerce.model.Department;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
@@ -38,22 +40,13 @@ public class ProductRequest {
 	private double price_product;
 
 	@NotNull
-	private Long category_idd;
-
-	@NotNull
-	private Long department_idd;
-	
-	@NotNull
-	@NotEmpty
-	private String product_size;
-	
-	@NotNull
-	@NotEmpty
-	private String product_colors;
+	private Boolean isNew;
 
 	@NotNull
 	private int in_stok;
 	private int discount;
 	private int delivery;
 	private Brand brand;
+	private Category category;
+	private Department department;
 }

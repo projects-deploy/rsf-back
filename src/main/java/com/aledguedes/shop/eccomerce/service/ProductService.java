@@ -18,7 +18,12 @@ public interface ProductService {
     public Page<ProductResponse> listarDestaques(Integer page);
     public List<ProductResponse> listaIndisponiveis();
     public List<ProductResponse> listByDepartment(Long category_id);
-    public Page<ProductResponse> listarPorPalavraChave(String key, Integer page);
+    public Page<ProductResponse> listarPorPalavraChave(String key, Integer page); 
     public ProductResponse listById(Long id);
-    public List<Product> getProductsByBrand(Long brandId);
+    
+    Page<ProductResponse> getLatestProducts(int page, int size);
+    
+    List<ProductResponse> getAllProductsByBrandId(Long brand_id);
+    List<ProductResponse> getAllProductsByCategoryId(Long category_id);
+    List<ProductResponse> getAllProductsByDepartmentId(Long department_id);
 }

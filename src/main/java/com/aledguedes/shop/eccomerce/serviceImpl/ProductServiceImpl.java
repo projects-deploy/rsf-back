@@ -5,19 +5,22 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.ProductRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
+import com.aledguedes.shop.eccomerce.exceptions.core.BrandNotFoundException;
+import com.aledguedes.shop.eccomerce.exceptions.core.CategoryNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.core.DepartmentNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.core.ProductNotFoundException;
-import com.aledguedes.shop.eccomerce.exceptions.core.CategoryNotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.ProductMapper;
 import com.aledguedes.shop.eccomerce.model.Product;
 import com.aledguedes.shop.eccomerce.repository.BrandRepository;
-import com.aledguedes.shop.eccomerce.repository.ProductRepository;
 import com.aledguedes.shop.eccomerce.repository.CategoryRepository;
 import com.aledguedes.shop.eccomerce.repository.DepartmentRepository;
+import com.aledguedes.shop.eccomerce.repository.ProductRepository;
 import com.aledguedes.shop.eccomerce.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -39,13 +42,16 @@ public class ProductServiceImpl implements ProductService {
 
 			var produto = productMapper.toProduct(productRequest);
 
-			var category = categoryRepository.findById(productRequest.getCategory_idd())
+			var category = categoryRepository.findById(productRequest.getCategory().getId())
 					.orElseThrow(CategoryNotFoundException::new);
 			
 			var depto = departmentRepository.findById(productRequest.getDepartment_idd())
 					.orElseThrow(DepartmentNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())
+					.orElseThrow(BrandNotFoundException::new);
+
+			var depto = departmentRepository.findById(productRequest.getDepartment().getId())
 					.orElseThrow(DepartmentNotFoundException::new);
 
 			produto.setBrand(marca);
@@ -68,16 +74,20 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductResponse updateProduct(ProductRequest productRequest, Long product_id) {
 		try {
-			var category = categoryRepository.findById(productRequest.getCategory_idd())
+			var category = categoryRepository.findById(productRequest.getCategory().getId())
 					.orElseThrow(CategoryNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())
+					.orElseThrow(BrandNotFoundException::new);
+
+			var depto = departmentRepository.findById(productRequest.getDepartment().getId())
 					.orElseThrow(DepartmentNotFoundException::new);
 
 			var produto = productRepository.findById(product_id).orElseThrow(ProductNotFoundException::new);
 			BeanUtils.copyProperties(productRequest, produto, "id", "createdAt", "updatedAt");
 			produto.setBrand(marca);
 			produto.setCategory(category);
+			produto.setDepartment(depto);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));
 			var userAtualizado = productRepository.save(produto);
@@ -114,8 +124,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<ProductResponse> listByDepartment(Long department_id) {
-		var category = categoryRepository.findById(department_id)
-				.orElseThrow(CategoryNotFoundException::new);
+		var category = categoryRepository.findById(department_id).orElseThrow(CategoryNotFoundException::new);
 		return productRepository.findAllByAvailableAndCategory(1, category);
 	}
 
@@ -139,6 +148,29 @@ public class ProductServiceImpl implements ProductService {
 		} else {
 			return produto.getPrice_product();
 		}
+	}
+
+	@Override
+	public Page<ProductResponse> getLatestProducts(int page, int size) {
+		Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+		return productRepository.findByIsNewTrue(pageable).map(productMapper::toProductResponse);
+	}
+
+	@Override
+	public List<ProductResponse> getAllProductsByBrandId(Long brand_id) {
+		return productRepository.findAllByBrandId(brand_id).stream().map(productMapper::toProductResponse).toList();
+	}
+
+	@Override
+	public List<ProductResponse> getAllProductsByCategoryId(Long category_id) {
+		return productRepository.findAllByCategoryId(category_id).stream().map(productMapper::toProductResponse)
+				.toList();
+	}
+
+	@Override
+	public List<ProductResponse> getAllProductsByDepartmentId(Long department_id) {
+		return productRepository.findAllByDepartmentId(department_id).stream().map(productMapper::toProductResponse)
+				.toList();
 	}
 
 	private int existStok(int inStok) {
