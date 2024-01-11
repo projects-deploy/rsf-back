@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewMapper reviewMapper;

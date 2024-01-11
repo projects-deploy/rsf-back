@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class CouponServiceImpl implements CouponService {
 
 	private final CouponMapper couponMapper;

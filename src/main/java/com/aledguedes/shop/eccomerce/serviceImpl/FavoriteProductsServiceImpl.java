@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class FavoriteProductsServiceImpl implements FavoriteProductsService {
 
     private final FavoriteProductsMapper favoriteProductsMapper;

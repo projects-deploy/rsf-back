@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerMapper customerMapper;

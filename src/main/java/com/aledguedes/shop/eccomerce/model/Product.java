@@ -2,7 +2,6 @@ package com.aledguedes.shop.eccomerce.model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,7 +17,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,57 +34,91 @@ import lombok.ToString;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 public class Product extends Auditable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
 
-    @Column(name = "name")
-    private String name;
+	@Column(name = "name")
+	private String name;
 
-    @Column(name = "detail")
-    private String detail;
+	@Column(name = "detail")
+	private String detail;
 
-    @Column(name = "link_photo")
-    private String link_photo;
+	@Column(name = "link_photo")
+	private String link_photo;
 
-    @Column(name = "price_product")
-    private double price_product;
+	@Column(name = "price_product")
+	private double price_product;
 
-    @Column(name = "price_promo")
-    private double price_promo;
+	@Column(name = "price_promo")
+	private double price_promo;
 
-    @Column(name = "available")
-    private int available;
+	@Column(name = "available")
+	private int available;
 
-    @Column(name = "discount")
-    private int discount;
+	@Column(name = "discount")
+	private int discount;
 
-    @Column(name = "delivery")
-    private int delivery;
+	@Column(name = "delivery")
+	private int delivery;
 
-    @Column(name = "in_stok")
-    private int in_stok;
+	@Column(name = "in_stok")
+	private int in_stok;
 
-    @Column(name = "is_new")
-    private Boolean isNew;
+	@Column(name = "average_rating")
+	private Double average_rating;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    @JsonIgnore
-    private Category category;
+	@Column(name = "review_count")
+	private Integer review_count;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    @JsonIgnore
-    private Department department;
+	@Column(name = "product_size")
+	private String product_size;
 
-    @ManyToOne
-    @JoinColumn(name = "brand_id")
-    @JsonIgnore
-    private Brand brand;
-    
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
+	@Column(name = "product_colors")
+	private String product_colors;
+
+	@Column(name = "is_new")
+	private Boolean isNew;
+
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	@JsonIgnore
+	private Category category;
+
+	@ManyToOne
+	@JoinColumn(name = "department_id")
+	@JsonIgnore
+	private Department department;
+
+	@ManyToOne
+	@JoinColumn(name = "brand_id")
+	@JsonIgnore
+	private Brand brand;
+
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Review> reviews;
+
+	@Transient
+	public double getAverageRating() {
+		if (reviews == null || reviews.isEmpty()) {
+			return 0.0;
+		}
+
+		double sum = 0.0;
+		for (Review review : reviews) {
+			sum += review.getRating();
+		}
+
+		double average = sum / reviews.size();
+		BigDecimal roundedAverage = BigDecimal.valueOf(average).setScale(1, RoundingMode.HALF_UP);
+
+		return roundedAverage.doubleValue();
+	}
+
+	public void updateRatingAndReviewCount() {
+		this.average_rating = getAverageRating();
+		this.review_count = reviews.size();
+	}
 }

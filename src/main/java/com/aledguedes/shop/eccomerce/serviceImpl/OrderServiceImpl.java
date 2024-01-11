@@ -23,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class OrderServiceImpl implements OrderService {
 
 	private final OrderMapper orderMapper;

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.ProductRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
-import com.aledguedes.shop.eccomerce.model.Product;
 import com.aledguedes.shop.eccomerce.service.ProductService;
 
 import jakarta.validation.Valid;
@@ -42,11 +41,6 @@ public class ProductController {
     		@RequestBody @Valid ProductRequest productRequest,
     		@PathVariable Long product_id) {
         return productService.updateProduct(productRequest, product_id);
-    }
-    
-    @GetMapping("/by-brand/{brandId}")
-    public List<Product> getProductsByBrand(@PathVariable Long brandId) {
-        return productService.getProductsByBrand(brandId);
     }
 
     @GetMapping
