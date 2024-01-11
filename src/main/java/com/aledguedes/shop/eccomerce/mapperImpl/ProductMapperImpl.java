@@ -24,6 +24,8 @@ public class ProductMapperImpl implements ProductMapper {
                 .discount(productRequest.getDiscount())
                 .isNew(productRequest.getIsNew())
                 .in_stok(productRequest.getIn_stok())
+                .product_size(productRequest.getProduct_size())
+                .product_colors(productRequest.getProduct_colors())
                 .delivery(productRequest.getDelivery())
                 .brand(productRequest.getBrand())
                 .category(productRequest.getCategory())
@@ -54,6 +56,8 @@ public class ProductMapperImpl implements ProductMapper {
                 .department(product.getDepartment())
                 .createdAt(product.getCreatedAt())
                 .updatedAt(product.getUpdatedAt())
+                .category(product.getCategory())
+                .department(product.getDepartment())
                 .build();
     }
 

@@ -58,7 +58,13 @@ INSERT INTO department_category (department_id, category_id) VALUES (8, 8), (8, 
 INSERT INTO department_category (department_id, category_id) VALUES (9, 9), (9, 18), (9, 19);
 INSERT INTO department_category (department_id, category_id) VALUES (10, 5), (10, 20), (10, 21);
 
-INSERT INTO TBL_CUSTOMER VALUES(1, 'SP', '308.905.618-69', '14056-150', 'Alexandre Guedes', 'aledguedes@gmail.com', '(16) 99304-4438', 278, 'Planalto Verde',  'Ribeirão Preto', 'Rua Escritor José Mauro de Vasconcelos', 'casa', '1983-04-07', '2023-12-19', '2023-12-19');
+INSERT INTO TBL_CUSTOMER VALUES
+(1, 'SP', 'CPF', '14056-150', 'Alexandre', 'Guedes', 'https://st2.depositphotos.com/1104517/11967/v/950/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg', 'aledguedes@gmail.com', '(16) 12345-6789', 278, 'Planalto Verde',  'Ribeirão Preto', 'Rua Escritor José Mauro de Vasconcelos', 'Casa', '1983-04-07', '2023-12-19', '2023-12-19'),
+(2, 'AL', '994.306.580-00', '57083-154', 'Reinu', 'Kagoron', 'https://w7.pngwing.com/pngs/517/749/png-transparent-computer-icons-user-profile-avatar-woman-young-child-face-black-hair.png', 'kagoron@gmail.com', '(16) 12345-6789', 278, 'Antares',  'Maceió', 'Quadra D', 'casa', '1983-04-07', '2023-12-19', '2023-12-19'),
+(3, 'AM', '262.509.140-13', '69098-146', 'Syuvi', 'Ugdkul', 'https://i.pinimg.com/736x/df/5f/5b/df5f5b1b174a2b4b6026cc6c8f9395c1.jpg', 'ugdkul@gmail.com', '(16) 12345-6789', 278, 'Novo Aleixo',  'Manaus', 'Travessa Iramaia', 'Apartamento', '1983-04-07', '2023-12-19', '2023-12-19'),
+(4, 'CE', '029.669.340-50', '60355-810', 'Rone', 'Eswen', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeb1dkR7xEJ3e265asLWRyy6n3xmzlab5K9w&usqp=CAU', 'eswen@gmail.com', '(16) 12345-6789', 278, 'Presidente Kennedy',  'Fortaleza', 'Vila Joanópolis', 'casa', '1983-04-07', '2023-12-19', '2023-12-19'),
+(5, 'RS', '319.990.340-15', '92310-440', 'Olonr', 'Wimo', 'https://i.pngimg.me/thumb/f/720/m2i8H7d3N4d3G6H7.jpg', 'wimo@gmail.com', '(16) 12345-6789', 278, 'Harmonia',  'Canoas', 'Rua Eça de Queiroz', 'Condomínio', '1983-04-07', '2023-12-19', '2023-12-19'),
+(6, 'MT', '616.142.220-45', '78050-616', 'Mefan', 'Murpofo', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfssoZbqXwpoS0aNnbkx-wCGQ-uo5GWQeuBw&usqp=CAU', 'murpofo@gmail.com', '(16) 12345-6789', 278, 'São Roque',  'Cuiabá', 'Rua San Rafael', 'Apartamento', '1983-04-07', '2023-12-19', '2023-12-19');
 
 INSERT INTO tbl_product (id, name, detail, link_photo, price_product, price_promo, available, discount, delivery, in_stok, is_new, brand_id, category_id, department_id, created_at, updated_at)
 VALUES

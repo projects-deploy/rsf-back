@@ -44,6 +44,9 @@ public class ProductServiceImpl implements ProductService {
 
 			var category = categoryRepository.findById(productRequest.getCategory().getId())
 					.orElseThrow(CategoryNotFoundException::new);
+			
+			var depto = departmentRepository.findById(productRequest.getDepartment_idd())
+					.orElseThrow(DepartmentNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand().getId())
 					.orElseThrow(BrandNotFoundException::new);
@@ -172,6 +175,11 @@ public class ProductServiceImpl implements ProductService {
 
 	private int existStok(int inStok) {
 		return inStok > 1 ? 1 : 0;
+	}
+
+	@Override
+	public List<Product> getProductsByBrand(Long brandId) {
+		return productRepository.findByBrandId(brandId);
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.aledguedes.shop.eccomerce.dtoResponse;
 
-import com.aledguedes.shop.eccomerce.model.Order;
+import java.time.LocalDateTime;
+
+import com.aledguedes.shop.eccomerce.model.Customer;
 import com.aledguedes.shop.eccomerce.model.Product;
 
 import lombok.AllArgsConstructor;
@@ -12,12 +14,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemOrderResponse {
+public class CouponResponse {
 
-	private Long id;
-    private Integer qtde_item;
-    private double unit_price;
-    private double amount;
-    private Order order;
+    private Long id;
+    private String code;
+    private Integer discount;
+    private boolean active;
+    private LocalDateTime expiration_date;
     private Product product;
+    private Customer customer;
 }

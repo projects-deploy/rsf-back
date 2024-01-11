@@ -38,8 +38,14 @@ public class Customer extends Auditable {
 	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "surname")
+	private String surname;
+	
 	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "link_photo")
+	private String link_photo;
 	
 	@Column(name = "phone")
 	private String phone;
@@ -74,4 +80,8 @@ public class Customer extends Auditable {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("customer")
     private List<FavoriteProducts> favorites;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"customer"})
+    private List<Review> reviews;
 }

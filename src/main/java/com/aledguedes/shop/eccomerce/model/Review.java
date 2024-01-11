@@ -1,9 +1,5 @@
 package com.aledguedes.shop.eccomerce.model;
 
-import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,24 +20,29 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tbl_favorites")
+@Table(name = "tbl_review")
 @ToString(onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class FavoriteProducts {
+public class Review extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "added_in")
-    private LocalDateTime added_in;
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "rating")
+    private int rating;
+
+    @Column(name = "comment")
+    private String comment;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    @JsonIgnoreProperties({"brand", "images"})
-    private Product product;
 }

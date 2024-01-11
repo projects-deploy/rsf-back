@@ -53,10 +53,10 @@ public class Order extends Auditable {
     private double value_total;
 
     @Column(name = "shipping")
-    private double shipping;
+    private String shipping;
 
-    @Column(name = "to_remove") // retirar
-    private Integer to_remove;
+    @Column(name = "payment")
+    private String payment;
 
     @Column(name = "comments")
     private String comments;
@@ -66,9 +66,10 @@ public class Order extends Auditable {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
+    @JsonIgnoreProperties({"favorites"})
     private Customer customer;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("order")
-    private List<ItemOrder> itemsOrder;
+    private List<ItemOrder> items;
 }

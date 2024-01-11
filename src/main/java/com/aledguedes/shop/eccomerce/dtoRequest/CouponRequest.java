@@ -1,10 +1,11 @@
 package com.aledguedes.shop.eccomerce.dtoRequest;
 
-import com.aledguedes.shop.eccomerce.model.Order;
+import com.aledguedes.shop.eccomerce.model.Customer;
 import com.aledguedes.shop.eccomerce.model.Product;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,11 +16,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(SnakeCaseStrategy.class)
-public class ItemOrderRequest {
+public class CouponRequest {
 
-    private Integer qtde_item;
-    private double unit_price;
-    private double amount;
-    private Order order;
+    @NotNull
+    private Integer discount;
+
     private Product product;
+    private Customer customer;
 }

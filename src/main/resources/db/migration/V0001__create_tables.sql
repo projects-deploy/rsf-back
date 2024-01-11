@@ -46,6 +46,8 @@ CREATE TABLE `tbl_customer` (
     `cpf` VARCHAR(255),
     `cep` VARCHAR(255),
     `name` VARCHAR(255),
+    `surname` VARCHAR(255),
+    `link_photo` VARCHAR(255),
     `email` VARCHAR(255),
     `phone` VARCHAR(255),
     `numero` VARCHAR(255),
@@ -62,11 +64,11 @@ CREATE TABLE `tbl_order` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `date_order` TIMESTAMP,
     `value_total` DECIMAL(10, 2),
-    `shipping` DECIMAL(10, 2),
+    `shipping` VARCHAR(100),
     `comments` TEXT,
     `status` INT,
+    `payment`  VARCHAR(100),
     `customer_id` INT,
-    `to_remove` INT,
     `created_at` TIMESTAMP,
     `updated_at` TIMESTAMP,
     FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`)
@@ -98,7 +100,7 @@ CREATE TABLE `tbl_item_order` (
 	`id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `qtde_item` INT,
     `unit_price` DECIMAL(10, 2),
-    `total_price` DECIMAL(10, 2),
+    `amount` DECIMAL(10, 2),
     `order_id` INT,
     `product_id` INT,
     `created_at` TIMESTAMP,
@@ -121,5 +123,33 @@ CREATE TABLE `tbl_menu_entity` (
     `categories` TEXT,
     `departments` TEXT
 );
+
+CREATE TABLE `tbl_review` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `title` VARCHAR(255),
+    `rating` INT,
+    `comment` VARCHAR(255),
+    `product_id` BIGINT,
+    `customer_id` BIGINT,
+    `created_at` TIMESTAMP,
+    `updated_at` TIMESTAMP,
+    FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`),
+    FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `tbl_coupon` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `code` VARCHAR(255),
+    `discount` INT,
+    `expiration_date` DATETIME,
+    `active` BOOLEAN,
+    `customer_id` BIGINT,
+    `product_id` BIGINT,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`),
+    FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`)
+);
+
 
 INSERT INTO tbl_menu_entity (id, categories, departments) VALUES (1, null, null);

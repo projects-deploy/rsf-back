@@ -2,8 +2,6 @@ package com.aledguedes.shop.eccomerce.model;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,17 +22,27 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tbl_favorites")
+@Table(name = "tbl_coupon")
 @ToString(onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class FavoriteProducts {
+public class Coupon extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "added_in")
-    private LocalDateTime added_in;
+    @Column(name = "code")
+    private String code;
+
+    @Column(name = "discount")
+    private Integer discount;
+
+    @Column(name = "expiration_date")
+    private LocalDateTime expiration_date;
+
+    @Column(name = "active")
+    private boolean active;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -42,6 +50,9 @@ public class FavoriteProducts {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @JsonIgnoreProperties({"brand", "images"})
     private Product product;
+
+    public boolean isAtivo() {
+        return active;
+    }
 }

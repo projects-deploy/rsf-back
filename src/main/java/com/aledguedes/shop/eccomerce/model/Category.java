@@ -3,7 +3,7 @@ package com.aledguedes.shop.eccomerce.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -48,7 +48,6 @@ public class Category extends Auditable {
 	private List<Department> department = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("category")
 	@Builder.Default
 	List<Product> products = new ArrayList<>();
 
