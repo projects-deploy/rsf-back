@@ -43,18 +43,18 @@ public class CouponController {
     @GetMapping(value = "/apply")
     public CouponResponse applyCoupon(
         @RequestParam(name = "code", required = true, defaultValue = "") String code,
-        @RequestParam(name = "product", required = false, defaultValue = "") Long product,
         @RequestParam(name = "customer", required = false, defaultValue = "") Long customer
     ) {
-        return couponService.applyCoupon(code, customer, product);
+        return couponService.applyCoupon(code, customer);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CouponResponse createCoupon(
     		@RequestBody @Valid CouponRequest coupon,
-    		@RequestParam(name = "days", required = false, defaultValue = "0") Integer expirationDays) {
-        return couponService.createCoupon(coupon, expirationDays);
+    		@RequestParam(name = "days", required = false, defaultValue = "0") Integer expirationDays,
+    		@RequestParam(name = "customer", required = false, defaultValue = "") String customer) {
+        return couponService.createCoupon(coupon, expirationDays, customer);
     }
 
     @PutMapping(value = "/{coupon_id}")

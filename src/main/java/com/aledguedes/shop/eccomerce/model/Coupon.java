@@ -38,6 +38,12 @@ public class Coupon extends Auditable {
     @Column(name = "discount")
     private Integer discount;
 
+    @Column(name = "coupon_type")
+    private String couponType;
+
+    @Column(name = "discount_type")
+    private String discountType;
+
     @Column(name = "expiration_date")
     private LocalDateTime expiration_date;
 
@@ -47,10 +53,6 @@ public class Coupon extends Auditable {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
 
     public boolean isAtivo() {
         return active;

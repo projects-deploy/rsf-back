@@ -9,11 +9,11 @@ public interface CouponService {
     
     List<CouponResponse> listAll();
     CouponResponse couponById(Long coupon_id);
-    CouponResponse createCoupon(CouponRequest coupon, Integer expirationDays);
+    CouponResponse createCoupon(CouponRequest coupon, Integer expirationDays, String customer);
     CouponResponse updateCoupon(CouponRequest coupon, Long coupon_id);
     void deleteCoupon(Long coupon_id);
 
-    CouponResponse applyCoupon(String code, Long customer_id, Long product_id);
+    CouponResponse applyCoupon(String code, Long customer_id);
     
     // List<CouponResponse> cuponsByProduct(Product product);
     // List<CouponResponse> cuponsByCustomer(Customer customer);

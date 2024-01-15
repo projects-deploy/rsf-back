@@ -1,14 +1,14 @@
 INSERT INTO TBL_BRAND  (id, name, link_photo, created_at, updated_at) VALUES
-(1, 'Nike', 'https://example.com/nike.jpg', '2023-12-14T12:00:00', '2023-12-14T12:00:00'),
-(2, 'Adidas', 'https://example.com/adidas.jpg', '2023-12-14T12:10:00', '2023-12-14T12:10:00'),
-(3, 'Puma', 'https://example.com/puma.jpg', '2023-12-14T12:20:00', '2023-12-14T12:20:00'),
-(4, 'Reebok', 'https://example.com/reebok.jpg', '2023-12-14T12:30:00', '2023-12-14T12:30:00'),
-(5, 'Under Armour', 'https://example.com/under_armour.jpg', '2023-12-14T12:40:00', '2023-12-14T12:40:00'),
-(6, 'Converse', 'https://example.com/converse.jpg', '2023-12-14T12:50:00', '2023-12-14T12:50:00'),
-(7, 'Vans', 'https://example.com/vans.jpg', '2023-12-14T13:00:00', '2023-12-14T13:00:00'),
-(8, 'New Balance', 'https://example.com/new_balance.jpg', '2023-12-14T13:10:00', '2023-12-14T13:10:00'),
-(9, 'Fila', 'https://example.com/fila.jpg', '2023-12-14T13:20:00', '2023-12-14T13:20:00'),
-(10, 'ASICS', 'https://example.com/asics.jpg', '2023-12-14T13:30:00', '2023-12-14T13:30:00');
+(1, 'Nike', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaEWHoZj6HVKxZ9FK0e9D5H9KXWENInNfaT_HpMvMfHkca_y26ILMLccpdUscva0BqgAs&usqp=CAU', '2023-12-14T12:00:00', '2023-12-14T12:00:00'),
+(2, 'Adidas', 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg', '2023-12-14T12:10:00', '2023-12-14T12:10:00'),
+(3, 'Puma', 'https://upload.wikimedia.org/wikipedia/commons/6/63/Puma.png', '2023-12-14T12:20:00', '2023-12-14T12:20:00'),
+(4, 'Reebok', 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Reebok_logo_%281997-2000%29.jpg', '2023-12-14T12:30:00', '2023-12-14T12:30:00'),
+(5, 'Under Armour', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Under_armour_logo.svg/200px-Under_armour_logo.svg.png', '2023-12-14T12:40:00', '2023-12-14T12:40:00'),
+(6, 'Converse', 'https://upload.wikimedia.org/wikipedia/commons/3/30/Converse_logo.svg', '2023-12-14T12:50:00', '2023-12-14T12:50:00'),
+(7, 'Vans', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Vans-logo.svg/1200px-Vans-logo.svg.png', '2023-12-14T13:00:00', '2023-12-14T13:00:00'),
+(8, 'New Balance', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/New_Balance_logo.svg/1200px-New_Balance_logo.svg.png', '2023-12-14T13:10:00', '2023-12-14T13:10:00'),
+(9, 'Fila', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Fila_logo_%283%29.svg/1200px-Fila_logo_%283%29.svg.png', '2023-12-14T13:20:00', '2023-12-14T13:20:00'),
+(10, 'ASICS', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Asics_Logo.svg/1200px-Asics_Logo.svg.png', '2023-12-14T13:30:00', '2023-12-14T13:30:00');
 
 INSERT INTO tbl_department (id, name, created_at, updated_at) VALUES
 (1, 'Women Clothing', '2023-12-14', '2023-12-14'),

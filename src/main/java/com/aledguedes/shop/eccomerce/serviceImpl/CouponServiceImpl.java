@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 import com.aledguedes.shop.eccomerce.dtoRequest.CouponRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.CouponResponse;
 import com.aledguedes.shop.eccomerce.exceptions.core.CouponNotFoundException;
+import com.aledguedes.shop.eccomerce.exceptions.core.UserNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.coupons.InactiveCouponException;
+import com.aledguedes.shop.eccomerce.exceptions.coupons.InvalidCustomerCouponException;
 import com.aledguedes.shop.eccomerce.mapper.CouponMapper;
 import com.aledguedes.shop.eccomerce.repository.CouponRepository;
+import com.aledguedes.shop.eccomerce.repository.CustomerRepository;
 import com.aledguedes.shop.eccomerce.service.CouponService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,8 +26,8 @@ public class CouponServiceImpl implements CouponService {
 
 	private final CouponMapper couponMapper;
 	private final CouponRepository couponRepository;
+	private final CustomerRepository customerRepository;
 	// private final ProductRepository productRepository;
-	// private final CustomerRepository customerRepository;
 
 	@Override
 	public List<CouponResponse> listAll() {
@@ -38,22 +41,33 @@ public class CouponServiceImpl implements CouponService {
 	}
 
 	@Override
-	public CouponResponse createCoupon(CouponRequest couponRequest, Integer expirationDays) {
+	public CouponResponse createCoupon(CouponRequest couponRequest, Integer expirationDays, String customer) {
 		try {
 			var newCoupon = couponMapper.toCoupon(couponRequest);
-			
+
 			LocalDateTime expirationDate = LocalDateTime.now().plusDays(expirationDays);
-			String value = couponRequest.getDiscount() < 10 ? String.format("%02d", couponRequest.getDiscount()) : couponRequest.getDiscount().toString();
-			
-            String code = "SHOPFASHION" + value;
-            newCoupon.setCode(code);
-            newCoupon.setActive(true);
-            newCoupon.setExpiration_date(expirationDate);
-            
+			String value = couponRequest.getDiscount() < 10 ? String.format("%02d", couponRequest.getDiscount())
+					: couponRequest.getDiscount().toString();
+			String code = "SHOPFASHION" + value;
+
+			newCoupon.setCode(code);
+			newCoupon.setActive(true);
+			newCoupon.setExpiration_date(expirationDate);
+
+			if (!customer.isEmpty()) {
+				long customer_id = Long.parseLong(customer);
+				var user = customerRepository.findById(customer_id)
+						.orElseThrow(UserNotFoundException::new);
+				newCoupon.setCustomer(user);
+				newCoupon.setCouponType("customerCoupon");
+			} else {
+				newCoupon.setCouponType("singleCoupon");
+			}
+
 			var createdCoupon = couponRepository.save(newCoupon);
 			return couponMapper.toCouponResponse(createdCoupon);
 		} catch (Exception e) {
-			System.out.println("DEBUG = " + e.getMessage());
+			System.out.println("DEBUG CREATE COUPON = " + e.getMessage());
 			return null;
 		}
 	}
@@ -81,19 +95,15 @@ public class CouponServiceImpl implements CouponService {
 	}
 
 	@Override
-	public CouponResponse applyCoupon(String code, Long customer_id, Long product_id) {
+	public CouponResponse applyCoupon(String code, Long customer_id) {
 		var coupon = couponRepository.findByCode(code).orElseThrow(CouponNotFoundException::new);
 		if (!coupon.isAtivo()) {
 			throw new InactiveCouponException();
 		}
 
-//		if (customer_id != null) {
-//			throw new InvalidCouponCustomerException();
-//		}
-//
-//		if (product_id != null) {
-//			throw new InvalidCouponProductException();
-//		}
+		if ("customerCoupon".equals(coupon.getCouponType()) && !coupon.getCustomer().getId().equals(customer_id)) {
+			throw new InvalidCustomerCouponException();
+		}
 		return couponMapper.toCouponResponse(coupon);
 
 	}

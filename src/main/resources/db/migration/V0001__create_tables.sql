@@ -141,9 +141,11 @@ CREATE TABLE `tbl_review` (
     FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`)
 );
 
-CREATE TABLE IF NOT EXISTS `tbl_coupon` (
+CREATE TABLE `tbl_coupon` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `code` VARCHAR(255),
+    `coupon_type` VARCHAR(100),
+    `discount_type` VARCHAR(30),
     `discount` INT,
     `expiration_date` DATETIME,
     `active` BOOLEAN,
