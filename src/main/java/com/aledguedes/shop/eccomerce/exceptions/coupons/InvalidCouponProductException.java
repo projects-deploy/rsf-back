@@ -1,6 +1,8 @@
 package com.aledguedes.shop.eccomerce.exceptions.coupons;
 
-public class InvalidCouponProductException extends RuntimeException {
+import com.aledguedes.shop.eccomerce.exceptions.core.ModelNotFoundException;
+
+public class InvalidCouponProductException extends ModelNotFoundException {
 
 	private static final long serialVersionUID = 1L;
 
