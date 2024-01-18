@@ -43,6 +43,12 @@ public class ProductRequest {
 	private String product_colors;
 
 	@NotNull
+	private String product_size;
+	
+	@NotNull
+	private String product_colors;
+
+	@NotNull
 	private Boolean isNew;
 	
 	private Long brand_idd;
