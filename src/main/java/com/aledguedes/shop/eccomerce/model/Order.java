@@ -63,6 +63,9 @@ public class Order extends Auditable {
 
     @Column(name = "status")
     private Integer status;
+    
+    @Column(name = "receipt_number")
+    private String receiptNumber;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

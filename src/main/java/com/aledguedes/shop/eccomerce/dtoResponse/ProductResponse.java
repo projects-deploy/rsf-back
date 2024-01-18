@@ -37,6 +37,7 @@ public class ProductResponse {
 	private Integer review_count;
 	private String product_size;
 	private String product_colors;
+	private String multipleImages;
 	private Boolean isNew;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;

@@ -8,11 +8,12 @@ import com.aledguedes.shop.eccomerce.dtoResponse.OrderResponse;
 public interface OrderService {
 	public List<OrderResponse> listAll();
 	public OrderResponse listById(Long order_id);
-    public OrderResponse createOrder(OrderRequest orderRequest);
+    public OrderResponse createOrder(OrderRequest orderRequest, String code);
 	public OrderResponse updateOrder(OrderRequest orderRequest, Long order_id);
+	public OrderResponse changeStatus(Long order_id, Integer new_status);
+	public OrderResponse listOrderByReceiptNumber(String receiptNumber);
 //	public List<OrderResponse> searchUncanceled();
 //	public List<OrderResponse> searchByStatus(Integer status);
-	public OrderResponse changeStatus(Long order_id, Integer new_status);
 //	public List<OrderResponse> searchByPeriod(LocalDate data_start, LocalDate date_end);
 
 	// public List<OrderResponse> filtrarPorVariosCriterios(FiltroOrderResponseDTO filtro);

@@ -44,10 +44,17 @@ public class OrderController {
         return orderService.changeStatus(order_id, status);
     }
 
+    @GetMapping(value = "/by-receipt/{receipt_number}")
+    public OrderResponse getOrderByReceiptNumber(@PathVariable String receipt_number) {
+        return orderService.listOrderByReceiptNumber(receipt_number);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderResponse createOrder(@RequestBody @Valid OrderRequest orderRequest) {
-        return orderService.createOrder(orderRequest);
+    public OrderResponse createOrder(
+    		@RequestParam(name = "code", required = true, defaultValue = "") String code,
+    		@RequestBody @Valid OrderRequest orderRequest) {
+        return orderService.createOrder(orderRequest, code);
     }
 
     @PutMapping(value = "/{order_id}")

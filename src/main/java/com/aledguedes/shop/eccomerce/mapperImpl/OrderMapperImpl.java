@@ -40,8 +40,10 @@ public class OrderMapperImpl implements OrderMapper {
                 .value_total(order.getValue_total())
                 .shipping(order.getShipping())
                 .comments(order.getComments())
+                .payment(order.getPayment())
                 .status(order.getStatus())
                 .customer(order.getCustomer())
+                .receiptNumber(order.getReceiptNumber())
                 .items(order.getItems())
                 .build();
     }

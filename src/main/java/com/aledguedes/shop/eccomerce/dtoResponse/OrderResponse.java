@@ -28,6 +28,7 @@ public class OrderResponse {
     private String comments;
     private Integer status;
     private String payment;
+	private String receiptNumber;
     @JsonIgnoreProperties("favorites")
     private Customer customer;
     @JsonIgnoreProperties("order")
