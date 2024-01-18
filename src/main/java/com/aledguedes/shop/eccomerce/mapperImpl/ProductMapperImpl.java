@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 import com.aledguedes.shop.eccomerce.dtoRequest.ProductRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
 import com.aledguedes.shop.eccomerce.mapper.ProductMapper;
+import com.aledguedes.shop.eccomerce.model.Brand;
+import com.aledguedes.shop.eccomerce.model.Category;
+import com.aledguedes.shop.eccomerce.model.Department;
 import com.aledguedes.shop.eccomerce.model.Product;
 
 @Component
@@ -27,9 +30,9 @@ public class ProductMapperImpl implements ProductMapper {
                 .product_size(productRequest.getProduct_size())
                 .product_colors(productRequest.getProduct_colors())
                 .delivery(productRequest.getDelivery())
-                .brand(productRequest.getBrand())
-                .category(productRequest.getCategory())
-                .department(productRequest.getDepartment())
+                .brand(Brand.builder().id(productRequest.getBrand_idd()).build())
+                .category(Category.builder().id(productRequest.getCategory_idd()).build())
+                .department(Department.builder().id(productRequest.getDepartment_idd()).build())
                 .build();
     }
 
@@ -60,6 +63,7 @@ public class ProductMapperImpl implements ProductMapper {
                 .brand(product.getBrand())
                 .category(product.getCategory())
                 .department(product.getDepartment())
+                .reviews(product.getReviews())
                 .build();
     }
 

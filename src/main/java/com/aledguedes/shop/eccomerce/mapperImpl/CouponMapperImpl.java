@@ -17,6 +17,7 @@ public class CouponMapperImpl implements CouponMapper {
         }
 
         return Coupon.builder()
+                .discountType(couponRequest.getDiscountType())
                 .discount(couponRequest.getDiscount())
                 .build();
     }
@@ -31,8 +32,9 @@ public class CouponMapperImpl implements CouponMapper {
                 .id(coupon.getId())
                 .code(coupon.getCode())
                 .discount(coupon.getDiscount())
+                .couponType(coupon.getCouponType())
+                .discountType(coupon.getDiscountType())
                 .expiration_date(coupon.getExpiration_date())
-                .product(coupon.getProduct())
                 .active(coupon.isActive())
                 .customer(coupon.getCustomer())
                 .build();

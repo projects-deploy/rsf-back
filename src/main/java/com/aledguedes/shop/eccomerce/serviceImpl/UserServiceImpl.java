@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class UserServiceImpl implements UserService {
 
 	private final UserMapper userMapper;

@@ -27,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class ProductServiceImpl implements ProductService {
 
 	public static final Integer PAGE_SIZE = 12;
@@ -42,14 +43,14 @@ public class ProductServiceImpl implements ProductService {
 
 			var produto = productMapper.toProduct(productRequest);
 
-			var category = categoryRepository.findById(productRequest.getCategory().getId())
+			var category = categoryRepository.findById(productRequest.getCategory_idd())
 					.orElseThrow(CategoryNotFoundException::new);
 
-			var marca = brandRepository.findById(productRequest.getBrand().getId())
-					.orElseThrow(BrandNotFoundException::new);
-
-			var depto = departmentRepository.findById(productRequest.getDepartment().getId())
+			var depto = departmentRepository.findById(productRequest.getDepartment_idd())
 					.orElseThrow(DepartmentNotFoundException::new);
+
+			var marca = brandRepository.findById(productRequest.getBrand_idd())
+					.orElseThrow(BrandNotFoundException::new);
 
 			produto.setBrand(marca);
 			produto.setDepartment(depto);
@@ -71,19 +72,24 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductResponse updateProduct(ProductRequest productRequest, Long product_id) {
 		try {
-
 			var produto = productRepository.findById(product_id)
 					.orElseThrow(ProductNotFoundException::new);
 
 			var category = categoryRepository.findById(productRequest.getCategory().getId())
 					.orElseThrow(CategoryNotFoundException::new);
 
-			var marca = brandRepository.findById(productRequest.getBrand().getId())
-					.orElseThrow(BrandNotFoundException::new);
+			var produto = productRepository.findById(product_id).orElseThrow(ProductNotFoundException::new);
 
-			var depto = departmentRepository.findById(productRequest.getDepartment().getId())
+			var category = categoryRepository.findById(productRequest.getCategory_idd())
+					.orElseThrow(CategoryNotFoundException::new);
+
+			var depto = departmentRepository.findById(productRequest.getDepartment_idd())
 					.orElseThrow(DepartmentNotFoundException::new);
 
+
+			var marca = brandRepository.findById(productRequest.getBrand_idd())
+					.orElseThrow(BrandNotFoundException::new);
+      
 			BeanUtils.copyProperties(productRequest, produto, "id", "createdAt", "updatedAt");
 			produto.setBrand(marca);
 			produto.setCategory(category);

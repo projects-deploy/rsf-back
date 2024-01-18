@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryMapper categoryMapper;

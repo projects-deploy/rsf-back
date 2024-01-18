@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class DepartmentServiceImpl implements DepartmentService {
 
 	private final DepartmentMapper departmentMapper;

@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class ProductImageServiceImpl implements ProductImageService {
 
     private final ProductRepository productRepository;

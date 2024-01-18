@@ -1,23 +1,25 @@
-package com.aledguedes.shop.eccomerce.dtoRequest;
+package com.aledguedes.handlers;
+
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(SnakeCaseStrategy.class)
-public class CouponRequest {
+public class ErrorResponse {
 
-	@NotNull
-	private Integer discount;
-	@NotNull
-	private String discountType;
+    private int status;
+    private String message;
+    private String error;
+    private String cause;
+    private LocalDateTime timestamp;
 }

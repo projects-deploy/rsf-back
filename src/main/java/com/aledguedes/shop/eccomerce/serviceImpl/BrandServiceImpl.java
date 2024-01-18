@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class BrandServiceImpl implements BrandService {
 
     private final BrandMapper brandMapper;

@@ -85,6 +85,10 @@ CREATE TABLE `tbl_product` (
     `discount` INT,
     `delivery` INT,
     `in_stok` INT,
+    `average_rating` DECIMAL(3,1) DEFAULT 0.0,
+    `review_count` BIGINT DEFAULT 0,
+    `product_size` TEXT,
+    `product_colors` TEXT,
     `is_new` BOOLEAN,
     `average_rating` DECIMAL(3,1) DEFAULT 0.0,
     `review_count` BIGINT DEFAULT 0,
@@ -141,9 +145,11 @@ CREATE TABLE `tbl_review` (
     FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer`(`id`)
 );
 
-CREATE TABLE IF NOT EXISTS `tbl_coupon` (
+CREATE TABLE `tbl_coupon` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `code` VARCHAR(255),
+    `coupon_type` VARCHAR(100),
+    `discount_type` VARCHAR(30),
     `discount` INT,
     `expiration_date` DATETIME,
     `active` BOOLEAN,

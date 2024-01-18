@@ -1,9 +1,8 @@
-package com.aledguedes.shop.eccomerce.dtoRequest;
+package com.aledguedes.handlers;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,10 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(SnakeCaseStrategy.class)
-public class CouponRequest {
+public class MessageResponse {
 
-	@NotNull
-	private Integer discount;
-	@NotNull
-	private String discountType;
+	 private String message;
 }
