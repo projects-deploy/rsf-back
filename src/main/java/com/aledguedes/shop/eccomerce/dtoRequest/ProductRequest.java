@@ -35,16 +35,18 @@ public class ProductRequest {
 
 	@NotNull
 	private double price_product;
-	
+
 	@NotNull
 	private String product_size;
-	
+
 	@NotNull
 	private String product_colors;
 
 	@NotNull
-	private Boolean isNew;
-	
+	private Boolean isNew; 
+
+	private String multipleImages;
+
 	private Long brand_idd;
 	private Long category_idd;
 	private Long department_idd;

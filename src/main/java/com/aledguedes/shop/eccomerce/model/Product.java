@@ -78,6 +78,9 @@ public class Product extends Auditable {
 	@Column(name = "product_colors")
 	private String product_colors;
 
+	@Column(name = "multiple_images")
+	private String multipleImages;
+
 	@Column(name = "is_new")
 	private Boolean isNew;
 
