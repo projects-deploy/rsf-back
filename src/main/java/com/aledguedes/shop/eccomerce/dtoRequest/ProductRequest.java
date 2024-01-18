@@ -43,21 +43,10 @@ public class ProductRequest {
 	private String product_colors;
 
 	@NotNull
-<<<<<<< HEAD
 	private Boolean isNew; 
 
 	private String multipleImages;
-
-=======
-	private String product_size;
 	
-	@NotNull
-	private String product_colors;
-
-	@NotNull
-	private Boolean isNew;
-	
->>>>>>> 384eea022bf76417fcd61774e7d33389386763d8
 	private Long brand_idd;
 	private Long category_idd;
 	private Long department_idd;
