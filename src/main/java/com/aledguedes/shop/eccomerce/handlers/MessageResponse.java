@@ -1,4 +1,4 @@
-package com.aledguedes.handlers;
+package com.aledguedes.shop.eccomerce.handlers;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

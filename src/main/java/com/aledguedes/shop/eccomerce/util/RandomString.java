@@ -1,4 +1,4 @@
-package com.aledguedes.util;
+package com.aledguedes.shop.eccomerce.util;
 
 import java.security.SecureRandom;
 

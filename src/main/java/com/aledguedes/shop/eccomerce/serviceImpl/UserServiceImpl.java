@@ -15,7 +15,7 @@ import com.aledguedes.shop.eccomerce.model.User;
 import com.aledguedes.shop.eccomerce.repository.UserRepository;
 import com.aledguedes.shop.eccomerce.service.MailService;
 import com.aledguedes.shop.eccomerce.service.UserService;
-import com.aledguedes.util.RandomString;
+import com.aledguedes.shop.eccomerce.util.RandomString;
 
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
@@ -45,23 +45,26 @@ public class UserServiceImpl implements UserService {
 		return userRepository.findByEmail(email).map(userMapper::toUserResponse)
 				.orElseThrow(UserNotFoundException::new);
 	}
-	
 
 	@Override
-    public boolean verifyCodeUser(String verificationCode){
+	public boolean verifyCodeUser(String verificationCode) {
 
-        User user = userRepository.findByVerificationCode(verificationCode);
+		try {
+			User user = userRepository.findByVerificationCode(verificationCode);
 
-        if(user == null || user.isEnabled()){
-            return false;
-        } else {
-            user.setVerificationCode(null);
-            user.setEnabled(true);
-            userRepository.save(user);
+			if (user == null || user.isEnabled()) {
+				return false;
+			} else {
+				user.setVerificationCode(null);
+				user.setEnabled(true);
+				userRepository.save(user);
 
-            return true;
-        }
-    }
+				return true;
+			}
+		} catch (Exception e) {
+			throw new RuntimeException("Usuário não encontrado pelo código de verificação", e);
+		}
+	}
 
 	@Override
 	public UserResponse createUser(UserRequest userRequest) throws UnsupportedEncodingException, MessagingException {
@@ -78,9 +81,9 @@ public class UserServiceImpl implements UserService {
 			newUser.setVerificationCode(randomCode);
 
 			var createdUser = userRepository.save(newUser);
-			
+
 			mailService.sendVerificationEmail(createdUser);
-			
+
 			return userMapper.toUserResponse(createdUser);
 		}
 	}

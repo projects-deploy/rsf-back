@@ -38,9 +38,4 @@ public class UserRequest {
     private String password;
 
     private String linkPhoto;
-
-    @Size(min = 3, max = 100)
-    private String verificationCode;
-
-	private Boolean enabled;
 }

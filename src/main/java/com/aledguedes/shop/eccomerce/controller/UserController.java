@@ -49,6 +49,7 @@ public class UserController {
 
 	@GetMapping("/verify")
 	public String verifyUser(@Param("code") String code) {
+		System.out.println("DEBUG CONTROLLER CODE: "+code);
 		if (userService.verifyCodeUser(code)) {
 			return "verify_success";
 		} else {

@@ -21,8 +21,6 @@ public class UserMapperImpl implements UserMapper {
                 .name(userRequest.getName())
                 .linkPhoto(userRequest.getLinkPhoto())
                 .password(userRequest.getPassword())
-                .verificationCode(userRequest.getVerificationCode())
-                .enabled(userRequest.getEnabled())
                 .build();
     }
 
