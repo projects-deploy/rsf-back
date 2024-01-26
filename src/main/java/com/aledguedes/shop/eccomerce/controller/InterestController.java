@@ -38,15 +38,16 @@ public class InterestController {
         return interestService.interestById(interest_id);
     }
 
+    @GetMapping(value = "/find/by-interest-product")
+    public void notifySubscribers(
+            @RequestParam(name = "q", required = true, defaultValue = "0") Long product_id) {
+        interestService.notifySubscribers(product_id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public InterestResponse createInterest(@RequestBody @Valid InterestRequest interestRequest) {
         return interestService.createInterest(interestRequest);
-    }
-    @GetMapping(value = "/find/by-interest-product")
-    public void notifySubscribers(
-        @RequestParam(name = "q", required = true, defaultValue = "0") Long product_id) {
-        interestService.notifySubscribers(product_id);
     }
 
 }
