@@ -10,15 +10,15 @@ import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
 
 public interface ProductService {
 
-    public ProductResponse createProduct(ProductRequest productRequest);
-    public ProductResponse updateProduct(ProductRequest productRequest, Long product_id);
-    public List<ProductResponse> listAll();
-    public Page<ProductResponse> listarDisponiveis(Integer page);
-    public Page<ProductResponse> listarDestaques(Integer page);
-    public List<ProductResponse> listaIndisponiveis();
-    public List<ProductResponse> listByDepartment(Long category_id);
-    public Page<ProductResponse> listarPorPalavraChave(String key, Integer page); 
-    public ProductResponse listById(Long id);
+    ProductResponse createProduct(ProductRequest productRequest);
+    ProductResponse updateProduct(ProductRequest productRequest, Long product_id);
+    List<ProductResponse> listAll();
+    Page<ProductResponse> listarDisponiveis(Integer page);
+    Page<ProductResponse> listarDestaques(Integer page);
+    List<ProductResponse> listaIndisponiveis();
+    List<ProductResponse> listByDepartment(Long category_id);
+    Page<ProductResponse> listarPorPalavraChave(String key, Integer page); 
+    ProductResponse listById(Long id);
     
     Page<ProductResponse> getLatestProducts(int page, int size);
     

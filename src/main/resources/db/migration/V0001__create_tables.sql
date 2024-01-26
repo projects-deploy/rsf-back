@@ -159,5 +159,15 @@ CREATE TABLE `tbl_coupon` (
     FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`)
 );
 
+CREATE TABLE `tbl_interest` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `user_id` BIGINT,
+    `product_id` BIGINT,
+    `created_at` DATETIME,
+    `updated_at` DATETIME,
+    FOREIGN KEY (`user_id`) REFERENCES `tbl_customer`(`id`),
+    FOREIGN KEY (`product_id`) REFERENCES `tbl_product`(`id`)
+);
+
 
 INSERT INTO tbl_menu_entity (id, categories, departments) VALUES (1, null, null);
