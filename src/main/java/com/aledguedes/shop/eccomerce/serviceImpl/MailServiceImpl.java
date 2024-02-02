@@ -56,7 +56,7 @@ public class MailServiceImpl implements MailService {
         context.setVariable("user", user);
         context.setVariable("confirmationLink", confirmationLink);
         
-        return templateEngine.process("email-template", context);
+        return templateEngine.process("confirmation-email", context);
     }
 
 }

@@ -58,6 +58,8 @@ INSERT INTO department_category (department_id, category_id) VALUES (8, 8), (8, 
 INSERT INTO department_category (department_id, category_id) VALUES (9, 9), (9, 18), (9, 19);
 INSERT INTO department_category (department_id, category_id) VALUES (10, 5), (10, 20), (10, 21);
 
+-- INSERT INTO TBL_USER VALUES (1, false, 'Kokhym', 'aledguedes@gmail.com', '12345678', 'https://br.web.img3.acsta.net/pictures/15/06/15/15/34/437410.jpg', 'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e', '2024-02-02', '2024-02-02');
+
 INSERT INTO TBL_CUSTOMER VALUES
 (1, 'SP', '292.912.030-41', '14056-150', 'Alexandre', 'Guedes', 'https://st2.depositphotos.com/1104517/11967/v/950/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg', 'aledguedes@gmail.com', '(16) 12345-6789', 278, 'Planalto Verde',  'Ribeirão Preto', 'Rua Escritor José Mauro de Vasconcelos', 'Casa', '1983-04-07', '2023-12-19', '2023-12-19'),
 (2, 'AL', '994.306.580-00', '57083-154', 'Reinu', 'Kagoron', 'https://w7.pngwing.com/pngs/517/749/png-transparent-computer-icons-user-profile-avatar-woman-young-child-face-black-hair.png', 'kagoron@gmail.com', '(16) 12345-6789', 278, 'Antares',  'Maceió', 'Quadra D', 'casa', '1983-04-07', '2023-12-19', '2023-12-19'),
