@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin("*")
 @RequiredArgsConstructor
 @RequestMapping("/api/carousel")
-public class InCarouselController {
+public class InCarouselController {	
     
     private final InCarouselService inCarouselService;
 

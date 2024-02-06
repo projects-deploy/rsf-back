@@ -210,6 +210,14 @@ CREATE TABLE
         `updated_at` DATETIME
     );
 
+CREATE TABLE
+    `tbl_newsletter` (
+        `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `email` VARCHAR(255),
+        `username` VARCHAR(255),
+        `created_at` DATETIME,
+        `updated_at` DATETIME
+    );
 
 INSERT INTO
     tbl_menu_entity (id, categories, departments)
