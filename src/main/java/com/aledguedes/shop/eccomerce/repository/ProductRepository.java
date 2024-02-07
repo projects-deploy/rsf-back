@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
 import com.aledguedes.shop.eccomerce.model.Product;
@@ -29,5 +30,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByBrandId(Long brand_id);
     List<Product> findAllByCategoryId(Long category_id);
     List<Product> findAllByDepartmentId(Long department_id);
+
+    @Query(value = "SELECT * FROM tbl_product p WHERE p.tags LIKE %:tag% ORDER BY RAND() LIMIT 8", nativeQuery = true)
+    List<Product> findByTagsContaining(String tag);
     
 }
