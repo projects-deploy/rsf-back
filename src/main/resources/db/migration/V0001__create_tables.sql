@@ -220,6 +220,12 @@ CREATE TABLE
         `updated_at` DATETIME
     );
 
+CREATE TABLE
+    `tbl_tabs` (
+        `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `tags` TEXT
+    );
+
 INSERT INTO
     tbl_menu_entity (id, categories, departments)
 VALUES

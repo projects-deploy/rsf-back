@@ -18,19 +18,16 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tbl_brand")
+@Table(name = "tbl_tabs")
 @ToString(onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class Brand extends Auditable {
+public class InTabs {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-	@Column(name = "name")
-	private String name;
-
-	@Column(name = "link_photo")
-	private String link_photo;
+    @Column(name = "tags")
+    private String tabs;
 }
