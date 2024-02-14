@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.UserRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.UserResponse;
@@ -89,7 +90,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserResponse updateUser(UserRequest userRequest, Long user_id) {
+	public UserResponse updateUser(UserRequest userRequest, @PathVariable Long user_id) {
 		try {
 			var user = userRepository.findById(user_id).orElseThrow(UserNotFoundException::new);
 			BeanUtils.copyProperties(userRequest, user, "id", "email", "password", "createdAt", "updatedAt");

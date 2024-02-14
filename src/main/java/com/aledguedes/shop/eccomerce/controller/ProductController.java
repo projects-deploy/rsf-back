@@ -38,8 +38,8 @@ public class ProductController {
 
     @PutMapping(value = "/{product_id}")
     public ProductResponse updateProduct(
-    		@RequestBody @Valid ProductRequest productRequest,
-    		@PathVariable Long product_id) {
+            @RequestBody @Valid ProductRequest productRequest,
+            @PathVariable Long product_id) {
         return productService.updateProduct(productRequest, product_id);
     }
 
@@ -49,12 +49,12 @@ public class ProductController {
     }
 
     @GetMapping(value = "/by-available")
-    public Page<ProductResponse> listarDisponiveis(@RequestParam (name="page") Integer page) {
+    public Page<ProductResponse> listarDisponiveis(@RequestParam(name = "page") Integer page) {
         return productService.listarDisponiveis(page);
     }
 
     @GetMapping(value = "/by-destaks")
-    public Page<ProductResponse> listarDestaques(@RequestParam (name="page") Integer page) {
+    public Page<ProductResponse> listarDestaques(@RequestParam(name = "page") Integer page) {
         return productService.listarDestaques(page);
     }
 
@@ -65,11 +65,11 @@ public class ProductController {
 
     @GetMapping(value = "/by-sub-department/{category_id}")
     public List<ProductResponse> listByDepartment(@PathVariable Long category_id) {
-    	return productService.listByDepartment(category_id);
+        return productService.listByDepartment(category_id);
     }
 
     @GetMapping(value = "/find")
-    public Page<ProductResponse> listarPorPalavraChave(@RequestParam (name="key") String key, Integer page) {
+    public Page<ProductResponse> listarPorPalavraChave(@RequestParam(name = "key") String key, Integer page) {
         return productService.listarPorPalavraChave(key, page);
     }
 
@@ -77,30 +77,36 @@ public class ProductController {
     public ProductResponse listById(@PathVariable Long product_id) {
         return productService.listById(product_id);
     }
-    
+
     @GetMapping(value = "/find/by-news")
     public Page<ProductResponse> getLatestProducts(
-    		@RequestParam(name = "page", required = false, defaultValue = "0") int page,
-    		@RequestParam(name = "size", required = false, defaultValue = "10") int size) {
+            @RequestParam(name = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(name = "size", required = false, defaultValue = "10") int size) {
         return productService.getLatestProducts(page, size);
     }
-    
+
     @GetMapping(value = "/find/by-category")
     public List<ProductResponse> getAllProductsByCategoryId(
-    		@RequestParam(name = "category", required = false, defaultValue = "") Long category_id) {
+            @RequestParam(name = "category", required = false, defaultValue = "") Long category_id) {
         return productService.getAllProductsByCategoryId(category_id);
     }
 
     @GetMapping(value = "/find/by-brand")
     public List<ProductResponse> getAllProductsByBrandId(
-    		@RequestParam(name = "brand", required = false, defaultValue = "") Long brand_id) {
+            @RequestParam(name = "brand", required = false, defaultValue = "") Long brand_id) {
         return productService.getAllProductsByBrandId(brand_id);
     }
 
     @GetMapping("/find/by-department")
     public List<ProductResponse> getAllProductsByDepartmentId(
-    		@RequestParam(name = "department", required = false, defaultValue = "") Long department_id) {
+            @RequestParam(name = "department", required = false, defaultValue = "") Long department_id) {
         return productService.getAllProductsByDepartmentId(department_id);
+    }
+
+    @GetMapping("/find/by-tag")
+    public List<ProductResponse> searchByTag(
+            @RequestParam(name = "t", required = false, defaultValue = "") String tag) {
+        return productService.searchByTag(tag);
     }
 
 }

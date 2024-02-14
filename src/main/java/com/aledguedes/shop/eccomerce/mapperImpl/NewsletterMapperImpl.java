@@ -17,7 +17,6 @@ public class NewsletterMapperImpl  implements NewsletterMapper {
         }
 
         return Newsletter.builder()
-                .username(newsletterRequest.getUsername())
                 .email(newsletterRequest.getEmail())
                 .build();
     }
@@ -30,7 +29,6 @@ public class NewsletterMapperImpl  implements NewsletterMapper {
 
         return NewsletterResponse.builder()
                 .id(newsletter.getId())
-                .username(newsletter.getUsername())
                 .email(newsletter.getEmail())
                 .createdAt(newsletter.getCreatedAt())
                 .updatedAt(newsletter.getUpdatedAt())

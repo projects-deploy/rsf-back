@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @CrossOrigin("*")
 @RequiredArgsConstructor
-@RequestMapping("/api/inCollection")
+@RequestMapping("/api/collection")
 public class InCollectionController {
 
     private final InCollectionService inCollectionService;

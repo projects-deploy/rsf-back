@@ -23,53 +23,56 @@ import lombok.RequiredArgsConstructor;
 @SuppressWarnings("null")
 public class FavoriteProductsServiceImpl implements FavoriteProductsService {
 
-    private final FavoriteProductsMapper favoriteProductsMapper;
+	private final FavoriteProductsMapper favoriteProductsMapper;
 
-    private final ProductRepository productRepository;
-    private final CustomerRepository customerRepository;
-    private final FavoriteProductsRepository favoriteRepository;
+	private final ProductRepository productRepository;
+	private final CustomerRepository customerRepository;
+	private final FavoriteProductsRepository favoriteRepository;
 
-    @Override
-    public List<FavoriteProductsResponse> listAll() {
-        return favoriteRepository.findAll()
-                .stream()
-                .map(favoriteProductsMapper::toFavoriteProductsResponse)
-                .toList();
-    }
+	@Override
+	public List<FavoriteProductsResponse> listAll() {
+		return favoriteRepository.findAll().stream().map(favoriteProductsMapper::toFavoriteProductsResponse).toList();
+	}
 
-    @Override
-    public FavoriteProductsResponse createBrand(Long customer_id, Long product_id) {
-        try {
-            var customer = customerRepository.findById(customer_id)
-                    .orElseThrow(CustomerNotFoundException::new);
+	@Override
+	public FavoriteProductsResponse createBrand(Long customer_id, Long product_id) {
+		try {
+			var customer = customerRepository.findById(customer_id).orElseThrow(CustomerNotFoundException::new);
 
-            var product = productRepository.findById(product_id)
-                    .orElseThrow(ProductNotFoundException::new);
+			var product = productRepository.findById(product_id).orElseThrow(ProductNotFoundException::new);
 
-            var newFavorite = new FavoriteProducts();
-            newFavorite.setCustomer(customer);
-            newFavorite.setProduct(product);
-            newFavorite.setAdded_in(LocalDateTime.now());
-            
-            favoriteRepository.save(newFavorite);
+			var newFavorite = new FavoriteProducts();
+			newFavorite.setCustomer(customer);
+			newFavorite.setProduct(product);
+			newFavorite.setAdded_in(LocalDateTime.now());
 
-            return favoriteProductsMapper.toFavoriteProductsResponse(newFavorite);
-        } catch (Exception e) {
-            System.out.println("DEBUG = " + e.getMessage());
-            return null;
-        }
-    }
+			favoriteRepository.save(newFavorite);
 
-    @Override
-    public void deleteFavorite(Long favorite_id) {
-        try {
-            var existingFavorite = favoriteRepository.findById(favorite_id)
-                    .orElseThrow(FavoriteProductsNotFoundException::new);
+			return favoriteProductsMapper.toFavoriteProductsResponse(newFavorite);
+		} catch (Exception e) {
+			System.out.println("DEBUG = " + e.getMessage());
+			return null;
+		}
+	}
 
-            favoriteRepository.delete(existingFavorite);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
+	@Override
+	public void deleteFavorite(Long favorite_id) {
+		try {
+			var existingFavorite = favoriteRepository.findById(favorite_id)
+					.orElseThrow(FavoriteProductsNotFoundException::new);
+
+			favoriteRepository.delete(existingFavorite);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<FavoriteProductsResponse> getFavoritesByCustomerId(Long customer_id) {
+		return favoriteRepository.findByCustomerId(customer_id)
+				.stream()
+				.map(favoriteProductsMapper::toFavoriteProductsResponse)
+				.toList();
+	}
 
 }

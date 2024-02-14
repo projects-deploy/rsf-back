@@ -58,7 +58,7 @@ public class CouponController {
     }
 
     @PutMapping(value = "/{coupon_id}")
-    public CouponResponse updateCoupon(@RequestBody @Valid CouponRequest coupon, Long coupon_id) {
+    public CouponResponse updateCoupon(@RequestBody @Valid CouponRequest coupon, @PathVariable Long coupon_id) {
         return couponService.updateCoupon(coupon, coupon_id);
     }
 

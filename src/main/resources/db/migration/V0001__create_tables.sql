@@ -94,14 +94,15 @@ CREATE TABLE
         `discount` INT,
         `delivery` INT,
         `in_stok` INT,
-        `is_new` BOOLEAN,
         `average_rating` DECIMAL(3, 1) DEFAULT 0.0,
         `review_count` BIGINT DEFAULT 0,
         `product_size` TEXT,
         `product_colors` TEXT,
+        `is_new` BOOLEAN,
         `brand_id` INT,
         `category_id` INT,
         `department_id` INT,
+        `tags` TEXT,
         `multiple_images` TEXT,
         `created_at` TIMESTAMP,
         `updated_at` TIMESTAMP,
@@ -186,6 +187,7 @@ CREATE TABLE
 CREATE TABLE
     `tbl_highlights` (
         `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `title` VARCHAR(100),
         `description` VARCHAR(255),
         `link_photo` VARCHAR(255),
         `created_at` DATETIME,
@@ -215,6 +217,22 @@ CREATE TABLE
         `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
         `email` VARCHAR(255),
         `username` VARCHAR(255),
+        `created_at` DATETIME,
+        `updated_at` DATETIME
+    );
+
+CREATE TABLE
+    `tbl_tabs` (
+        `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `tabs` TEXT,
+        `created_at` DATETIME,
+        `updated_at` DATETIME
+    );
+
+CREATE TABLE
+    `tbl_tags` (
+        `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `tags` TEXT,
         `created_at` DATETIME,
         `updated_at` DATETIME
     );

@@ -17,6 +17,7 @@ public class HighlightsMapperImpl implements HighlightsMapper {
         }
 
         return Highlights.builder()
+        		.title(highlightsRequest.getTitle())
                 .link_photo(highlightsRequest.getLink_photo())
                 .description(highlightsRequest.getDescription())
                 .build();
@@ -30,6 +31,7 @@ public class HighlightsMapperImpl implements HighlightsMapper {
 
         return HighlightsResponse.builder()
                 .id(highlights.getId())
+        		.title(highlights.getTitle())
                 .link_photo(highlights.getLink_photo())
                 .description(highlights.getDescription())
                 .createdAt(highlights.getCreatedAt())

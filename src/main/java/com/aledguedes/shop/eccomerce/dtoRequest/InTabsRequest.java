@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(SnakeCaseStrategy.class)
-public class NewsletterRequest {
-    
+public class InTabsRequest {
+
     @NotNull
-    private String email;
+    private String tags;
 }

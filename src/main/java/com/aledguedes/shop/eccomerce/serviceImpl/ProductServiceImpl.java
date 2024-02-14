@@ -176,4 +176,10 @@ public class ProductServiceImpl implements ProductService {
 		return inStok > 1 ? 1 : 0;
 	}
 
+	@Override
+	public List<ProductResponse> searchByTag(String tag) {
+		return productRepository.findByTagsContaining(tag).stream().map(productMapper::toProductResponse)
+		.toList();
+	}
+
 }

@@ -19,6 +19,7 @@ public interface ProductService {
     List<ProductResponse> listByDepartment(Long category_id);
     Page<ProductResponse> listarPorPalavraChave(String key, Integer page); 
     ProductResponse listById(Long id);
+    List<ProductResponse> searchByTag(String tag);
     
     Page<ProductResponse> getLatestProducts(int page, int size);
     
