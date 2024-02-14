@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class InTabsResponse {
+public class TagsResponse {
 
     private Long id;
     private String tabs;

@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(SnakeCaseStrategy.class)
-public class InTabsRequest {
-
+public class TagsRequest {
+    
     @NotNull
     private String tags;
 }

@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin("*")
 @RequiredArgsConstructor
 @RequestMapping("/api/tabs")
-public class IntabsController {
+public class InTabsController {
     
     private final InTabsService inTabsService;
 

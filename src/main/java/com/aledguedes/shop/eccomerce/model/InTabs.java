@@ -21,13 +21,13 @@ import lombok.ToString;
 @Table(name = "tbl_tabs")
 @ToString(onlyExplicitlyIncluded = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
-public class InTabs {
+public class InTabs extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "tags")
+    @Column(name = "tabs")
     private String tabs;
 }

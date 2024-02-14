@@ -17,7 +17,7 @@ public class InTabsMapperImpl implements InTabsMapper {
         }
 
         return InTabs.builder()
-                .tabs(inTabsRequest.getTabs())
+                .tabs(inTabsRequest.getTags())
                 .build();
     }
 

@@ -187,6 +187,7 @@ CREATE TABLE
 CREATE TABLE
     `tbl_highlights` (
         `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `title` VARCHAR(100),
         `description` VARCHAR(255),
         `link_photo` VARCHAR(255),
         `created_at` DATETIME,
@@ -223,7 +224,17 @@ CREATE TABLE
 CREATE TABLE
     `tbl_tabs` (
         `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
-        `tags` TEXT
+        `tabs` TEXT,
+        `created_at` DATETIME,
+        `updated_at` DATETIME
+    );
+
+CREATE TABLE
+    `tbl_tags` (
+        `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `tags` TEXT,
+        `created_at` DATETIME,
+        `updated_at` DATETIME
     );
 
 INSERT INTO

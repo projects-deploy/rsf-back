@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class HighlightsResponse {
 
     private Long id;
+    private String title;
     private String description;
     private String link_photo;
     private LocalDateTime createdAt;
