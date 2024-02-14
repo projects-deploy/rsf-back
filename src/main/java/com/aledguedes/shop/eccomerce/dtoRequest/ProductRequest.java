@@ -46,6 +46,7 @@ public class ProductRequest {
 	private Boolean isNew; 
 
 	private String multipleImages;
+	private String tags;
 	
 	private Long brand_idd;
 	private Long category_idd;

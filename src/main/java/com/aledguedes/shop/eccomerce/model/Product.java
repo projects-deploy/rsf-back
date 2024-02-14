@@ -84,6 +84,9 @@ public class Product extends Auditable {
 	@Column(name = "is_new")
 	private Boolean isNew;
 
+	@Column(name = "tags")
+	private String tags;
+
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	@JsonIgnore

@@ -55,7 +55,7 @@ public class NewsletterController {
     }
 
     @PutMapping(value = "/{newsletter_id}")
-    public NewsletterResponse updateNewsletter(@RequestBody @Valid NewsletterRequest newsletter, Long newsletter_id) {
+    public NewsletterResponse updateNewsletter(@RequestBody @Valid NewsletterRequest newsletter, @PathVariable Long newsletter_id) {
         return newsletterService.updateNewsletter(newsletter, newsletter_id);
     }
 

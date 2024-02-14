@@ -41,12 +41,13 @@ public class NewsletterServiceImpl implements NewsletterService {
     public NewsletterResponse createNewsletter(NewsletterRequest newsletter) {
         try {
         	var existsEmail = newsletterRepository.findByEmail(newsletter.getEmail()).orElse(null);
+        	System.out.println(("DEBUG EMAIL NEWSLETTER: "+existsEmail));
         	if (existsEmail != null) {
-                var newNewsletter = newsletterMapper.toNewsletter(newsletter);
-                var savedNewsletter = newsletterRepository.save(newNewsletter);
-                return newsletterMapper.toNewsletterResponse(savedNewsletter);
+        		return null;                
         	}
-        	return null;
+        	var newNewsletter = newsletterMapper.toNewsletter(newsletter);
+            var savedNewsletter = newsletterRepository.save(newNewsletter);
+            return newsletterMapper.toNewsletterResponse(savedNewsletter);
         } catch (Exception e) {
             System.out.println("DEBUG = " + e.getMessage());
             return null;

@@ -17,6 +17,8 @@ import lombok.NoArgsConstructor;
 public class HighlightsRequest {
 
     @NotNull
+    private String title;
+    @NotNull
     private String description;
     @NotNull
     private String link_photo;

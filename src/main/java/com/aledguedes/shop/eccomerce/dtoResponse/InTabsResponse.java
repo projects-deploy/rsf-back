@@ -11,12 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class HighlightsResponse {
+public class InTabsResponse {
 
     private Long id;
-    private String title;
-    private String description;
-    private String link_photo;
+    private String tabs;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

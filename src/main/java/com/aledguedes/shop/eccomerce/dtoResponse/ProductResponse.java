@@ -39,6 +39,7 @@ public class ProductResponse {
 	private String product_colors;
 	private String multipleImages;
 	private Boolean isNew;
+	private String tags;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 
