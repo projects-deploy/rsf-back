@@ -256,6 +256,15 @@ CREATE TABLE
         `updated_at` DATETIME
     );
 
+CREATE TABLE
+    `tbl_notify_arrival` (
+        `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+        `name` VARCHAR(255),
+        `email` VARCHAR(255),
+        `created_at` DATETIME,
+        `updated_at` DATETIME
+    );
+
 INSERT INTO
     tbl_menu_entity (id, categories, departments)
 VALUES

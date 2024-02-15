@@ -1,14 +1,14 @@
 package com.aledguedes.shop.eccomerce.exceptions.core;
 
-public class NewsletterNotFoundException extends ModelNotFoundException {
+public class NotFoundException extends ModelNotFoundException {
     
     private static final long serialVersionUID = 1L;
 
-    public NewsletterNotFoundException() {
+    public NotFoundException() {
         super("Não encontramos o produto na lista de favoritos!");
     }
 
-    public NewsletterNotFoundException(String message) {
+    public NotFoundException(String message) {
         super(message);
     }
 }

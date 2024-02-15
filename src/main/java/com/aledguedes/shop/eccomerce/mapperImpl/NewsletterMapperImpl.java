@@ -8,7 +8,7 @@ import com.aledguedes.shop.eccomerce.mapper.NewsletterMapper;
 import com.aledguedes.shop.eccomerce.model.Newsletter;
 
 @Component
-public class NewsletterMapperImpl  implements NewsletterMapper {
+public class NewsletterMapperImpl implements NewsletterMapper {
 
     @Override
     public Newsletter toNewsletter(NewsletterRequest newsletterRequest) {

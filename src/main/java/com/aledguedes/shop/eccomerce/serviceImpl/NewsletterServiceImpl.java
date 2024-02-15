@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.aledguedes.shop.eccomerce.dtoRequest.NewsletterRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.NewsletterResponse;
-import com.aledguedes.shop.eccomerce.exceptions.core.NewsletterNotFoundException;
+import com.aledguedes.shop.eccomerce.exceptions.core.NotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.NewsletterMapper;
 import com.aledguedes.shop.eccomerce.repository.NewsletterRespository;
 import com.aledguedes.shop.eccomerce.service.MailService;
@@ -29,7 +29,7 @@ public class NewsletterServiceImpl implements NewsletterService {
     @Override
     public NewsletterResponse newsletterById(Long newsletter_id) {
         return newsletterRepository.findById(newsletter_id).map(newsletterMapper::toNewsletterResponse)
-                .orElseThrow(NewsletterNotFoundException::new);
+                .orElseThrow(NotFoundException::new);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class NewsletterServiceImpl implements NewsletterService {
     @Override
     public NewsletterResponse updateNewsletter(NewsletterRequest newsletterRequest, Long newsletter_id) {
         try {
-            var newsletter = newsletterRepository.findById(newsletter_id).orElseThrow(NewsletterNotFoundException::new);
+            var newsletter = newsletterRepository.findById(newsletter_id).orElseThrow(NotFoundException::new);
             BeanUtils.copyProperties(newsletterRequest, newsletter, "id", "createdAt", "updatedAt");
             var newsletterAtualizado = newsletterRepository.save(newsletter);
             return newsletterMapper.toNewsletterResponse(newsletterAtualizado);
