@@ -237,6 +237,25 @@ CREATE TABLE
         `updated_at` DATETIME
     );
 
+CREATE TABLE
+    `tbl_answers` (
+        `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `content` TEXT,
+        `question_id` BIGINT,
+        `created_at` DATETIME,
+        `updated_at` DATETIME
+    );
+
+CREATE TABLE
+    `tbl_questions` (
+        `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+        `content` TEXT,
+        `product_id` BIGINT,
+        `customer_id` BIGINT,
+        `created_at` DATETIME,
+        `updated_at` DATETIME
+    );
+
 INSERT INTO
     tbl_menu_entity (id, categories, departments)
 VALUES
