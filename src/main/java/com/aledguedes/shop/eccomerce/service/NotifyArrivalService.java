@@ -10,5 +10,5 @@ public interface NotifyArrivalService {
     NotifyArrivalResponse notifyArrivalById(Long notifyArrival_id);
     NotifyArrivalResponse createNotifyArrival(NotifyArrivalRequest notifyArrival);
     NotifyArrivalResponse updateNotifyArrival(NotifyArrivalRequest notifyArrival, Long notifyArrival_id);
-    
+    List<NotifyArrivalResponse> findByProductId(Long product_id);
 }

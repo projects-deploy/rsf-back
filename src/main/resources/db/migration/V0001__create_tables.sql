@@ -261,6 +261,7 @@ CREATE TABLE
         `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
         `name` VARCHAR(255),
         `email` VARCHAR(255),
+        `product_id` BIGINT,
         `created_at` DATETIME,
         `updated_at` DATETIME
     );

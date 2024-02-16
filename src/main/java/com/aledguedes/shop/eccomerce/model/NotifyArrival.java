@@ -33,4 +33,7 @@ public class NotifyArrival extends Auditable {
 
 	@Column(name = "email")
 	private String email;
+
+	@Column(name = "product_id")
+	private Long productId;
 }

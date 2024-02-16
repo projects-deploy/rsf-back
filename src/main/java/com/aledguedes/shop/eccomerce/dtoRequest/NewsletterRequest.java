@@ -18,4 +18,6 @@ public class NewsletterRequest {
     
     @NotNull
     private String email;
+    @NotNull
+    private String productId;
 }

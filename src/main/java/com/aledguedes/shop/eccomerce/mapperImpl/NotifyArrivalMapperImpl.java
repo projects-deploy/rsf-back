@@ -19,6 +19,7 @@ public class NotifyArrivalMapperImpl implements NotifyArrivalMapper {
         return NotifyArrival.builder()
                 .name(notifyArrivalRequest.getName())
                 .email(notifyArrivalRequest.getEmail())
+                .productId(notifyArrivalRequest.getProductId())
                 .build();
     }
 

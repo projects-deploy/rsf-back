@@ -126,3 +126,7 @@ INSERT INTO tbl_favorites (id, added_in, customer_id, product_id) VALUES (1, '20
 
 INSERT INTO tbl_questions (id, content, product_id, customer_id, created_at, updated_at) VALUES (1, 'Tem frete grátis?', 1, 1, '2024-02-15', '2024-02-15');
 INSERT INTO tbl_answers (id, content, question_id, created_at, updated_at) VALUES (1, 'Dentro de um raio de 300Km da região de Riberião Preto/SP é grátis', 1, '2024-02-15', '2024-02-15');
+INSERT INTO tbl_notify_arrival (id, name, email, product_id, created_at, updated_at) VALUES
+(1, 'Alexandre Guedes', 'kokhymgds@gmail.com', 1, '2024-02-16', '2024-02-16'),
+(2, 'Danielle Tenda', 'dani_helo13@gmail.com', 25, '2024-02-16', '2024-02-16'),
+(3, 'João Victor Prado', 'jv_prado@gmail.com', 10, '2024-02-16', '2024-02-16');

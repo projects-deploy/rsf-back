@@ -15,9 +15,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonNaming(SnakeCaseStrategy.class)
 public class NotifyArrivalRequest {
-    
+
     @NotNull
     private String name;
     @NotNull
     private String email;
+    @NotNull
+    private Long productId;
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @CrossOrigin("*")
 @RequiredArgsConstructor
-@RequestMapping("/api/notifyArrival")
+@RequestMapping("/api/arrived")
 public class NotifyArrivalController {
 
     private final NotifyArrivalService notifyArrivalService;
@@ -45,7 +46,14 @@ public class NotifyArrivalController {
     }
 
     @PutMapping(value = "/{notifyArrival_id}")
-    public NotifyArrivalResponse updateNotifyArrival(@RequestBody @Valid NotifyArrivalRequest notifyArrival, @PathVariable Long notifyArrival_id) {
+    public NotifyArrivalResponse updateNotifyArrival(@RequestBody @Valid NotifyArrivalRequest notifyArrival,
+            @PathVariable Long notifyArrival_id) {
         return notifyArrivalService.updateNotifyArrival(notifyArrival, notifyArrival_id);
+    }
+
+    @GetMapping(value = "/find/by-product")
+    public List<NotifyArrivalResponse> findByProductId(
+            @RequestParam(name = "p", required = false, defaultValue = "") Long product_id) {
+        return notifyArrivalService.findByProductId(product_id);
     }
 }
