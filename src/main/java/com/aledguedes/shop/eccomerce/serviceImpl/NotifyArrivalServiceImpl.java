@@ -73,7 +73,9 @@ public class NotifyArrivalServiceImpl implements NotifyArrivalService {
 	@Override
 	public List<NotifyArrivalResponse> findByProductId(Long product_id) {
 		return notifyArrivalRepository.findByProductId(product_id).stream()
-				.map(notifyArrivalMapper::toNotifyArrivalResponse).toList();
+				.map(arrived -> {
+					return convertArrivalToDTO(arrived);
+				}).toList();
 	}
 	
 	@SuppressWarnings("unused")
