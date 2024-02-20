@@ -61,7 +61,6 @@ public class UserController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserResponse createUser(@RequestBody @Valid UserRequest userRequest)
 			throws UnsupportedEncodingException, MessagingException {
-		System.out.println("DEBUG CONTROLLER " + userRequest.getEmail());
 		return userService.createUser(userRequest);
 	}
 
