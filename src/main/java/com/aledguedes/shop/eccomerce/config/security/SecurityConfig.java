@@ -18,31 +18,40 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private SecurityFilter securityFilter;
+	@Autowired
+	private SecurityFilter securityFilter;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-        return httpSecurity.csrf(csrf -> csrf.disable())
+		return  httpSecurity
+                .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests( authorize -> authorize
-                        .requestMatchers(HttpMethod.POST,"/api/user").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/api/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/user/verify").permitAll()
+                .authorizeHttpRequests(authorize -> authorize
+                		.requestMatchers(HttpMethod.GET, "/api/brand").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/category").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/carousel/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/department").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/highlights").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/product/find/by-news").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/tabs/*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/tabs/products-tabs/*").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
+//                        .requestMatchers(HttpMethod.POST, "/product").hasRole("ADMIN")
                         .anyRequest().authenticated()
-                ).addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                )
+                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-    }
+	}
 
-    @Bean
-    public AuthenticationManager authenticationManager
-            (AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }

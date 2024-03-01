@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +44,7 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/find")
-	public UserResponse findUserByEmail(@RequestParam(name = "q", required = false, defaultValue = "") String email) {
+	public UserDetails findUserByEmail(@RequestParam(name = "q", required = false, defaultValue = "") String email) {
 		return userService.findUserByEmail(email);
 	}
 

@@ -6,3 +6,5 @@ spring:
   jpa:
     hibernate:
       ddl-auto: true
+jwt:
+   secret: ${JWT_SECRET:reccos-secrety-key}
