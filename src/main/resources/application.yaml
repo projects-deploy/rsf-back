@@ -2,7 +2,7 @@ spring:
   web:
     locale: pt_BR
   profiles:
-    active: ${HYPERPROF_PROFILE:dev}
+    active: ${RECCOS_PROFILE:dev}
   jpa:
     hibernate:
       ddl-auto: true
