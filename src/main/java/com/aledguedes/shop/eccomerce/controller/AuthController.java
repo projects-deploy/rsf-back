@@ -14,6 +14,7 @@ import com.aledguedes.shop.eccomerce.config.auth.TokenService;
 import com.aledguedes.shop.eccomerce.dtoRequest.AuthenticationRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.AuthenticationResponse;
 import com.aledguedes.shop.eccomerce.model.User;
+import com.aledguedes.shop.eccomerce.service.UserService;
 
 import jakarta.validation.Valid;
 
@@ -22,20 +23,25 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-	@Autowired private TokenService tokenService;
-	@Autowired private AuthenticationManager authenticationManager;
-	
+	@Autowired
+	private TokenService tokenService;
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	@Autowired
+	private UserService userService;
+
 	@PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody @Valid AuthenticationRequest data){
-        var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
-        
-        System.out.println("DEBUG: PASSW: "+data.email());
+	public ResponseEntity<AuthenticationResponse> login(@RequestBody @Valid AuthenticationRequest data) {
+		var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
 
-        var auth = this.authenticationManager.authenticate(usernamePassword);
+		var auth = this.authenticationManager.authenticate(usernamePassword);
+		
+		User user = (User) auth.getPrincipal();
+		var usuarioLogado = userService.userById(user.getId());
 
-        var token = tokenService.generateToken((User) auth.getPrincipal());
+		var token = tokenService.generateToken(user);
 
-        return ResponseEntity.ok(new AuthenticationResponse(token));
-    }
+		return ResponseEntity.ok(new AuthenticationResponse(token, usuarioLogado));
+	}
 
 }
