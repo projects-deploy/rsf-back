@@ -43,7 +43,7 @@ public class ProductRequest {
 	private String product_colors;
 
 	@NotNull
-	private Boolean isNew; 
+	private Boolean isNew;
 
 	private String multipleImages;
 	private String tags;

@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
 
 			var createdUser = userRepository.save(newUser);
 
-			mailService.sendVerificationEmail(createdUser);
+//			mailService.sendVerificationEmail(createdUser);
 
 			return userMapper.toUserResponse(createdUser);
 		}
