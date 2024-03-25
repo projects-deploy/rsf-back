@@ -97,12 +97,6 @@ public class ProductController {
         return productService.getAllProductsByBrandId(brand_id);
     }
 
-    @GetMapping(value = "/find/by-department")
-    public List<ProductResponse> getAllProductsByDepartmentId(
-            @RequestParam(name = "department", required = false, defaultValue = "") Long department_id) {
-        return productService.getAllProductsByDepartmentId(department_id);
-    }
-
     @GetMapping("/find/by-tag")
     public List<ProductResponse> searchByTag(
             @RequestParam(name = "t", required = false, defaultValue = "") String tag) {

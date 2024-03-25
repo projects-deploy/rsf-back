@@ -50,7 +50,6 @@ public class ProductRequest {
 	
 	private Long brand_idd;
 	private Long category_idd;
-	private Long department_idd;
 
 	@NotNull
 	private int in_stok;

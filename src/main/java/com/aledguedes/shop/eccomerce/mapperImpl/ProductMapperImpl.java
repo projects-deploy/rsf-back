@@ -7,7 +7,6 @@ import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
 import com.aledguedes.shop.eccomerce.mapper.ProductMapper;
 import com.aledguedes.shop.eccomerce.model.Brand;
 import com.aledguedes.shop.eccomerce.model.Category;
-import com.aledguedes.shop.eccomerce.model.Department;
 import com.aledguedes.shop.eccomerce.model.Product;
 
 @Component
@@ -34,7 +33,6 @@ public class ProductMapperImpl implements ProductMapper {
                 .tags(productRequest.getTags())
                 .brand(Brand.builder().id(productRequest.getBrand_idd()).build())
                 .category(Category.builder().id(productRequest.getCategory_idd()).build())
-                .department(Department.builder().id(productRequest.getDepartment_idd()).build())
                 .build();
     }
 
@@ -66,7 +64,6 @@ public class ProductMapperImpl implements ProductMapper {
                 .tags(product.getTags())
                 .brand(product.getBrand())
                 .category(product.getCategory())
-                .department(product.getDepartment())
                 .reviews(product.getReviews())
                 .build();
     }

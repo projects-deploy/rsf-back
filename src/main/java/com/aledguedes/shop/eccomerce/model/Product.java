@@ -93,11 +93,6 @@ public class Product extends Auditable {
 	private Category category;
 
 	@ManyToOne
-	@JoinColumn(name = "department_id")
-	@JsonIgnore
-	private Department department;
-
-	@ManyToOne
 	@JoinColumn(name = "brand_id")
 	@JsonIgnore
 	private Brand brand;
