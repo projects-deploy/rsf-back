@@ -101,13 +101,11 @@ CREATE TABLE
         `is_new` BOOLEAN,
         `brand_id` BIGINT,
         `category_id` BIGINT,
-        `department_id` BIGINT,
         `tags` TEXT,
         `multiple_images` TEXT,
         `created_at` TIMESTAMP,
         `updated_at` TIMESTAMP,
         FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand` (`id`),
-        FOREIGN KEY (`department_id`) REFERENCES `tbl_department` (`id`),
         FOREIGN KEY (`category_id`) REFERENCES `tbl_category` (`id`)
     );
 
