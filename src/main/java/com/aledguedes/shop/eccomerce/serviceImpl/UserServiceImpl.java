@@ -15,7 +15,6 @@ import com.aledguedes.shop.eccomerce.exceptions.core.UserNotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.UserMapper;
 import com.aledguedes.shop.eccomerce.model.User;
 import com.aledguedes.shop.eccomerce.repository.UserRepository;
-import com.aledguedes.shop.eccomerce.service.MailService;
 import com.aledguedes.shop.eccomerce.service.UserService;
 import com.aledguedes.shop.eccomerce.util.RandomString;
 
@@ -28,7 +27,6 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
 
 	private final UserMapper userMapper;
-	private final MailService mailService;
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 
@@ -82,8 +80,6 @@ public class UserServiceImpl implements UserService {
 			newUser.setVerificationCode(randomCode);
 
 			var createdUser = userRepository.save(newUser);
-
-//			mailService.sendVerificationEmail(createdUser);
 
 			return userMapper.toUserResponse(createdUser);
 		}

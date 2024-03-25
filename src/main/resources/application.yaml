@@ -1,10 +1,13 @@
 spring:
+  flyway:
+    enabled: true
+    repair: true
   web:
     locale: pt_BR
   profiles:
-    active: ${RECCOS_PROFILE:dev}
+    active: ${HYPERPROF_PROFILE:dev}
   jpa:
     hibernate:
-      ddl-auto: true
+      ddl-auto: none
 jwt:
-   secret: ${JWT_SECRET:reccos-secrety-key}
+   secret: ${JWT_SECRET:reccos-secrety-key} 
