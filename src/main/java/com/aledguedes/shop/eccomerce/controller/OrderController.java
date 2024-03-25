@@ -39,7 +39,7 @@ public class OrderController {
         return orderService.listById(order_id);
     }
 
-    @GetMapping(value = "/chage-status/{order_id}")
+    @GetMapping(value = "/change-status/{order_id}")
     public OrderResponse changeStatus(@PathVariable Long order_id, @RequestParam(name="status") Integer status) {
         return orderService.changeStatus(order_id, status);
     }

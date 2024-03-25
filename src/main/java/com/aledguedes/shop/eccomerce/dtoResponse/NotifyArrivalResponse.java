@@ -21,6 +21,6 @@ public class NotifyArrivalResponse {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 
-	@JsonIgnoreProperties({ "brand", "category", "reviews" })
+	@JsonIgnoreProperties({ "brand", "category", "reviews", "department" })
 	private ProductResponse products;
 }

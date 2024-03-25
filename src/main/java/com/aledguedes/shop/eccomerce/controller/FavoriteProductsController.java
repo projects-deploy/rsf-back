@@ -28,7 +28,7 @@ public class FavoriteProductsController {
         return productsService.listAll();
     }
     
-    @GetMapping("/find")
+    @GetMapping("/find/by-customer")
     public List<FavoriteProductsResponse> getFavoritesByCustomerId(
     		@RequestParam(name = "q", required = false, defaultValue = "") Long customer_id) {
         return productsService.getFavoritesByCustomerId(customer_id);

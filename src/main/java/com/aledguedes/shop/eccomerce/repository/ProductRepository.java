@@ -29,7 +29,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     
     List<Product> findAllByBrandId(Long brand_id);
     List<Product> findAllByCategoryId(Long category_id);
-    List<Product> findAllByDepartmentId(Long department_id);
 
     @Query(value = "SELECT * FROM tbl_product p WHERE p.tags LIKE %:tag% ORDER BY RAND() LIMIT 8", nativeQuery = true)
     List<Product> findByTagsContaining(String tag);

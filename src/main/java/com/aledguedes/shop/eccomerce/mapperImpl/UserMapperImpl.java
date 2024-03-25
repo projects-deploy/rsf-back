@@ -36,7 +36,6 @@ public class UserMapperImpl implements UserMapper {
 				.email(user.getEmail())
                 .enabled(user.getEnabled())
                 .linkPhoto(user.getLinkPhoto())
-                .verificationCode(user.getVerificationCode())
 	            .createdAt(user.getCreatedAt())
 	            .updatedAt(user.getUpdatedAt())
 	            .build();

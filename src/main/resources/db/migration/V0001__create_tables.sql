@@ -76,7 +76,7 @@ CREATE TABLE
         `status` INT,
         `receipt_number` varchar(50),
         `payment` VARCHAR(100),
-        `customer_id` INT,
+        `customer_id` BIGINT,
         `created_at` TIMESTAMP,
         `updated_at` TIMESTAMP,
         FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`id`)
@@ -99,15 +99,13 @@ CREATE TABLE
         `product_size` TEXT,
         `product_colors` TEXT,
         `is_new` BOOLEAN,
-        `brand_id` INT,
-        `category_id` INT,
-        `department_id` INT,
+        `brand_id` BIGINT,
+        `category_id` BIGINT,
         `tags` TEXT,
         `multiple_images` TEXT,
         `created_at` TIMESTAMP,
         `updated_at` TIMESTAMP,
         FOREIGN KEY (`brand_id`) REFERENCES `tbl_brand` (`id`),
-        FOREIGN KEY (`department_id`) REFERENCES `tbl_department` (`id`),
         FOREIGN KEY (`category_id`) REFERENCES `tbl_category` (`id`)
     );
 
@@ -117,8 +115,8 @@ CREATE TABLE
         `qtde_item` INT,
         `unit_price` DECIMAL(10, 2),
         `amount` DECIMAL(10, 2),
-        `order_id` INT,
-        `product_id` INT,
+        `order_id` BIGINT,
+        `product_id` BIGINT,
         `created_at` TIMESTAMP,
         `updated_at` TIMESTAMP,
         FOREIGN KEY (`order_id`) REFERENCES `tbl_order` (`id`),

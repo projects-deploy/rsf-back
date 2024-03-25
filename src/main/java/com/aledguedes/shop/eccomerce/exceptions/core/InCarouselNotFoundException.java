@@ -5,7 +5,7 @@ public class InCarouselNotFoundException extends ModelNotFoundException {
     private static final long serialVersionUID = 1L;
 
     public InCarouselNotFoundException() {
-        super("Não encontramos o produto na lista de favoritos!");
+        super("Carouosel ID não encontrado!");
     }
 
     public InCarouselNotFoundException(String message) {
