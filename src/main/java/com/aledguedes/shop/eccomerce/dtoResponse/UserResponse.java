@@ -18,7 +18,6 @@ public class UserResponse {
     private String email;
 	private Boolean enabled;
     private String linkPhoto;
-    private String verificationCode;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 }

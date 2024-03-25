@@ -1,15 +1,16 @@
 spring:
   datasource:
     username: root
-    password: BemAgro
+    password: mysql
     url: jdbc:mysql://localhost:3306/reccoshop?useTimezone=true&serverTimezone=UTC
   jpa:
-    show-sql: true
-    properties:
-      "[format_sql]": true
     hibernate:
-      ddl-auto: update
-      dialect: org.hibernate.dialect.MySQL8Dialect
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+      show-sql: true
+      format_sql: truet
   mail:
     host: smtp.gmail.com
     port: 587

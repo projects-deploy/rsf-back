@@ -63,7 +63,7 @@ public class ProductController {
         return productService.listaIndisponiveis();
     }
 
-    @GetMapping(value = "/by-sub-department/{category_id}")
+    @GetMapping(value = "/by-category/{category_id}")
     public List<ProductResponse> listByDepartment(@PathVariable Long category_id) {
         return productService.listByDepartment(category_id);
     }
@@ -95,12 +95,6 @@ public class ProductController {
     public List<ProductResponse> getAllProductsByBrandId(
             @RequestParam(name = "brand", required = false, defaultValue = "") Long brand_id) {
         return productService.getAllProductsByBrandId(brand_id);
-    }
-
-    @GetMapping("/find/by-department")
-    public List<ProductResponse> getAllProductsByDepartmentId(
-            @RequestParam(name = "department", required = false, defaultValue = "") Long department_id) {
-        return productService.getAllProductsByDepartmentId(department_id);
     }
 
     @GetMapping("/find/by-tag")

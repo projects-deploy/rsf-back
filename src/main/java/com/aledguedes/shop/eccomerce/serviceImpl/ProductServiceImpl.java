@@ -13,13 +13,11 @@ import com.aledguedes.shop.eccomerce.dtoRequest.ProductRequest;
 import com.aledguedes.shop.eccomerce.dtoResponse.ProductResponse;
 import com.aledguedes.shop.eccomerce.exceptions.core.BrandNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.core.CategoryNotFoundException;
-import com.aledguedes.shop.eccomerce.exceptions.core.DepartmentNotFoundException;
 import com.aledguedes.shop.eccomerce.exceptions.core.ProductNotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.ProductMapper;
 import com.aledguedes.shop.eccomerce.model.Product;
 import com.aledguedes.shop.eccomerce.repository.BrandRepository;
 import com.aledguedes.shop.eccomerce.repository.CategoryRepository;
-import com.aledguedes.shop.eccomerce.repository.DepartmentRepository;
 import com.aledguedes.shop.eccomerce.repository.ProductRepository;
 import com.aledguedes.shop.eccomerce.service.ProductService;
 
@@ -35,7 +33,6 @@ public class ProductServiceImpl implements ProductService {
 	private final BrandRepository brandRepository;
 	private final ProductRepository productRepository;
 	private final CategoryRepository categoryRepository;
-	private final DepartmentRepository departmentRepository;
 
 	@Override
 	public ProductResponse createProduct(ProductRequest productRequest) {
@@ -46,14 +43,10 @@ public class ProductServiceImpl implements ProductService {
 			var category = categoryRepository.findById(productRequest.getCategory_idd())
 					.orElseThrow(CategoryNotFoundException::new);
 
-			var depto = departmentRepository.findById(productRequest.getDepartment_idd())
-					.orElseThrow(DepartmentNotFoundException::new);
-
 			var marca = brandRepository.findById(productRequest.getBrand_idd())
 					.orElseThrow(BrandNotFoundException::new);
 
 			produto.setBrand(marca);
-			produto.setDepartment(depto);
 			produto.setCategory(category);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));
@@ -72,13 +65,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductResponse updateProduct(ProductRequest productRequest, Long product_id) {
 		try {
-			var produto = productRepository.findById(product_id).orElseThrow(ProductNotFoundException::new);
+			var produto = productRepository.findById(product_id)
+					.orElseThrow(ProductNotFoundException::new);
 
 			var category = categoryRepository.findById(productRequest.getCategory_idd())
 					.orElseThrow(CategoryNotFoundException::new);
-
-			var depto = departmentRepository.findById(productRequest.getDepartment_idd())
-					.orElseThrow(DepartmentNotFoundException::new);
 
 			var marca = brandRepository.findById(productRequest.getBrand_idd())
 					.orElseThrow(BrandNotFoundException::new);
@@ -86,7 +77,6 @@ public class ProductServiceImpl implements ProductService {
 			BeanUtils.copyProperties(productRequest, produto, "id", "createdAt", "updatedAt");
 			produto.setBrand(marca);
 			produto.setCategory(category);
-			produto.setDepartment(depto);
 			produto.setPrice_promo(changePromotion(produto));
 			produto.setAvailable(existStok(produto.getIn_stok()));
 			var userAtualizado = productRepository.save(produto);
@@ -163,12 +153,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductResponse> getAllProductsByCategoryId(Long category_id) {
 		return productRepository.findAllByCategoryId(category_id).stream().map(productMapper::toProductResponse)
-				.toList();
-	}
-
-	@Override
-	public List<ProductResponse> getAllProductsByDepartmentId(Long department_id) {
-		return productRepository.findAllByDepartmentId(department_id).stream().map(productMapper::toProductResponse)
 				.toList();
 	}
 

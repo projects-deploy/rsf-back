@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,6 @@ import com.aledguedes.shop.eccomerce.exceptions.core.UserNotFoundException;
 import com.aledguedes.shop.eccomerce.mapper.UserMapper;
 import com.aledguedes.shop.eccomerce.model.User;
 import com.aledguedes.shop.eccomerce.repository.UserRepository;
-import com.aledguedes.shop.eccomerce.service.MailService;
 import com.aledguedes.shop.eccomerce.service.UserService;
 import com.aledguedes.shop.eccomerce.util.RandomString;
 
@@ -27,7 +27,6 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
 
 	private final UserMapper userMapper;
-	private final MailService mailService;
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 
@@ -42,9 +41,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserResponse findUserByEmail(String email) {
-		return userRepository.findByEmail(email).map(userMapper::toUserResponse)
-				.orElseThrow(UserNotFoundException::new);
+	public UserDetails findUserByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 
 	@Override
@@ -69,7 +67,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserResponse createUser(UserRequest userRequest) throws UnsupportedEncodingException, MessagingException {
-		var existsEmail = userRepository.findByEmail(userRequest.getEmail()).orElse(null);
+		var existsEmail = userRepository.findByEmail(userRequest.getEmail());
 		if (existsEmail != null) {
 			throw new RuntimeException("Email já cadastrado!!!");
 		} else {
@@ -83,8 +81,6 @@ public class UserServiceImpl implements UserService {
 
 			var createdUser = userRepository.save(newUser);
 
-			mailService.sendVerificationEmail(createdUser);
-
 			return userMapper.toUserResponse(createdUser);
 		}
 	}
@@ -93,7 +89,7 @@ public class UserServiceImpl implements UserService {
 	public UserResponse updateUser(UserRequest userRequest, @PathVariable Long user_id) {
 		try {
 			var user = userRepository.findById(user_id).orElseThrow(UserNotFoundException::new);
-			BeanUtils.copyProperties(userRequest, user, "id", "email", "password", "createdAt", "updatedAt");
+			BeanUtils.copyProperties(userRequest, user, "id", "email", "createdAt", "updatedAt");
 			var userAtualizado = userRepository.save(user);
 			return userMapper.toUserResponse(userAtualizado);
 		} catch (Exception ex) {
